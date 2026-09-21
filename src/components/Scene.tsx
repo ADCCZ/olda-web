@@ -82,7 +82,8 @@ export function Scene() {
 
   return (
     <div ref={ref} className="relative h-[170px] w-full overflow-hidden md:h-[270px]" aria-hidden data-orbit>
-      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMax slice" className="absolute inset-0 h-full w-full">
+      {/* zarovnáno doprava, aby hodiny zůstaly vidět i na užších obrazovkách (ořízne se jen opakující se řada skříní vlevo) */}
+      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMaxYMax slice" className="absolute inset-0 h-full w-full">
         <defs>
           <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stopColor="var(--crt-ink)" stopOpacity="0.32" />
