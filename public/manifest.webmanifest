@@ -1,0 +1,9 @@
+{
+  "name": "Olda — životopisný web",
+  "short_name": "Olda",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#071009",
+  "theme_color": "#071009",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

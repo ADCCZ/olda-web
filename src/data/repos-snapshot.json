@@ -1,0 +1,53 @@
+[
+  {
+    "name": "campmaster-3000",
+    "html_url": "https://github.com/adccz/campmaster-3000",
+    "language": "JavaScript",
+    "stargazers_count": 0,
+    "updated_at": "2026-05-25T00:00:00Z",
+    "homepage": "https://campmaster-3000.vercel.app",
+    "fork": false
+  },
+  {
+    "name": "web_oblastni-stranky_jk",
+    "html_url": "https://github.com/adccz/web_oblastni-stranky_jk",
+    "language": "Latte",
+    "stargazers_count": 0,
+    "updated_at": "2026-02-04T00:00:00Z",
+    "homepage": null,
+    "fork": false
+  },
+  {
+    "name": "tmwmf_sem_UPS",
+    "html_url": "https://github.com/adccz/tmwmf_sem_UPS",
+    "language": "C",
+    "stargazers_count": 0,
+    "updated_at": "2026-01-15T00:00:00Z",
+    "homepage": null,
+    "fork": false
+  },
+  {
+    "name": "web-foodapp",
+    "html_url": "https://github.com/adccz/web-foodapp",
+    "language": "Twig",
+    "stargazers_count": 0,
+    "updated_at": "2025-12-10T00:00:00Z",
+    "homepage": null,
+    "fork": false
+  },
+  {
+    "name": "web-jiznikriz",
+    "html_url": "https://github.com/adccz/web-jiznikriz",
+    "language": "PHP",
+    "stargazers_count": 0,
+    "updated_at": "2025-10-01T00:00:00Z",
+    "homepage": null,
+    "fork": false,
+    "languages": {
+      "PHP": 19125,
+      "CSS": 486,
+      "Hack": 292,
+      "JavaScript": 133
+    }
+  }
+]

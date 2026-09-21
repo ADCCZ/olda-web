@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oldřich Švehla, junior full-stack vývojář</title>
+    <meta name="description" content="Junior full-stack vývojář z Plzně, absolvent FAV ZČU, vedoucí v Klubu Pathfinder. Projekty, technologie, kontakt." />
+    <meta property="og:title" content="Oldřich Švehla, junior full-stack vývojář" />
+    <meta name="author" content="Oldřich Jan Švehla" />
+    <meta property="og:description" content="Junior full-stack vývojář z Plzně, absolvent FAV ZČU. Projekty, technologie, kontakt." />
+    <meta name="theme-color" content="#071009" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Oldřich Jan Švehla",
+        "givenName": "Oldřich",
+        "familyName": "Švehla",
+        "jobTitle": "Junior full-stack developer",
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Fakulta aplikovaných věd, Západočeská univerzita v Plzni" },
+        "sameAs": ["https://github.com/adccz"],
+        "knowsAbout": ["PHP", "Nette", "React", "Java", "C#", "Python", "MySQL", "Docker"]
+      }
+    </script>
+    <script>
+      // nastav téma dřív, než se vykreslí stránka (žádné bliknutí)
+      try {
+        var t = localStorage.getItem('theme');
+        if (!t) t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.dataset.theme = t;
+      } catch (e) { document.documentElement.dataset.theme = 'dark'; }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

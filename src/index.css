@@ -1,0 +1,407 @@
+@import "tailwindcss";
+
+/* ---------- písma (self-hosted, subset Latin + Latin Ext) ----------
+   Michroma       – široký technický grotesk ze 70. let: nápisy na monitorech, hlavičky spisů
+   IBM Plex Sans  – text
+   Courier Prime  – psací stroj: výpisy, razítka, terminál
+*/
+@font-face { font-family: "Michroma"; src: url("./fonts/Michroma.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans"; src: url("./fonts/PlexSans.woff2") format("woff2"); font-weight: 100 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans"; src: url("./fonts/PlexSans-Italic.woff2") format("woff2"); font-weight: 100 700; font-style: italic; font-display: swap; }
+@font-face { font-family: "Courier Prime"; src: url("./fonts/CourierPrime.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Courier Prime"; src: url("./fonts/CourierPrime-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+
+/* ---------- tokeny ----------
+   dark  = hluboká zelená se zlatem, obrazovky se zeleným fosforem (výchozí)
+   light = papírový spis: zažloutlý papír, hnědý inkoust, pálená oranžová, jantarové obrazovky
+*/
+:root {
+  --bg: #071009;
+  --bg-2: #0d1b12;
+  --bg-3: #13261a;
+  --ink: #f1e6c3;
+  --ink-2: #a9b39a;
+  --line: #22402d;
+  --accent: #c9a227;
+  --accent-2: #e9c95a;
+  --accent-ink: #0a1a0f;
+  --stamp: #e9c95a;
+  --wood: #0b1d13;
+  --wood-ink: #e9c95a;
+  --glow: rgba(201, 162, 39, 0.3);
+  /* obrazovky: zelený fosfor */
+  --crt-bg: #04110a;
+  --crt-ink: #9cf5b0;
+  --crt-ink-2: #6fcf88;
+  --crt-bright: #d6ffe0;
+  --crt-line: #17402a;
+  --font-display: "Michroma", "Arial Black", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Courier Prime", "Courier New", Courier, monospace;
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --bg: #efe2c3;
+  --bg-2: #f7edd6;
+  --bg-3: #e6d5ae;
+  --ink: #221508;
+  --ink-2: #6f5636;
+  --line: #cdb88f;
+  --accent: #c8541a;
+  --accent-2: #a8420f;
+  --accent-ink: #fff4dc;
+  --stamp: #b83d1d;
+  --wood: #3b2614;
+  --wood-ink: #f2e3c4;
+  --glow: rgba(200, 84, 26, 0.25);
+  /* obrazovky: jantar */
+  --crt-bg: #120b04;
+  --crt-ink: #ffb347;
+  --crt-ink-2: #e0a84f;
+  --crt-bright: #ffd48a;
+  --crt-line: #3a2610;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-bg-3: var(--bg-3);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-ink: var(--accent-ink);
+  --color-stamp: var(--stamp);
+  --color-wood: var(--wood);
+  --color-wood-ink: var(--wood-ink);
+  --color-crt-bg: var(--crt-bg);
+  --color-crt-ink: var(--crt-ink);
+  --color-crt-ink-2: var(--crt-ink-2);
+  --color-crt-bright: var(--crt-bright);
+  --color-crt-line: var(--crt-line);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+/* jemné zrno papíru / fosforu – vrstva přes celou stránku, neklikatelná */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+::selection { background: var(--accent); color: var(--accent-ink); }
+
+@layer base {
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+}
+
+/* ---------- úřední primitivy ---------- */
+@layer components {
+  /* panel = spis: dvojitá linka, lehce zaoblené rohy jako u sedmdesátkových přístrojů */
+  .panel {
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    background: var(--bg-2);
+    position: relative;
+  }
+  .panel::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1px solid var(--line);
+    border-radius: calc(0.75rem - 4px);
+    pointer-events: none;
+    opacity: 0.55;
+  }
+
+  /* dřevěná deska: tmavý blok s krémovým textem (hlavičky, stavový řádek) */
+  .wood {
+    background: var(--wood);
+    color: var(--wood-ink);
+    border: 1px solid var(--line);
+    border-radius: 0.5rem;
+    background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.02) 0 2px, transparent 2px 9px);
+  }
+
+  /* tlačítko – zaoblený hranol s vnitřním stínem, ne pilulka */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--line);
+    border-radius: 0.5rem;
+    padding: 0.55rem 0.95rem;
+    font-size: 0.875rem;
+    line-height: 1;
+    background: var(--bg-2);
+    color: var(--ink);
+    box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.18);
+    transition: border-color 0.2s, background-color 0.2s, color 0.2s, transform 0.15s, box-shadow 0.15s;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .pill:hover { border-color: var(--accent); color: var(--accent); }
+  @media (pointer: coarse) {
+    .pill { min-height: 2.75rem; padding-inline: 1.1rem; }
+  }
+  .pill:active { transform: translateY(1px); box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.18); }
+  .pill-solid {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-color: var(--accent);
+    box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.25);
+  }
+  .pill-solid:hover { background: var(--accent-2); border-color: var(--accent-2); color: var(--accent-ink); }
+
+  /* razítko */
+  .stamp {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--stamp);
+    border: 2px solid var(--stamp);
+    border-radius: 0.3rem;
+    padding: 0.25rem 0.5rem;
+    transform: rotate(-6deg);
+    opacity: 0.85;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40'%3E%3Cfilter id='g'%3E%3CfeTurbulence baseFrequency='0.8' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.4 1.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='white' filter='url(%23g)'/%3E%3C/svg%3E");
+    mask-size: 120px 40px;
+  }
+
+  /* štítek spisu (záložka pořadače) */
+  .file-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-2);
+    border: 1px solid var(--line);
+    border-bottom: 0;
+    border-radius: 0.5rem 0.5rem 0 0;
+    padding: 0.35rem 0.75rem;
+    background: var(--bg-2);
+  }
+
+  /* jantarová obrazovka */
+  .crt {
+    background: var(--crt-bg);
+    color: var(--crt-ink);
+    text-shadow: 0 0 6px color-mix(in srgb, var(--crt-ink) 50%, transparent);
+    position: relative;
+    overflow: hidden;
+  }
+  .crt::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.22) 0 1px, transparent 1px 3px);
+    mix-blend-mode: multiply;
+  }
+  .crt::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.5) 100%);
+  }
+
+  .readout {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    color: var(--ink-2);
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+}
+
+/* ---------- animace ---------- */
+@keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+.blink { animation: blink 1.1s steps(1) infinite; }
+
+/* větev časové linie se "kreslí" */
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.branch-draw { stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 1.4s ease-out forwards; }
+
+/* puls, který běží po hlavní linii */
+@keyframes travel { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+
+/* jemné blikání fosforu */
+@keyframes flicker { 0%, 100% { opacity: 1; } 92% { opacity: 1; } 93% { opacity: 0.82; } 94% { opacity: 1; } }
+.flicker { animation: flicker 6s infinite; }
+
+/* vibrace struny po brnknutí */
+@keyframes string-vibrate {
+  0% { transform: translateY(-50%) scaleY(1); }
+  25% { transform: translateY(-50%) scaleY(3.5); filter: blur(0.6px); }
+  60% { transform: translateY(-50%) scaleY(1.8); }
+  100% { transform: translateY(-50%) scaleY(1); }
+}
+.guitar-vibrate { animation: string-vibrate 0.35s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .blink, .flicker, .branch-draw { animation: none !important; }
+  .branch-draw { stroke-dashoffset: 0; }
+  * { transition-duration: 0.01ms !important; }
+}
+
+/* ---------- tisk: čistý životopis bez chromu ---------- */
+@media print {
+  :root { --bg: #fff; --bg-2: #fff; --ink: #000; --ink-2: #333; --line: #bbb; --accent: #c8541a; }
+  body::before { display: none; }
+  header, footer, .no-print, [data-orbit] { display: none !important; }
+  body { font-size: 11pt; }
+  section { break-inside: avoid; padding: 1.2rem 0 !important; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; color: #555; }
+}
+
+/* ---------- průvodkyně Složka ---------- */
+@keyframes guide-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+.guide-bob { animation: guide-bob 3.2s ease-in-out infinite; }
+@keyframes guide-blink { 0%, 93%, 100% { transform: scaleY(0); } 95.5%, 97% { transform: scaleY(1); } }
+.guide-eye { transform-box: fill-box; transform-origin: center top; transform: scaleY(0); animation: guide-blink 4.6s infinite; }
+@keyframes guide-talk { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.9); } }
+.guide-mouth-talk { transform-box: fill-box; transform-origin: center; animation: guide-talk 0.35s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .guide-bob, .guide-eye, .guide-mouth-talk { animation: none !important; }
+}
+
+/* ---------- portál: dveře světla ----------
+   Stojí v prostoru (perspektiva), plocha je poloprůhledná, takže cílová sekce
+   prosvítá dřív, než jimi projdete. Sytá oranžová, bledý lem, jemné vlnění.
+*/
+.portal {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  perspective: 1100px;
+  perspective-origin: 50% 50%;
+  --p-core: #ff7a00;
+  --p-mid: #ff9a2e;
+  --p-rim: #ffe3a6;
+  --p-glow: rgba(255, 122, 0, 0.55);
+}
+/* teplý nádech celé obrazovky, sílí při průchodu */
+.portal-wash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 150, 40, 0.15) 0%, rgba(255, 110, 0, 0.45) 100%);
+  opacity: 0;
+}
+/* vinětace: lem dveří, když procházejí kolem okrajů obrazovky */
+.portal-vignette {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 120px 40px var(--p-glow), inset 0 0 40px 10px rgba(255, 220, 160, 0.5);
+  opacity: 0;
+}
+.portal-door {
+  position: absolute;
+  left: var(--ox);
+  top: var(--oy);
+  width: min(46vw, 320px);
+  height: min(72vh, 500px);
+  transform-style: preserve-3d;
+  transform: translate(-50%, -50%) rotateY(40deg) scale(0.05, 0.03);
+  opacity: 0;
+  border-radius: 4px;
+}
+/* plocha: poloprůhledná energie, stránka za ní prosvítá */
+.portal-surface {
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(255, 235, 200, 0.28) 0%, rgba(255, 154, 46, 0.45) 40%, rgba(255, 122, 0, 0.62) 100%),
+    repeating-linear-gradient(105deg, rgba(255, 255, 255, 0.12) 0 6px, transparent 6px 18px);
+  background-size: 100% 100%, 240% 240%;
+  animation: portal-shimmer 1.1s linear infinite;
+  backdrop-filter: blur(1.5px) saturate(1.6) brightness(1.15);
+  -webkit-backdrop-filter: blur(1.5px) saturate(1.6) brightness(1.15);
+  mix-blend-mode: normal;
+}
+/* svítící lem */
+.portal-edge {
+  position: absolute;
+  inset: -3px;
+  border-radius: 6px;
+  border: 3px solid var(--p-rim);
+  box-shadow: 0 0 14px 4px var(--p-mid), 0 0 60px 18px var(--p-glow), inset 0 0 24px 6px rgba(255, 200, 120, 0.55);
+  animation: portal-flicker 0.14s steps(2) infinite;
+}
+/* tloušťka dveří: boční plocha, ať mají hloubku */
+.portal-side {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -10px;
+  width: 10px;
+  background: linear-gradient(90deg, var(--p-core), var(--p-mid));
+  transform-origin: right center;
+  transform: rotateY(90deg);
+  box-shadow: 0 0 20px 6px var(--p-glow);
+}
+@keyframes portal-flicker { 50% { opacity: 0.8; inset: -2px; } }
+@keyframes portal-shimmer { from { background-position: 0 0, 0% 0%; } to { background-position: 0 0, 100% 100%; } }
+
+/* otevírání: vyrostou z bodu kliknutí, natočené, pak se srovnají čelem k vám */
+.portal-opening .portal-door { animation: portal-open 0.76s cubic-bezier(0.2, 0.75, 0.25, 1) forwards; }
+.portal-opening .portal-wash { animation: portal-wash-in 0.76s ease-in forwards; }
+@keyframes portal-open {
+  0%   { left: var(--ox); top: var(--oy); transform: translate(-50%, -50%) rotateY(40deg) scale(0.05, 0.03); opacity: 0; }
+  30%  { opacity: 1; }
+  100% { left: 50vw; top: 50vh; transform: translate(-50%, -50%) rotateY(-8deg) scale(1, 1); opacity: 1; }
+}
+@keyframes portal-wash-in { to { opacity: 1; } }
+
+/* průchod: dveře se přiblíží až k oku, plocha zprůhlední, lem projde okraji obrazovky */
+.portal-closing .portal-door { left: 50vw; top: 50vh; animation: portal-through 0.82s cubic-bezier(0.55, 0, 0.7, 0.4) forwards; }
+.portal-closing .portal-surface { animation: portal-surface-out 0.82s ease-out forwards; }
+.portal-closing .portal-wash { animation: portal-wash-out 0.6s ease-out forwards; }
+.portal-closing .portal-vignette { animation: portal-vignette 0.82s ease-out forwards; }
+@keyframes portal-through {
+  0%   { transform: translate(-50%, -50%) rotateY(-8deg) scale(1); opacity: 1; }
+  70%  { transform: translate(-50%, -50%) rotateY(0deg) scale(2.6); opacity: 1; }
+  100% { transform: translate(-50%, -50%) rotateY(0deg) scale(4); opacity: 0; }
+}
+@keyframes portal-surface-out { 0% { opacity: 1; } 55% { opacity: 0.25; } 100% { opacity: 0; } }
+@keyframes portal-wash-out { to { opacity: 0; } }
+@keyframes portal-vignette { 0% { opacity: 0; } 35% { opacity: 1; } 100% { opacity: 0; } }
+
+/* sekce, do které jste právě prošli */
+[data-arrived="true"] h2 {
+  text-shadow: 0 0 18px rgba(255, 122, 0, 0.7);
+  transition: text-shadow 0.4s;
+}
+.arrived-note {
+  color: #ff8a1a;
+  animation: arrived-fade 2.8s ease-out forwards;
+}
+@keyframes arrived-fade { 0%, 60% { opacity: 1; } 100% { opacity: 0; } }
+
+@keyframes spin { to { transform: rotate(360deg); } }
