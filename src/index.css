@@ -403,5 +403,3 @@ body::before {
   animation: arrived-fade 2.8s ease-out forwards;
 }
 @keyframes arrived-fade { 0%, 60% { opacity: 1; } 100% { opacity: 0; } }
-
-@keyframes spin { to { transform: rotate(360deg); } }

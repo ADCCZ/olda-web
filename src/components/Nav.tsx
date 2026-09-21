@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { motion, useScroll, useSpring, useTransform } from 'motion/react'
+import { useEffect, useRef, useState } from 'react'
+import { useScroll, useSpring, useTransform, useMotionValueEvent } from 'motion/react'
 import { useI18n } from '../lib/i18n'
 import { useTheme } from '../lib/theme'
 import { Close, Download, Menu, Moon, Sun } from './Icons'
@@ -7,18 +7,29 @@ import { portalLink } from '../lib/portal'
 
 const links = ['about', 'education', 'experience', 'projects', 'skills', 'leadership', 'contact'] as const
 
-/** Logo: hodiny, jejichž ručička ukazuje, jak daleko na stránce jsi. */
+/** Logo: hodiny, jejichž ručičky ukazují, jak daleko na stránce jsi (12 nahoře i úplně dole). */
 function Logo() {
   const { scrollYProgress } = useScroll()
   const smooth = useSpring(scrollYProgress, { stiffness: 60, damping: 18 })
   const rotate = useTransform(smooth, [0, 1], [0, 360])
+  const hourRef = useRef<SVGLineElement>(null)
+  const minuteRef = useRef<SVGLineElement>(null)
+
+  // SVG transform atribut místo CSS rotate: motion počítá origin pro SVG jako zlomek
+  // vlastního bounding boxu prvku, ne v pixelech, takže by se ručička točila kolem špatného bodu.
+  useMotionValueEvent(rotate, 'change', (v) => {
+    hourRef.current?.setAttribute('transform', `rotate(${v} 12 12)`)
+    minuteRef.current?.setAttribute('transform', `rotate(${v} 12 12)`)
+  })
+
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden>
       <circle cx="12" cy="12" r="10.5" fill="var(--bg-2)" stroke="var(--accent)" strokeWidth="1.5" />
       {[0, 90, 180, 270].map((a) => (
         <line key={a} x1="12" y1="2.5" x2="12" y2="4.5" stroke="var(--ink-2)" strokeWidth="1.2" transform={`rotate(${a} 12 12)`} />
       ))}
-      <motion.line x1="12" y1="12" x2="12" y2="5.5" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" style={{ rotate, originX: '12px', originY: '12px' }} />
+      <line ref={hourRef} x1="12" y1="12" x2="12" y2="7.5" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" />
+      <line ref={minuteRef} x1="12" y1="12" x2="12" y2="4.5" stroke="var(--accent)" strokeWidth="1.5" strokeLinecap="round" />
       <circle cx="12" cy="12" r="1.6" fill="var(--accent)" />
     </svg>
   )
@@ -42,8 +53,7 @@ export function Nav() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-8">
         <a href="#top" onClick={(e) => portalLink(e)} className="flex items-center gap-2.5 font-display text-sm" aria-label="Domů">
           <Logo />
-          <span className="hidden sm:inline">{t.firstName} {t.lastName}</span>
-          <span className="sm:hidden">{t.firstName[0]}. {t.lastName}</span>
+          <span>{t.brand}</span>
         </a>
 
         <nav className="hidden items-center gap-6 text-sm lg:flex" aria-label="Hlavní">

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion, useScroll, useSpring, useTransform } from 'motion/react'
+import { motion, useScroll, useSpring, useTransform, useMotionValueEvent } from 'motion/react'
 
 /**
  * Hala archivu: řady kartoték v hloubce, závěsné lampy, potrubní pošta, žebřík, hodiny.
@@ -46,6 +46,20 @@ export function Scene() {
   const midY = useTransform(smooth, [0, 1], [10, -10])
   const frontY = useTransform(smooth, [0, 1], [0, 6])
   const [mx, setMx] = useState(0)
+
+  // hodiny: jedna otočka za celou stránku, 12 nahoře i úplně dole
+  const { scrollYProgress: pageProgress } = useScroll()
+  const pageSmooth = useSpring(pageProgress, { stiffness: 60, damping: 18 })
+  const handRotate = useTransform(pageSmooth, [0, 1], [0, 360])
+  const hourHandRef = useRef<SVGLineElement>(null)
+  const minuteHandRef = useRef<SVGLineElement>(null)
+
+  // SVG transform atribut místo CSS rotate: motion počítá origin pro SVG jako zlomek
+  // vlastního bounding boxu prvku, ne v pixelech, takže by se ručička točila kolem špatného bodu.
+  useMotionValueEvent(handRotate, 'change', (v) => {
+    hourHandRef.current?.setAttribute('transform', `rotate(${v})`)
+    minuteHandRef.current?.setAttribute('transform', `rotate(${v})`)
+  })
 
   // pohyb myší: vrstvy se lehce rozjedou do stran
   useEffect(() => {
@@ -103,9 +117,8 @@ export function Scene() {
           <g transform="translate(1290 60)">
             <circle r="22" fill="var(--bg-2)" stroke="var(--line)" strokeWidth="2" />
             {[0, 90, 180, 270].map((a) => <line key={a} x1="0" y1="-19" x2="0" y2="-15" stroke="var(--ink-2)" strokeWidth="2" transform={`rotate(${a})`} />)}
-            <line x1="0" y1="0" x2="0" y2="-11" stroke="var(--ink)" strokeWidth="2.5" strokeLinecap="round" transform="rotate(300)" />
-            <line x1="0" y1="0" x2="0" y2="-16" stroke="var(--ink)" strokeWidth="2" strokeLinecap="round" transform="rotate(60)" />
-            <line x1="0" y1="3" x2="0" y2="-17" stroke="var(--accent)" strokeWidth="1" style={{ transformOrigin: '0 0', animation: 'spin 60s linear infinite' }} />
+            <line ref={hourHandRef} x1="0" y1="0" x2="0" y2="-11" stroke="var(--ink)" strokeWidth="2.5" strokeLinecap="round" />
+            <line ref={minuteHandRef} x1="0" y1="0" x2="0" y2="-16" stroke="var(--accent)" strokeWidth="1.5" strokeLinecap="round" />
             <circle r="2" fill="var(--accent)" />
           </g>
         </motion.g>

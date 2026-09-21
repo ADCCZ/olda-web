@@ -34,7 +34,7 @@ export function Hero({ onAvatarMessage, onOpenTerminal, onOpenPexeso, stamps, on
             {t.hero.hello}
           </p>
           <h1 className="font-display text-[2.6rem] leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
-            {t.firstName}
+            {t.academicTitle} {t.firstName} {t.middleName}
             <br />
             {t.lastName}
           </h1>

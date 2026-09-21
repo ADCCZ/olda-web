@@ -35,8 +35,12 @@ const GITHUB = 'https://github.com/adccz'
 const shared = {
   fullName: 'Oldřich Jan Švehla',
   firstName: 'Oldřich',
+  middleName: 'Jan',
   lastName: 'Švehla',
   nickname: 'Olda',
+  academicTitle: 'Bc.',
+  /** logotyp v horní liště */
+  brand: 'OlďJaŠ',
   github: GITHUB,
   githubUser: 'adccz',
   /** doplň, až budeš mít: 'mailto:...', 'https://linkedin.com/in/...' */
