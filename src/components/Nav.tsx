@@ -11,14 +11,19 @@ const links = ['about', 'education', 'experience', 'projects', 'skills', 'leader
 function Logo() {
   const { scrollYProgress } = useScroll()
   const smooth = useSpring(scrollYProgress, { stiffness: 60, damping: 18 })
-  const rotate = useTransform(smooth, [0, 1], [0, 360])
+  // minutová ručička oběhne 12x rychleji než hodinová (jako u skutečných hodin),
+  // takže na 12 doběhnou obě zároveň nahoře i dole, ale mezitím jsou vidět odděleně.
+  const hourRotate = useTransform(smooth, [0, 1], [0, 360])
+  const minuteRotate = useTransform(smooth, [0, 1], [0, 360 * 12])
   const hourRef = useRef<SVGLineElement>(null)
   const minuteRef = useRef<SVGLineElement>(null)
 
   // SVG transform atribut místo CSS rotate: motion počítá origin pro SVG jako zlomek
   // vlastního bounding boxu prvku, ne v pixelech, takže by se ručička točila kolem špatného bodu.
-  useMotionValueEvent(rotate, 'change', (v) => {
+  useMotionValueEvent(hourRotate, 'change', (v) => {
     hourRef.current?.setAttribute('transform', `rotate(${v} 12 12)`)
+  })
+  useMotionValueEvent(minuteRotate, 'change', (v) => {
     minuteRef.current?.setAttribute('transform', `rotate(${v} 12 12)`)
   })
 

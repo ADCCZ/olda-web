@@ -47,17 +47,21 @@ export function Scene() {
   const frontY = useTransform(smooth, [0, 1], [0, 6])
   const [mx, setMx] = useState(0)
 
-  // hodiny: jedna otočka za celou stránku, 12 nahoře i úplně dole
+  // hodiny: hodinová ručička jedna otočka za celou stránku, minutová 12x rychleji
+  // (jako u skutečných hodin) - obě tak doběhnou na 12 nahoře i úplně dole.
   const { scrollYProgress: pageProgress } = useScroll()
   const pageSmooth = useSpring(pageProgress, { stiffness: 60, damping: 18 })
-  const handRotate = useTransform(pageSmooth, [0, 1], [0, 360])
+  const hourRotate = useTransform(pageSmooth, [0, 1], [0, 360])
+  const minuteRotate = useTransform(pageSmooth, [0, 1], [0, 360 * 12])
   const hourHandRef = useRef<SVGLineElement>(null)
   const minuteHandRef = useRef<SVGLineElement>(null)
 
   // SVG transform atribut místo CSS rotate: motion počítá origin pro SVG jako zlomek
   // vlastního bounding boxu prvku, ne v pixelech, takže by se ručička točila kolem špatného bodu.
-  useMotionValueEvent(handRotate, 'change', (v) => {
+  useMotionValueEvent(hourRotate, 'change', (v) => {
     hourHandRef.current?.setAttribute('transform', `rotate(${v})`)
+  })
+  useMotionValueEvent(minuteRotate, 'change', (v) => {
     minuteHandRef.current?.setAttribute('transform', `rotate(${v})`)
   })
 
