@@ -26,7 +26,7 @@ export function StampsPanel({ open, earned, onClose }: { open: boolean; earned: 
               </div>
               <button type="button" onClick={onClose} className="text-ink-2 hover:text-accent" aria-label="Close"><Close width={18} height={18} /></button>
             </div>
-            <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <ul className="mt-5 grid grid-cols-3 gap-3">
               {STAMP_IDS.map((id) => {
                 const has = earned.includes(id)
                 const item = t.stampsList.items[id]

@@ -3,6 +3,7 @@ import { useI18n } from '../lib/i18n'
 import { Branches } from './Branches'
 import { Scene } from './Scene'
 import { portalLink } from '../lib/portal'
+import { STAMP_IDS } from '../lib/stamps'
 
 /** kolikrát už tu byl, "časová smyčka" */
 function loopCount() {
@@ -104,7 +105,7 @@ export function Hero({ onAvatarMessage, onOpenTerminal, onOpenPexeso, stamps, on
             <span className="hidden sm:inline">{t.hero.readout[1]}</span>
             <span className="hidden sm:inline">{t.hero.loop} #{loop}</span>
             <span className="hidden tabular-nums md:inline">{clock}</span>
-            <button type="button" onClick={onOpenStamps} className="hover:text-accent-2">{t.hero.stamps} {stamps}/8</button>
+            <button type="button" onClick={onOpenStamps} className="hover:text-accent-2">{t.hero.stamps} {stamps}/{STAMP_IDS.length}</button>
             <button type="button" onClick={onOpenTerminal} className="ml-auto hover:text-accent-2">{t.hero.readout[2]}</button>
           </div>
         </div>

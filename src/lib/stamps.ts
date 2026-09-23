@@ -1,5 +1,5 @@
 /** Sbírka razítek: co návštěvník na webu objevil. Ukládá se do localStorage. */
-export const STAMP_IDS = ['terminal', 'variant', 'guitar', 'pexeso', 'monitor', 'konami', 'tour', 'theme'] as const
+export const STAMP_IDS = ['terminal', 'variant', 'guitar', 'pexeso', 'monitor', 'konami', 'tour', 'theme', 'loki'] as const
 export type StampId = (typeof STAMP_IDS)[number]
 
 const KEY = 'stamps'

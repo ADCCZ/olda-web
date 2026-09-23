@@ -4,7 +4,7 @@ import { Section } from './Section'
 export function Experience() {
   const { t } = useI18n()
   return (
-    <Section id="experience" title={t.experience.title} lead={t.experience.lead}>
+    <Section id="experience" title={t.experience.title} lead={t.experience.lead} pattern="radar">
       <ol className="rows divide-y divide-line border-y border-line">
         {t.experience.items.map((it, i) => (
           <li key={it.title} className="grid gap-2 py-5 md:grid-cols-[200px_1fr] md:gap-8 md:py-6" style={{ '--i': i + 3 } as React.CSSProperties}>

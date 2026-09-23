@@ -1,0 +1,15 @@
+/** Lokiho rohy schované v sudých sekcích: které už návštěvník našel (localStorage). */
+export const HORN_SECTIONS = ['education', 'projects', 'leadership'] as const
+
+const KEY = 'horns'
+
+export function loadHorns(): string[] {
+  try {
+    const raw = JSON.parse(localStorage.getItem(KEY) ?? '[]')
+    return Array.isArray(raw) ? raw.filter((s) => (HORN_SECTIONS as readonly string[]).includes(s)) : []
+  } catch { return [] }
+}
+
+export function saveHorns(list: string[]) {
+  try { localStorage.setItem(KEY, JSON.stringify(list)) } catch { /* ignore */ }
+}

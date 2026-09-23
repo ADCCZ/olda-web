@@ -6,7 +6,7 @@ export function Leadership() {
   const { t } = useI18n()
   const m = t.leadership.memo
   return (
-    <Section id="leadership" title={t.leadership.title} lead={t.leadership.lead}>
+    <Section id="leadership" title={t.leadership.title} lead={t.leadership.lead} pattern="sunburst" horns="bottom-3 right-[5%] md:bottom-8">
       <div className="panel reveal-file max-w-3xl p-5 md:p-8">
         <dl className="reveal grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 border-b border-line pb-4 font-mono text-sm" style={{ '--i': 5 } as React.CSSProperties}>
           <dt className="text-ink-2">{m.subject}</dt><dd>{m.subjectValue}</dd>

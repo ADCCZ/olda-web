@@ -37,8 +37,18 @@ export const Close = (p: SVGProps<SVGSVGElement>) => (
 )
 
 /* --- ikony zájmů (jednoduché, vlastní) --- */
+/** akustická kytara: nakreslená nastojato (hlava s kolíčky, krk, tělo, otvor, kobylka), pak natočená šikmo */
 export const Guitar = (p: SVGProps<SVGSVGElement>) => (
-  <svg {...base(p)}><path d="m20 4-4 4M17 3l4 4M14.5 9.5 9 15" /><path d="M11 12c-2 0-3 1-3 2.5S6 16 6 18a3 3 0 0 0 3 3c2 0 2.5-2 3.5-2S15 20 15 17c0-2-1.5-2.5-2-4" /><circle cx="10.5" cy="17.5" r="1" /></svg>
+  <svg {...base(p)}>
+    <g transform="translate(12 12) rotate(38) scale(1.1) translate(-12 -12)">
+      <path d="M10.6 2.4h2.8v2.9h-2.8z" />
+      <path d="M10.6 3.4H9.4M10.6 4.6H9.4M13.4 3.4h1.2M13.4 4.6h1.2" />
+      <path d="M11.3 5.3v4.9M12.7 5.3v4.9" />
+      <path d="M12 10.2c-2.4 0-3.7 1.1-3.6 2.7.1 1 .8 1.5.5 2.3-1.8.5-2.4 1.8-2.3 3.2.2 2.1 2.4 3.4 5.4 3.4s5.2-1.3 5.4-3.4c.1-1.4-.5-2.7-2.3-3.2-.3-.8.4-1.3.5-2.3.1-1.6-1.2-2.7-3.6-2.7z" />
+      <circle cx="12" cy="16.4" r="1.5" />
+      <path d="M10.3 19.4h3.4" />
+    </g>
+  </svg>
 )
 export const Compass = (p: SVGProps<SVGSVGElement>) => (
   <svg {...base(p)}><circle cx="12" cy="12" r="9" /><path d="m15.5 8.5-2 5-5 2 2-5z" /></svg>

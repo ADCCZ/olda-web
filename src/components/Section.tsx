@@ -1,13 +1,18 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { useI18n } from '../lib/i18n'
+import { Horns } from './Horns'
+
+/** retro-futuristický vzor v pozadí sekce (index.css → .pat-*) */
+export type Pattern = 'dots' | 'blueprint' | 'radar' | 'punch' | 'hex' | 'sunburst' | 'horizon'
 
 /**
  * Sekce = spis. Když poprvé vjede do okna (data-inview), rozehrají se její animace
  * z index.css: nadpis se vypíše, řádky (.rows) se "vytisknou", razítka dopadnou,
  * bloky (.reveal) vyjedou. Pořadí v rámci sekce řídí --i u jednotlivých prvků.
+ * Každá sekce má vlastní vzor v pozadí; sudé sekce mají schované rohy (horns = pozice).
  */
-export function Section({ id, title, lead, children, className = '' }: {
-  id: string; title: string; lead?: string; children: ReactNode; className?: string
+export function Section({ id, title, lead, children, className = '', pattern, horns }: {
+  id: string; title: string; lead?: string; children: ReactNode; className?: string; pattern?: Pattern; horns?: string
 }) {
   const { t } = useI18n()
   const [arrived, setArrived] = useState(false)
@@ -46,7 +51,8 @@ export function Section({ id, title, lead, children, className = '' }: {
       data-inview={inview || undefined}
       data-arrived={arrived || undefined}
     >
-      <div className="mx-auto max-w-6xl px-5 md:px-8">
+      {pattern && <div aria-hidden className={`section-bg pat-${pattern}`} />}
+      <div className="relative mx-auto max-w-6xl px-5 md:px-8">
         <div className="mb-8 max-w-prose md:mb-12">
           {arrived && <p className="arrived-note readout mb-2">{t.hero.arrived}</p>}
           <h2 className="section-title font-display text-xl leading-tight md:text-2xl">{title}</h2>
@@ -54,6 +60,7 @@ export function Section({ id, title, lead, children, className = '' }: {
         </div>
         {children}
       </div>
+      {horns && <Horns id={id} className={horns} />}
     </section>
   )
 }
