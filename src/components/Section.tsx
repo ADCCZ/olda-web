@@ -3,13 +3,13 @@ import { useI18n } from '../lib/i18n'
 import { Horns } from './Horns'
 
 /** retro-futuristický vzor v pozadí sekce (index.css → .pat-*) */
-export type Pattern = 'dots' | 'blueprint' | 'radar' | 'punch' | 'hex' | 'sunburst' | 'horizon'
+export type Pattern = 'tiles' | 'blueprint' | 'punch' | 'sunburst'
 
 /**
  * Sekce = spis. Když poprvé vjede do okna (data-inview), rozehrají se její animace
  * z index.css: nadpis se vypíše, řádky (.rows) se "vytisknou", razítka dopadnou,
  * bloky (.reveal) vyjedou. Pořadí v rámci sekce řídí --i u jednotlivých prvků.
- * Každá sekce má vlastní vzor v pozadí; sudé sekce mají schované rohy (horns = pozice).
+ * Liché sekce mají v pozadí společný obklad (tiles), sudé vlastní vzor a schované rohy (horns = pozice).
  */
 export function Section({ id, title, lead, children, className = '', pattern, horns }: {
   id: string; title: string; lead?: string; children: ReactNode; className?: string; pattern?: Pattern; horns?: string
