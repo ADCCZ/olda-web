@@ -1,15 +1,23 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { useI18n } from '../lib/i18n'
 import { Horns } from './Horns'
+import helmet from '../assets/horned-helmet.svg'
 
-/** retro-futuristický vzor v pozadí sekce (index.css → .pat-*) */
-export type Pattern = 'tiles' | 'blueprint' | 'punch' | 'sunburst'
+/** pozadí sekce (index.css → .pat-*): obklad z kachliček, nebo zlatá helma s rohy */
+export type Pattern = 'tiles' | 'horns'
+
+/** zlatá helma se při každém načtení objeví na jiném místě sekce, jinak natočená a jinak velká */
+function randomHelmet() {
+  const r = Math.random
+  return { left: 12 + r() * 76, top: 15 + r() * 70, px: 520 + r() * 320, pct: 60 + r() * 30, rotate: -22 + r() * 44 }
+}
 
 /**
  * Sekce = spis. Když poprvé vjede do okna (data-inview), rozehrají se její animace
  * z index.css: nadpis se vypíše, řádky (.rows) se "vytisknou", razítka dopadnou,
  * bloky (.reveal) vyjedou. Pořadí v rámci sekce řídí --i u jednotlivých prvků.
- * Liché sekce mají v pozadí společný obklad (tiles), sudé vlastní vzor a schované rohy (horns = pozice).
+ * Pozadí se střídá (úvod se počítá jako první): liché obklad (tiles), sudé zlatá helma (horns)
+ * a k ní schované malé rohy na nalezení (prop horns = jejich pozice).
  */
 export function Section({ id, title, lead, children, className = '', pattern, horns }: {
   id: string; title: string; lead?: string; children: ReactNode; className?: string; pattern?: Pattern; horns?: string
@@ -18,6 +26,7 @@ export function Section({ id, title, lead, children, className = '', pattern, ho
   const [arrived, setArrived] = useState(false)
   const [inview, setInview] = useState(() => !('IntersectionObserver' in window))
   const ref = useRef<HTMLElement>(null)
+  const [helm] = useState(randomHelmet)
 
   // rozsvítí se, když sem někdo přišel portálem
   useEffect(() => {
@@ -51,7 +60,19 @@ export function Section({ id, title, lead, children, className = '', pattern, ho
       data-inview={inview || undefined}
       data-arrived={arrived || undefined}
     >
-      {pattern && <div aria-hidden className={`section-bg pat-${pattern}`} />}
+      {pattern && (
+        <div aria-hidden className={`section-bg pat-${pattern}`}>
+          {pattern === 'horns' && (
+            <img
+              src={helmet}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              style={{ left: `${helm.left}%`, top: `${helm.top}%`, width: `min(${Math.round(helm.px)}px, ${Math.round(helm.pct)}%)`, transform: `translate(-50%, -50%) rotate(${helm.rotate.toFixed(1)}deg)` }}
+            />
+          )}
+        </div>
+      )}
       <div className="relative mx-auto max-w-6xl px-5 md:px-8">
         <div className="mb-8 max-w-prose md:mb-12">
           {arrived && <p className="arrived-note readout mb-2">{t.hero.arrived}</p>}

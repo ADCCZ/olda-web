@@ -79,7 +79,7 @@ export function Projects({ onPexeso }: { onPexeso: () => void }) {
   }
 
   return (
-    <Section id="projects" title={t.projects.title} lead={source === 'snapshot' ? t.projects.offline : t.projects.lead} pattern="punch" horns="bottom-3 right-[38%] md:bottom-8">
+    <Section id="projects" title={t.projects.title} lead={source === 'snapshot' ? t.projects.offline : t.projects.lead} pattern="tiles">
       {/* hlavička rejstříku */}
       <div className="reveal hidden border-b border-line pb-2 md:grid md:grid-cols-[minmax(0,5fr)_minmax(0,3fr)_minmax(0,2fr)_minmax(0,3fr)] md:gap-6">
         <span className="readout">{t.projects.cols.project}</span>

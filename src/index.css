@@ -396,55 +396,42 @@ body::before {
   * { transition-duration: 0.01ms !important; }
 }
 
-/* ---------- pozadí sekcí: retro-futuristické vzory ----------
-   Liché sekce mají společný obklad z kachliček, sudé (s rohy) každá svůj vzor
-   (Section.tsx → pattern). Kreslí se barvou linek z tématu, takže ve dne i v noci sedí,
-   a ke straně s textem slábnou (maska), aby nerušily čtení. Složitější vzory
-   (kachličky, děrný štítek) jsou SVG použité jako maska. */
+/* ---------- pozadí sekcí: střídání obkladu a rohů ----------
+   Počítá se i úvod: liché obrazovky (úvod, Vzdělání, Projekty, Dovednosti) mají retro-futuristický
+   obklad z kachliček, sudé (Profil, Praxe, Technologie, Kontakt) velkou zlatou helmu s rohy jako
+   vodoznak a k tomu malé schované rohy na nalezení (Horns.tsx). Section.tsx → pattern.
+   Kachličky se kreslí barvou linek z tématu a uprostřed, kde je text, slábnou. */
+:root {
+  /* obklad ze sedmdesátkové stanice budoucnosti: zaoblené kachličky se střídají jako šachovnice
+     (plné kulaté okénko / kroužek s tečkou); používá se jako maska, barvu dává --pat */
+  --tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Cg fill='none' stroke='black' stroke-width='1'%3E%3Crect x='.5' y='.5' width='47' height='47' rx='5'/%3E%3Crect x='48.5' y='.5' width='47' height='47' rx='5'/%3E%3Crect x='.5' y='48.5' width='47' height='47' rx='5'/%3E%3Crect x='48.5' y='48.5' width='47' height='47' rx='5'/%3E%3C/g%3E%3Cg fill='black' fill-opacity='.3'%3E%3Ccircle cx='24' cy='24' r='15'/%3E%3Ccircle cx='72' cy='72' r='15'/%3E%3C/g%3E%3Cg fill='none' stroke='black' stroke-width='1.5'%3E%3Ccircle cx='24' cy='24' r='9'/%3E%3Ccircle cx='72' cy='72' r='9'/%3E%3Ccircle cx='72' cy='24' r='15'/%3E%3Ccircle cx='24' cy='72' r='15'/%3E%3C/g%3E%3Cg fill='black'%3E%3Ccircle cx='72' cy='24' r='2.5'/%3E%3Ccircle cx='24' cy='72' r='2.5'/%3E%3C/g%3E%3C/svg%3E");
+}
 .section-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; --pat: var(--line); }
-.section-bg::before, .section-bg::after { content: ""; position: absolute; pointer-events: none; }
-
-/* liché sekce (Profil, Praxe, Technologie, Kontakt): obklad ze sedmdesátkové stanice budoucnosti,
-   kachličky se střídají jako šachovnice (plné kulaté okénko / kroužek s tečkou), uprostřed slábnou */
 .pat-tiles {
   background-color: var(--pat);
-  mask-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Cg fill='none' stroke='black' stroke-width='1'%3E%3Crect x='.5' y='.5' width='47' height='47' rx='5'/%3E%3Crect x='48.5' y='.5' width='47' height='47' rx='5'/%3E%3Crect x='.5' y='48.5' width='47' height='47' rx='5'/%3E%3Crect x='48.5' y='48.5' width='47' height='47' rx='5'/%3E%3C/g%3E%3Cg fill='black' fill-opacity='.3'%3E%3Ccircle cx='24' cy='24' r='15'/%3E%3Ccircle cx='72' cy='72' r='15'/%3E%3C/g%3E%3Cg fill='none' stroke='black' stroke-width='1.5'%3E%3Ccircle cx='24' cy='24' r='9'/%3E%3Ccircle cx='72' cy='72' r='9'/%3E%3Ccircle cx='72' cy='24' r='15'/%3E%3Ccircle cx='24' cy='72' r='15'/%3E%3C/g%3E%3Cg fill='black'%3E%3Ccircle cx='72' cy='24' r='2.5'/%3E%3Ccircle cx='24' cy='72' r='2.5'/%3E%3C/g%3E%3C/svg%3E"),
-    radial-gradient(ellipse 75% 85% at 50% 50%, transparent 40%, #000 100%);
+  mask-image: var(--tile), radial-gradient(ellipse 75% 85% at 50% 50%, transparent 40%, #000 100%);
   mask-size: 96px 96px, 100% 100%;
   mask-repeat: repeat, no-repeat;
   mask-composite: intersect;
   opacity: 0.6;
 }
-/* Vzdělání: technický výkres, hrubá a jemná mřížka */
-.pat-blueprint {
-  background-image:
-    linear-gradient(var(--pat) 1px, transparent 1px),
-    linear-gradient(90deg, var(--pat) 1px, transparent 1px),
-    linear-gradient(color-mix(in srgb, var(--pat) 45%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--pat) 45%, transparent) 1px, transparent 1px);
-  background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px;
-  mask-image: linear-gradient(105deg, transparent 20%, #000 80%);
+/* úvod: kachličky jen nad halou archivu, směrem dolů se ztrácejí */
+.pat-tiles.hero-tiles {
+  mask-image: var(--tile), radial-gradient(ellipse 75% 85% at 50% 45%, transparent 40%, #000 100%), linear-gradient(to bottom, #000 40%, transparent 75%);
+  mask-size: 96px 96px, 100% 100%, 100% 100%;
+  mask-repeat: repeat, no-repeat, no-repeat;
 }
-/* Projekty: děrný štítek */
-.pat-punch {
-  background-color: var(--pat);
-  mask-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='64'%3E%3Cg%3E%3Crect x='4' y='6' width='5' height='12' rx='1'/%3E%3Crect x='28' y='6' width='5' height='12' rx='1'/%3E%3Crect x='40' y='6' width='5' height='12' rx='1'/%3E%3Crect x='76' y='6' width='5' height='12' rx='1'/%3E%3Crect x='16' y='26' width='5' height='12' rx='1'/%3E%3Crect x='40' y='26' width='5' height='12' rx='1'/%3E%3Crect x='52' y='26' width='5' height='12' rx='1'/%3E%3Crect x='88' y='26' width='5' height='12' rx='1'/%3E%3Crect x='4' y='46' width='5' height='12' rx='1'/%3E%3Crect x='28' y='46' width='5' height='12' rx='1'/%3E%3Crect x='64' y='46' width='5' height='12' rx='1'/%3E%3Crect x='76' y='46' width='5' height='12' rx='1'/%3E%3C/g%3E%3C/svg%3E"),
-    linear-gradient(to left, #000, transparent 32%);
-  mask-size: 96px 64px, 100% 100%;
-  mask-repeat: repeat, no-repeat;
-  mask-composite: intersect;
-  opacity: 0.55;
+/* sudé sekce: velká zlatá helma s rohy jako vodoznak za obsahem; pozici, velikost a natočení
+   losuje Section.tsx při každém načtení */
+.pat-horns img {
+  position: absolute;
+  max-width: none;
+  height: auto;
+  opacity: 0.13;
+  filter: drop-shadow(0 0 40px rgba(233, 201, 90, 0.25));
 }
-/* Dovednosti: paprsky a slunce jako na plakátu ze sedmdesátek.
-   Slunce je neprůhledné (smíchané s pozadím), takže paprsky vycházejí až zpoza něj. */
-.pat-sunburst {
-  background-image:
-    radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--accent) 18%, var(--bg)) 0 128px, color-mix(in srgb, var(--accent) 45%, var(--bg)) 128px 130px, transparent 131px),
-    repeating-conic-gradient(from -90deg at 100% 100%, color-mix(in srgb, var(--pat) 65%, transparent) 0deg 3deg, transparent 3deg 10deg);
-  mask-image: radial-gradient(circle at 100% 100%, #000, transparent 58%);
-}
+:root[data-theme="light"] .pat-horns img { opacity: 0.2; filter: none; }
+
 /* Lokiho rohy (Horns.tsx): skoro splývají, po najetí se rozzáří */
 .horns {
   padding: 4px;

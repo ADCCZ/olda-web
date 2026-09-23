@@ -6,9 +6,9 @@ import { HORN_SECTIONS, loadHorns, saveHorns } from '../lib/horns'
 const toast = (m: string) => window.dispatchEvent(new CustomEvent('toast', { detail: m }))
 
 /**
- * Easter egg: v každé sudé sekci jsou schované rohy z helmy jisté varianty.
- * Nenápadné (skoro splývají se vzorem pozadí), po najetí se rozzáří. Za všechny
- * tři je razítko. Nalezené se pamatují v localStorage (lib/horns.ts).
+ * Easter egg: v každé sudé sekci (úvod = 1.) jsou kromě velké zlaté helmy v pozadí
+ * schované i malé rohy. Skoro splývají s pozadím, po najetí se rozzáří. Za všechny
+ * je razítko. Nalezené se pamatují v localStorage (lib/horns.ts).
  */
 export function Horns({ id, className = '' }: { id: string; className?: string }) {
   const { t } = useI18n()

@@ -64,7 +64,9 @@ export function Hero({ onAvatarMessage, onOpenTerminal, onOpenPexeso, stamps, on
 
   return (
     <section id="top" className={`hero fit relative overflow-hidden pt-16 ${go ? 'hero-go' : ''}`}>
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-8 px-5 pt-6 pb-4 md:px-8 md:pt-8 lg:flex-1 lg:grid-cols-[1.05fr_1fr] lg:content-center lg:gap-10 lg:pt-10">
+      {/* úvod je první obrazovka, liché mají v pozadí obklad z kachliček */}
+      <div aria-hidden className="section-bg pat-tiles hero-tiles" />
+      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-8 px-5 pt-6 pb-4 md:px-8 md:pt-8 lg:flex-1 lg:grid-cols-[1.05fr_1fr] lg:content-center lg:gap-10 lg:pt-10">
         {/* @container: velikost jména se odvíjí od šířky sloupce, takže vyjde vždy na dva řádky */}
         <div className="@container max-w-xl">
           <p className="readout mb-3 flex items-center gap-3 md:mb-4">
@@ -98,7 +100,7 @@ export function Hero({ onAvatarMessage, onOpenTerminal, onOpenPexeso, stamps, on
 
       {/* hala archivu, pod ní podlaha se štítkem na stole úředníka */}
       <Scene />
-      <div className="floor no-print pb-3 pt-1 md:pb-4">
+      <div className="floor no-print relative pb-3 pt-1 md:pb-4">
         <div className="mx-auto w-full max-w-6xl px-5 md:px-8">
           <div className="enter wood flex flex-wrap items-center gap-x-4 gap-y-1.5 px-3 py-2.5 font-mono text-[11px] sm:gap-x-6 sm:px-4 sm:text-xs" style={d(1.5)}>
             <span className="flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-accent-2" />{t.hero.readout[0]}</span>

@@ -4,7 +4,7 @@ import { Section } from './Section'
 export function Education() {
   const { t } = useI18n()
   return (
-    <Section id="education" title={t.education.title} pattern="blueprint" horns="bottom-3 left-[7%] md:bottom-8">
+    <Section id="education" title={t.education.title} pattern="tiles">
       <div className="relative">
         <span className="stamp absolute right-0 -top-16 md:-top-6">{t.education.stamp}</span>
         <ol className="rows divide-y divide-line border-y border-line">

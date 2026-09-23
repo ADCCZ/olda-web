@@ -1,5 +1,5 @@
-/** Lokiho rohy schované v sudých sekcích: které už návštěvník našel (localStorage). */
-export const HORN_SECTIONS = ['education', 'projects', 'leadership'] as const
+/** Lokiho rohy schované v sudých sekcích (úvod = 1.): které už návštěvník našel (localStorage). */
+export const HORN_SECTIONS = ['about', 'experience', 'skills', 'contact'] as const
 
 const KEY = 'horns'
 

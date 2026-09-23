@@ -375,7 +375,7 @@ const cs = {
       konami: { name: 'Odchylka', hint: 'sekvence šipek' },
       tour: { name: 'Prohlídka', hint: 'nech se provést' },
       theme: { name: 'Den a noc', hint: 'přepni téma' },
-      loki: { name: 'Rohy', hint: 'najdi troje rohy ve spisech' },
+      loki: { name: 'Rohy', hint: 'najdi čtvery rohy ve spisech' },
     },
   },
   eggs: {
@@ -710,7 +710,7 @@ const en: typeof cs = {
       konami: { name: 'Deviation', hint: 'a sequence of arrows' },
       tour: { name: 'Tour', hint: 'take the tour' },
       theme: { name: 'Day and night', hint: 'switch the theme' },
-      loki: { name: 'Horns', hint: 'find three pairs of horns in the files' },
+      loki: { name: 'Horns', hint: 'find four pairs of horns in the files' },
     },
   },
   eggs: {
