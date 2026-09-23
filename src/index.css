@@ -422,7 +422,7 @@ body::before {
   mask-repeat: repeat, no-repeat, no-repeat;
 }
 /* sudé sekce: zlatá helma s rohy, střídá strany (Section.tsx → side). Svisle uprostřed sekce,
-   kousek přes okraj, nakloněná ke středu; velká podle sekce (kontejner, cqw/cqh): asi polovina
+   kousek od okraje, nakloněná ke středu; velká podle sekce (kontejner, cqw/cqh): asi polovina
    výšky, nejvýš 45 % šířky, na úzkém displeji až 75 % šířky */
 .pat-horns { container-type: size; }
 .pat-horns img {
@@ -433,8 +433,8 @@ body::before {
   height: auto;
   opacity: 0.24;
 }
-.pat-horns.side-right img { right: -3%; transform: translateY(-50%) rotate(-8deg); }
-.pat-horns.side-left img { left: -3%; transform: translateY(-50%) rotate(8deg); }
+.pat-horns.side-right img { right: clamp(12px, 3%, 48px); transform: translateY(-50%) rotate(-8deg); }
+.pat-horns.side-left img { left: clamp(12px, 3%, 48px); transform: translateY(-50%) rotate(8deg); }
 :root[data-theme="light"] .pat-horns img { opacity: 0.38; filter: drop-shadow(0 4px 14px rgba(122, 90, 18, 0.18)); }
 
 /* ---------- tisk: čistý životopis bez chromu ---------- */
