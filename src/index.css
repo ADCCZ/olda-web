@@ -227,6 +227,18 @@ body::before {
     background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.5) 100%);
   }
 
+  /* hala archivu: šňůry lamp se nahoře ztrácejí v šeru */
+  .scene {
+    mask-image: linear-gradient(to bottom, transparent, #000 11%);
+  }
+  /* podlaha haly pod skříněmi: deska se spárami, na ní stavový řádek */
+  .floor {
+    background:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.18), transparent 60%),
+      repeating-linear-gradient(41deg, transparent 0 68px, color-mix(in srgb, var(--line) 55%, transparent) 68px 69px),
+      var(--bg-3);
+  }
+
   .readout {
     font-family: var(--font-mono);
     font-size: 0.8rem;
