@@ -1,20 +1,25 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { motion, useScroll, useSpring, useTransform, useMotionValueEvent } from 'motion/react'
 
 /**
  * Hala archivu: řady kartoték v hloubce, závěsné lampy, potrubní pošta, žebřík, hodiny.
  * Tři vrstvy se při scrollu i pohybu myši posouvají různou rychlostí (paralaxa).
  * Barvy jdou z tématu: v noci svítí lampy zeleně, ve dne jantarově.
+ *
+ * Výška haly je pevná (podle breakpointu), šířka se dopočítá: na širší obrazovce
+ * přibudou další skříně a lampy, místo aby se celá hala zvětšovala.
  */
 
-const W = 1440
-const H = 300
+/** horní okraj výřezu (nad ním jsou jen šňůry lamp) */
+const TOP = 24
+/** podlaha: na ní skříně stojí, pod ní pokračuje deska se štítkem (v Hero) */
 const FLOOR = 248
+const VB_H = FLOOR + 2 - TOP
 
-function Cabinet({ x, y, w, h, drawers, id }: { x: number; y: number; w: number; h: number; drawers: number; id: string }) {
+function Cabinet({ x, y, w, h, drawers }: { x: number; y: number; w: number; h: number; drawers: number }) {
   const dh = (h - 10) / drawers
   return (
-    <g key={id}>
+    <g>
       <rect x={x} y={y} width={w} height={h} rx="3" fill="var(--bg-3)" stroke="var(--line)" strokeWidth="1.5" />
       {Array.from({ length: drawers }, (_, i) => (
         <g key={i}>
@@ -38,8 +43,15 @@ function Lamp({ x, flickerDelay }: { x: number; flickerDelay: string }) {
   )
 }
 
+/** x-ové pozice od `from` po `to` s krokem `step` */
+function row(from: number, to: number, step: number) {
+  return Array.from({ length: Math.max(0, Math.ceil((to - from) / step)) }, (_, i) => from + i * step)
+}
+
 export function Scene() {
   const ref = useRef<HTMLDivElement>(null)
+  // šířka výřezu v jednotkách SVG; výchozí odpovídá desktopu, přepočítá se před prvním vykreslením
+  const [W, setW] = useState(1440)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
   const smooth = useSpring(scrollYProgress, { stiffness: 80, damping: 24 })
   const farY = useTransform(smooth, [0, 1], [18, -18])
@@ -65,6 +77,20 @@ export function Scene() {
     minuteHandRef.current?.setAttribute('transform', `rotate(${v})`)
   })
 
+  // měřítko drží výška haly, šířka výřezu se přizpůsobí kontejneru
+  useLayoutEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const measure = () => {
+      const { width, height } = el.getBoundingClientRect()
+      if (width && height) setW(Math.round((width / height) * VB_H))
+    }
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
   // pohyb myší: vrstvy se lehce rozjedou do stran
   useEffect(() => {
     if (matchMedia('(pointer: coarse)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return
@@ -77,13 +103,18 @@ export function Scene() {
     return () => { window.removeEventListener('pointermove', onMove); cancelAnimationFrame(raf) }
   }, [])
 
-  const far = Array.from({ length: 20 }, (_, i) => ({ x: i * 74 - 10, w: 64 }))
-  const mid = Array.from({ length: 9 }, (_, i) => ({ x: i * 162 + 8, w: 138 }))
+  // rozmístění od pravého okraje, aby hodiny a nejbližší lampa seděly vždy stejně
+  const far = row(-84, W + 40, 74)
+  const mid = row(((W - 136) % 162) - 162, W + 40, 162)
+  const lamps = row(0, W - 200, 460).map((k) => W - 260 - k)
+  const stations = row(0, W, 330).map((k) => W - 60 - k)
+  // žebřík opřený o skříň mezi dvěma lampami
+  const target = W - 490 - (W > 1150 ? 460 : 0)
+  const ladder = mid.reduce((a, b) => (Math.abs(b - target) < Math.abs(a - target) ? b : a)) + 24
 
   return (
-    <div ref={ref} className="relative h-[170px] w-full overflow-hidden md:h-[270px]" aria-hidden data-orbit>
-      {/* zarovnáno doprava, aby hodiny zůstaly vidět i na užších obrazovkách (ořízne se jen opakující se řada skříní vlevo) */}
-      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMaxYMax slice" className="absolute inset-0 h-full w-full">
+    <div ref={ref} className="scene relative h-[112px] w-full overflow-hidden sm:h-[132px] md:h-[150px] lg:h-[172px]" aria-hidden data-orbit>
+      <svg viewBox={`0 ${TOP} ${W} ${VB_H}`} preserveAspectRatio="xMaxYMax slice" className="absolute inset-0 h-full w-full">
         <defs>
           <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stopColor="var(--crt-ink)" stopOpacity="0.32" />
@@ -97,29 +128,29 @@ export function Scene() {
 
         {/* zadní řada kartoték */}
         <motion.g style={{ y: farY, x: mx * -6 }} opacity="0.45">
-          {far.map((c, i) => <Cabinet key={`f${i}`} id={`f${i}`} x={c.x} y={116} w={c.w} h={104} drawers={4} />)}
+          {far.map((x) => <Cabinet key={`f${x}`} x={x} y={116} w={64} h={104} drawers={4} />)}
         </motion.g>
 
         {/* potrubní pošta */}
         <line x1="0" y1="92" x2={W} y2="92" stroke="var(--line)" strokeWidth="6" />
         <line x1="0" y1="92" x2={W} y2="92" stroke="var(--bg-3)" strokeWidth="3" />
-        {[120, 420, 760, 1100, 1380].map((x) => <rect key={x} x={x - 5} y="84" width="10" height="16" rx="2" fill="var(--line)" />)}
-        <g style={{ offsetPath: `path('M-40 92 L${W + 40} 92')`, animation: 'travel 9s linear infinite', animationDelay: '1.5s' } as React.CSSProperties}>
+        {stations.map((x) => <rect key={x} x={x - 5} y="84" width="10" height="16" rx="2" fill="var(--line)" />)}
+        <g style={{ offsetPath: `path('M-40 92 L${W + 40} 92')`, animation: `travel ${Math.max(6, Math.round(W / 160))}s linear 1.5s infinite` } as React.CSSProperties}>
           <rect x="-16" y="-5" width="32" height="10" rx="5" fill="var(--accent)" />
           <rect x="-12" y="-3" width="8" height="6" rx="1" fill="var(--bg)" opacity="0.5" />
         </g>
 
         {/* střední řada, žebřík, hodiny */}
         <motion.g style={{ y: midY, x: mx * -12 }}>
-          {mid.map((c, i) => <Cabinet key={`m${i}`} id={`m${i}`} x={c.x} y={94} w={c.w} h={142} drawers={5} />)}
+          {mid.map((x) => <Cabinet key={`m${x}`} x={x} y={94} w={138} h={142} drawers={5} />)}
           {/* žebřík */}
-          <g transform="translate(680 0)">
+          <g transform={`translate(${ladder} 0)`}>
             <line x1="0" y1="40" x2="0" y2={FLOOR - 2} stroke="var(--accent)" strokeWidth="3" />
             <line x1="34" y1="40" x2="34" y2={FLOOR - 2} stroke="var(--accent)" strokeWidth="3" />
             {Array.from({ length: 9 }, (_, i) => <line key={i} x1="0" y1={56 + i * 24} x2="34" y2={56 + i * 24} stroke="var(--accent)" strokeWidth="2.5" />)}
           </g>
           {/* hodiny */}
-          <g transform="translate(1290 60)">
+          <g transform={`translate(${W - 150} 62)`}>
             <circle r="22" fill="var(--bg-2)" stroke="var(--line)" strokeWidth="2" />
             {[0, 90, 180, 270].map((a) => <line key={a} x1="0" y1="-19" x2="0" y2="-15" stroke="var(--ink-2)" strokeWidth="2" transform={`rotate(${a})`} />)}
             <line ref={hourHandRef} x1="0" y1="0" x2="0" y2="-11" stroke="var(--ink)" strokeWidth="2.5" strokeLinecap="round" />
@@ -130,19 +161,12 @@ export function Scene() {
 
         {/* lampy s kužely světla */}
         <motion.g style={{ y: frontY, x: mx * -18 }}>
-          <Lamp x={250} flickerDelay="0s" />
-          <Lamp x={880} flickerDelay="2.1s" />
-          <Lamp x={1180} flickerDelay="4.3s" />
+          {lamps.map((x, i) => <Lamp key={x} x={x} flickerDelay={`${(i * 2.1) % 6.3}s`} />)}
         </motion.g>
 
-        {/* podlaha: pevná deska, na které skříně stojí */}
+        {/* podlaha: hrana desky, na které skříně stojí (deska sama je v Hero) */}
         <rect x="0" y={FLOOR - 14} width={W} height="14" fill="url(#groundshadow)" />
-        <rect x="0" y={FLOOR} width={W} height={H - FLOOR} fill="var(--bg-3)" />
-        <line x1="0" y1={FLOOR} x2={W} y2={FLOOR} stroke="var(--line)" strokeWidth="2" />
-        {/* spáry v podlaze */}
-        {Array.from({ length: 12 }, (_, i) => (
-          <line key={i} x1={i * 130 - 20} y1={FLOOR} x2={i * 130 + 40} y2={H} stroke="var(--line)" strokeWidth="1" opacity="0.5" />
-        ))}
+        <rect x="0" y={FLOOR} width={W} height="2" fill="var(--line)" />
       </svg>
     </div>
   )

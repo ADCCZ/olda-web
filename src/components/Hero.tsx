@@ -26,46 +26,45 @@ export function Hero({ onAvatarMessage, onOpenTerminal, onOpenPexeso, stamps, on
   }, [])
 
   return (
-    <section id="top" className="relative flex min-h-[100svh] flex-col overflow-hidden pt-20 pb-3 md:pt-24 md:pb-4">
-      {/* hala archivu jako pozadí, podlaha sahá až na spodek úvodní obrazovky */}
-      <div className="absolute inset-x-0 bottom-0 -z-10"><Scene /></div>
-      {/* stín pro čitelnost textu nad pozadím */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-bg from-35% to-transparent" />
-
-      <div className="mx-auto grid w-full max-w-6xl flex-1 items-center gap-6 px-5 py-4 md:px-8 lg:grid-cols-[1fr_1.15fr] lg:gap-10">
-        <div className="max-w-xl">
-          <p className="readout mb-3 flex items-center gap-3 md:mb-5">
+    <section id="top" className="relative overflow-hidden pt-16">
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-8 px-5 pt-6 pb-4 md:px-8 md:pt-8 lg:grid-cols-[1.05fr_1fr] lg:gap-10 lg:pt-10">
+        {/* @container: velikost jména se odvíjí od šířky sloupce, takže vyjde vždy na dva řádky */}
+        <div className="@container max-w-xl">
+          <p className="readout mb-3 flex items-center gap-3 md:mb-4">
             <span className="stamp">{t.hero.stamp}</span>
             {t.hero.hello}
           </p>
-          <h1 className="font-display text-[clamp(1.9rem,7vw,3.4rem)] leading-[1.05] tracking-tight">
-            {t.academicTitle} {t.firstName} {t.middleName}
+          <h1 className="font-display text-[min(3.4rem,10.4cqi)] leading-[1.08] tracking-tight">
+            <span className="whitespace-nowrap">{t.academicTitle} {t.firstName} {t.middleName}</span>
             <br />
             {t.lastName}
           </h1>
           <p className="mt-3 font-mono text-sm text-accent-2 sm:text-base md:mt-4 md:text-lg">{t.hero.role}</p>
-          <p className="mt-3 max-w-prose text-base leading-relaxed text-ink-2 md:mt-5 md:text-lg">{t.hero.tagline}</p>
-          <div className="mt-5 flex flex-wrap items-center gap-4 md:mt-7">
+          <p className="mt-3 max-w-prose text-base leading-relaxed text-ink-2 md:mt-4 md:text-lg">{t.hero.tagline}</p>
+          <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3 md:mt-6">
             <a href="#projects" onClick={(e) => portalLink(e)} className="pill pill-solid">{t.hero.ctaProjects}</a>
             <a href="#contact" onClick={(e) => portalLink(e)} className="text-ink-2 underline decoration-line underline-offset-4 hover:text-accent">{t.hero.ctaContact}</a>
           </div>
         </div>
 
-        <div>
+        <div className="mx-auto w-full max-w-[560px] lg:max-w-none">
           <Branches onAvatarMessage={onAvatarMessage} onAction={() => onOpenPexeso()} />
-          <p className="readout mt-2 hidden text-center sm:block">{t.hero.orbitHint}</p>
+          <p className="readout mt-3 hidden text-center sm:block">{t.hero.orbitHint}</p>
         </div>
       </div>
 
-      {/* štítek na stole úředníka, před podlahou */}
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 md:px-8">
-        <div className="wood flex flex-wrap items-center gap-x-6 gap-y-1.5 px-4 py-2.5 font-mono text-xs">
-          <span className="flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-accent-2" />{t.hero.readout[0]}</span>
-          <span>{t.hero.readout[1]}</span>
-          <span>{t.hero.loop} #{loop}</span>
-          <span className="hidden tabular-nums sm:inline">{clock}</span>
-          <button type="button" onClick={onOpenStamps} className="hover:text-accent-2">{t.hero.stamps} {stamps}/8</button>
-          <button type="button" onClick={onOpenTerminal} className="ml-auto hover:text-accent-2">{t.hero.readout[2]}</button>
+      {/* hala archivu, pod ní podlaha se štítkem na stole úředníka */}
+      <Scene />
+      <div className="floor no-print pb-3 pt-1 md:pb-4">
+        <div className="mx-auto w-full max-w-6xl px-5 md:px-8">
+          <div className="wood flex flex-wrap items-center gap-x-4 gap-y-1.5 px-3 py-2.5 font-mono text-[11px] sm:gap-x-6 sm:px-4 sm:text-xs">
+            <span className="flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-accent-2" />{t.hero.readout[0]}</span>
+            <span className="hidden sm:inline">{t.hero.readout[1]}</span>
+            <span className="hidden sm:inline">{t.hero.loop} #{loop}</span>
+            <span className="hidden tabular-nums md:inline">{clock}</span>
+            <button type="button" onClick={onOpenStamps} className="hover:text-accent-2">{t.hero.stamps} {stamps}/8</button>
+            <button type="button" onClick={onOpenTerminal} className="ml-auto hover:text-accent-2">{t.hero.readout[2]}</button>
+          </div>
         </div>
       </div>
     </section>
