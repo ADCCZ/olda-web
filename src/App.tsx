@@ -41,13 +41,6 @@ export default function App() {
     toastTimer.current = window.setTimeout(() => setToast(null), 2400)
   }, [])
 
-  // krátké oznámení odkudkoli: window.dispatchEvent(new CustomEvent('toast', { detail: 'text' }))
-  useEffect(() => {
-    const on = (e: Event) => say((e as CustomEvent<string>).detail)
-    window.addEventListener('toast', on)
-    return () => window.removeEventListener('toast', on)
-  }, [say])
-
   // razítka: cokoli na webu může vyslat 'stamp:earn'
   useEffect(() => {
     const on = (e: Event) => {

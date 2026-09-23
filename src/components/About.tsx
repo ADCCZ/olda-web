@@ -9,7 +9,7 @@ import { interestIcon, Play } from './Icons'
 export function About({ onPlayGuitar }: { onPlayGuitar: () => void }) {
   const { t } = useI18n()
   return (
-    <Section id="about" title={t.about.title} pattern="horns" horns="bottom-3 left-[7%] md:bottom-8">
+    <Section id="about" title={t.about.title} pattern="horns">
       <div className="grid gap-10 lg:grid-cols-[3fr_2fr] lg:gap-16">
         <div className="max-w-prose">
           <p className="reveal text-lg leading-snug text-ink md:text-xl" style={{ '--i': 1 } as React.CSSProperties}>{t.about.lead}</p>

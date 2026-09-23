@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { useI18n } from '../lib/i18n'
-import { Horns } from './Horns'
 import helmet from '../assets/horned-helmet.svg'
 
 /** pozadí sekce (index.css → .pat-*): obklad z kachliček, nebo zlatá helma s rohy */
 export type Pattern = 'tiles' | 'horns'
 
 /**
- * Zlatá helma leží v rohu sekce, skoro celá vidět, lehce nakloněná ke středu. Roh se při
- * každém načtení losuje (levý horní ne, tam je nadpis), natočení a velikost se jen mírně mění.
+ * Zlatá helma leží v rohu sekce, skoro celá vidět, lehce nakloněná ke středu, velká podle sekce.
+ * Roh se při každém načtení losuje (levý horní ne, tam je nadpis), natočení a velikost se jen mírně mění.
  */
 const CORNERS = [
   { right: '-2%', top: '5%', tilt: -10, origin: '100% 0' },
@@ -20,7 +19,9 @@ function randomHelmet(): React.CSSProperties {
   const { tilt, origin, ...place } = CORNERS[Math.floor(r() * CORNERS.length)]
   return {
     ...place,
-    width: `calc(clamp(220px, 26vw, 380px) * ${(0.9 + r() * 0.2).toFixed(2)})`,
+    // podle velikosti sekce (cqw/cqh, kontejner je .pat-horns): asi polovina výšky, nejvýš 45 % šířky,
+    // na úzkém displeji až 75 % šířky
+    width: `calc(min(max(45cqw, min(75cqw, 300px)), 78cqh) * ${(0.9 + r() * 0.2).toFixed(2)})`,
     transform: `rotate(${(tilt + (r() - 0.5) * 8).toFixed(1)}deg)`,
     transformOrigin: origin,
   }
@@ -30,11 +31,10 @@ function randomHelmet(): React.CSSProperties {
  * Sekce = spis. Když poprvé vjede do okna (data-inview), rozehrají se její animace
  * z index.css: nadpis se vypíše, řádky (.rows) se "vytisknou", razítka dopadnou,
  * bloky (.reveal) vyjedou. Pořadí v rámci sekce řídí --i u jednotlivých prvků.
- * Pozadí se střídá (úvod se počítá jako první): liché obklad (tiles), sudé zlatá helma (horns)
- * a k ní schované malé rohy na nalezení (prop horns = jejich pozice).
+ * Pozadí se střídá (úvod se počítá jako první): liché obklad (tiles), sudé zlatá helma (horns).
  */
-export function Section({ id, title, lead, children, className = '', pattern, horns }: {
-  id: string; title: string; lead?: string; children: ReactNode; className?: string; pattern?: Pattern; horns?: string
+export function Section({ id, title, lead, children, className = '', pattern }: {
+  id: string; title: string; lead?: string; children: ReactNode; className?: string; pattern?: Pattern
 }) {
   const { t } = useI18n()
   const [arrived, setArrived] = useState(false)
@@ -95,7 +95,6 @@ export function Section({ id, title, lead, children, className = '', pattern, ho
         </div>
         {children}
       </div>
-      {horns && <Horns id={id} className={horns} />}
     </section>
   )
 }

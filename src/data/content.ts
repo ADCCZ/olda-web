@@ -375,17 +375,12 @@ const cs = {
       konami: { name: 'Odchylka', hint: 'sekvence šipek' },
       tour: { name: 'Prohlídka', hint: 'nech se provést' },
       theme: { name: 'Den a noc', hint: 'přepni téma' },
-      loki: { name: 'Rohy', hint: 'najdi čtvery rohy ve spisech' },
     },
   },
   eggs: {
     konami: 'ODCHYLKA DETEKOVÁNA. Linie se větví. Nechte to být.',
     avatar: ['Ahoj.', 'Ještě jednou?', 'Lechtá to.', 'Fajn, tak jo.', 'Ztráta signálu. Moment.'],
     tabTitle: 'Spis zůstal otevřený… ← olda',
-    /** Lokiho rohy schované v každé sudé sekci (Horns.tsx) */
-    hornsLabel: 'Rohy',
-    horns: (n: number, total: number) => (n < total ? `Rohy ${n}/${total}. Někdo si tu odložil helmu.` : `Rohy ${n}/${total}. Varianta s rohy nalezena.`),
-    hornsAgain: 'Tyhle rohy už máte ve spisu.',
     console: `
   ┌───────────────────────────────┐
   │  Ahoj, zvědavče.              │
@@ -710,16 +705,12 @@ const en: typeof cs = {
       konami: { name: 'Deviation', hint: 'a sequence of arrows' },
       tour: { name: 'Tour', hint: 'take the tour' },
       theme: { name: 'Day and night', hint: 'switch the theme' },
-      loki: { name: 'Horns', hint: 'find four pairs of horns in the files' },
     },
   },
   eggs: {
     konami: 'DEVIATION DETECTED. The line is branching. Leave it.',
     avatar: ['Hi.', 'Again?', 'That tickles.', 'Fine, okay.', 'Signal lost. One moment.'],
     tabTitle: 'The file is still open… ← olda',
-    hornsLabel: 'Horns',
-    horns: (n: number, total: number) => (n < total ? `Horns ${n}/${total}. Someone left their helmet here.` : `Horns ${n}/${total}. Horned variant located.`),
-    hornsAgain: 'These horns are already on file.',
     console: `
   ┌───────────────────────────────┐
   │  Hello, curious one.          │

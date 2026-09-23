@@ -398,8 +398,8 @@ body::before {
 
 /* ---------- pozadí sekcí: střídání obkladu a rohů ----------
    Počítá se i úvod: liché obrazovky (úvod, Vzdělání, Projekty, Dovednosti) mají retro-futuristický
-   obklad z kachliček, sudé (Profil, Praxe, Technologie, Kontakt) velkou zlatou helmu s rohy jako
-   vodoznak a k tomu malé schované rohy na nalezení (Horns.tsx). Section.tsx → pattern.
+   obklad z kachliček, sudé (Profil, Praxe, Technologie, Kontakt) velkou zlatou helmu s rohy
+   v rohu sekce. Section.tsx → pattern.
    Kachličky se kreslí barvou linek z tématu a uprostřed, kde je text, slábnou. */
 :root {
   /* obklad ze sedmdesátkové stanice budoucnosti: zaoblené kachličky se střídají jako šachovnice
@@ -421,7 +421,9 @@ body::before {
   mask-size: 96px 96px, 100% 100%, 100% 100%;
   mask-repeat: repeat, no-repeat, no-repeat;
 }
-/* sudé sekce: zlatá helma s rohy v rohu sekce; roh, velikost a natočení losuje Section.tsx */
+/* sudé sekce: zlatá helma s rohy v rohu sekce; roh, velikost a natočení losuje Section.tsx,
+   velikost se počítá z rozměrů sekce (kontejner) */
+.pat-horns { container-type: size; }
 .pat-horns img {
   position: absolute;
   max-width: none;
@@ -429,27 +431,6 @@ body::before {
   opacity: 0.24;
 }
 :root[data-theme="light"] .pat-horns img { opacity: 0.38; filter: drop-shadow(0 4px 14px rgba(122, 90, 18, 0.18)); }
-
-/* Lokiho rohy (Horns.tsx): skoro splývají, po najetí se rozzáří */
-.horns {
-  padding: 4px;
-  line-height: 0;
-  color: var(--accent);
-  opacity: 0.22;
-  cursor: pointer;
-  transition: opacity 0.3s, transform 0.3s, filter 0.3s;
-}
-.horns:hover, .horns:focus-visible { opacity: 0.95; transform: translateY(-2px) rotate(-5deg); filter: drop-shadow(0 0 6px var(--glow)); }
-.horns-found { opacity: 0.5; }
-.horns-glint { animation: horns-glint 1.2s ease-out; }
-@keyframes horns-glint {
-  0% { transform: none; }
-  25% { opacity: 1; transform: scale(1.6) rotate(-8deg); filter: drop-shadow(0 0 14px var(--accent)); }
-  100% { transform: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .horns-glint { animation: none !important; }
-}
 
 /* ---------- tisk: čistý životopis bez chromu ---------- */
 @media print {
