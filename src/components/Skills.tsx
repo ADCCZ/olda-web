@@ -6,7 +6,7 @@ export function Skills() {
   const { t } = useI18n()
   const rows = [...t.skills.groups.map((g) => ({ name: g.name, items: g.items, planned: false })), { name: t.skills.plannedLabel, items: t.skills.planned, planned: true }]
   return (
-    <Section id="skills" title={t.skills.title} lead={t.skills.lead} pattern="horns">
+    <Section id="skills" title={t.skills.title} lead={t.skills.lead} pattern="horns" side="right">
       <dl className="rows divide-y divide-line border-y border-line">
         {rows.map((r, i) => (
           <div key={r.name} className="grid gap-1 py-4 md:grid-cols-[200px_1fr] md:gap-8 md:py-5" style={{ '--i': i + 3 } as React.CSSProperties}>
