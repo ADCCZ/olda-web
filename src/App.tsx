@@ -16,6 +16,7 @@ import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
 import { Terminal } from './components/Terminal'
 import { Pexeso } from './components/Pexeso'
+import { GuitarModal } from './components/Guitar'
 import { Hyperdrive, Toast } from './components/Effects'
 import { Guide } from './components/Guide'
 import { Portal } from './components/Portal'
@@ -26,6 +27,7 @@ export default function App() {
   const [toast, setToast] = useState<string | null>(null)
   const [terminal, setTerminal] = useState(false)
   const [pexeso, setPexeso] = useState(false)
+  const [guitar, setGuitar] = useState(false)
   const [warp, setWarp] = useState(false)
   const [stampsOpen, setStampsOpen] = useState(false)
   const [stamps, setStamps] = useState<StampId[]>(loadStamps)
@@ -73,7 +75,7 @@ export default function App() {
       const el = document.activeElement
       const typing = el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA')
       if ((e.key === '~' || e.key === '`') && !typing) { e.preventDefault(); setTerminal((o) => !o) }
-      if (e.key === 'Escape') { setTerminal(false); setPexeso(false); setStampsOpen(false) }
+      if (e.key === 'Escape') { setTerminal(false); setPexeso(false); setGuitar(false); setStampsOpen(false) }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
@@ -113,7 +115,7 @@ export default function App() {
           stamps={stamps.length}
           onOpenStamps={() => setStampsOpen(true)}
         />
-        <About />
+        <About onPlayGuitar={() => setGuitar(true)} />
         <Education />
         <Experience />
         <Projects onPexeso={openPexeso} />
@@ -124,6 +126,7 @@ export default function App() {
       <Footer onCallGuide={() => showGuide(true)} />
       <Terminal open={terminal} onClose={() => setTerminal(false)} onEffect={onTerminalEffect} />
       <Pexeso open={pexeso} onClose={() => setPexeso(false)} />
+      <GuitarModal open={guitar} onClose={() => setGuitar(false)} />
       <StampsPanel open={stampsOpen} earned={stamps} onClose={() => setStampsOpen(false)} />
       <Guide visible={guide} onHide={() => showGuide(false)} />
       <Hyperdrive active={warp} />

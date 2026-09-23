@@ -40,8 +40,21 @@ export function Avatar({ className = '', onMessage }: { className?: string; onMe
           <g className="crt-on" style={{ transformOrigin: '90px 69px' }}>
             {t.photo && !static_ ? (
               <g>
-                <filter id="phosphor"><feColorMatrix type="matrix" values="0 0 0 0 0.05  0.2 0.5 0.2 0 0.15  0 0 0 0 0.08  0 0 0 1 0" /></filter>
-                <image href={t.photo} x="24" y="22" width="132" height="94" preserveAspectRatio="xMidYMid slice" filter="url(#phosphor)" />
+                {/* fosfor: šedá, víc kontrastu, obarvit barvou obrazovky (zelená / jantar podle tématu), jemná záře */}
+                <filter id="phosphor" colorInterpolationFilters="sRGB">
+                  <feColorMatrix type="saturate" values="0" result="gray" />
+                  <feComponentTransfer in="gray" result="lit">
+                    <feFuncR type="gamma" amplitude="1.35" exponent="1.25" offset="0.02" />
+                    <feFuncG type="gamma" amplitude="1.35" exponent="1.25" offset="0.02" />
+                    <feFuncB type="gamma" amplitude="1.35" exponent="1.25" offset="0.02" />
+                  </feComponentTransfer>
+                  <feFlood style={{ floodColor: 'var(--crt-ink)' }} result="ink" />
+                  <feBlend in="lit" in2="ink" mode="multiply" result="tinted" />
+                  <feComposite in="tinted" in2="SourceGraphic" operator="in" result="face" />
+                  <feGaussianBlur in="face" stdDeviation="1.4" result="glow" />
+                  <feMerge><feMergeNode in="glow" /><feMergeNode in="face" /></feMerge>
+                </filter>
+                <image href={t.photo} x="24" y="22" width="132" height="94" preserveAspectRatio="xMidYMid meet" filter="url(#phosphor)" />
               </g>
             ) : static_ ? (
               <g>

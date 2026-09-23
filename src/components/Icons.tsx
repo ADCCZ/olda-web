@@ -46,6 +46,9 @@ export const Compass = (p: SVGProps<SVGSVGElement>) => (
 export const Star = (p: SVGProps<SVGSVGElement>) => (
   <svg {...base(p)}><path d="m12 3 2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z" /></svg>
 )
+export const Play = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...base(p)}><path d="M8 5.5v13l10.5-6.5z" /></svg>
+)
 export const Gamepad = (p: SVGProps<SVGSVGElement>) => (
   <svg {...base(p)}><path d="M6 8h12a4 4 0 0 1 4 4v1.5a3.5 3.5 0 0 1-6.3 2.1L15 15H9l-.7.6A3.5 3.5 0 0 1 2 13.5V12a4 4 0 0 1 4-4z" /><path d="M7 11v3M5.5 12.5h3M16 11.5h.01M18.5 13h.01" /></svg>
 )

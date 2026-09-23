@@ -15,13 +15,19 @@ const MAIN_Y = 230
 /** svislý výřez: jen to, kde něco je (uzly, popisky) */
 const VB_Y = 14
 const VB_H = 372
-/** y pruhu, x odbočení, x konce (pořadí = t.hero.orbit) */
+/**
+ * y pruhu, x odbočení, x konce (pořadí = t.hero.orbit).
+ * Větve se nekříží: na každé straně hlavní linie vede větev, která odbočila dřív,
+ * dál od ní, takže pozdější větve se do ní vnoří.
+ *   nahoru: oddíl (60) → 40, škola (90) → 105, kytara (200) → 170
+ *   dolů:   kód (150) → 355, hry (260) → 290
+ */
 const LANES: { y: number; bx: number; ex: number; label: 'right' | 'above' | 'below' }[] = [
-  { y: 290, bx: 150, ex: 400, label: 'below' }, // code
-  { y: 105, bx: 60, ex: 520, label: 'right' },  // scout
+  { y: 355, bx: 150, ex: 520, label: 'right' }, // code
+  { y: 40, bx: 60, ex: 560, label: 'right' },   // scout
   { y: 170, bx: 200, ex: 400, label: 'above' }, // guitar
-  { y: 355, bx: 260, ex: 520, label: 'right' }, // games
-  { y: 40, bx: 90, ex: 560, label: 'right' },   // school
+  { y: 290, bx: 260, ex: 400, label: 'below' }, // games
+  { y: 105, bx: 90, ex: 520, label: 'right' },  // school
 ]
 const YEARS = [{ x: 90, l: '2023' }, { x: 230, l: '2024' }, { x: 370, l: '2025' }, { x: 440, l: '2026' }]
 

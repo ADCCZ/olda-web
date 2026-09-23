@@ -3,6 +3,8 @@
 //  cs = čeština (výchozí), en = angličtina
 // ============================================================
 
+import photo from '../assets/photo.webp'
+
 export type Lang = 'cs' | 'en'
 
 export type Project = {
@@ -49,8 +51,8 @@ const shared = {
   /** soubory v /public; generuje je scripts/cv.py */
   cvFile: '/cv.pdf',
   cvPlainFile: '/cv-plain.pdf',
-  /** volitelná fotka na obrazovce monitoru, např. '/photo.jpg' (nech prázdné pro kreslený obličej) */
-  photo: '' as string,
+  /** fotka na obrazovce monitoru (výřez bez pozadí, obarví se barvou obrazovky); prázdné = kreslený obličej */
+  photo: photo as string,
   /** kontaktní údaje; prázdné se nezobrazí */
   phone: '' as string,
   location: 'Plzeň, Česko',
@@ -115,7 +117,8 @@ const cs = {
     ],
     interestsTitle: 'Mimo kód',
     interests: [
-      { icon: 'guitar', label: 'Kytara', note: 'akustická, hlavně u ohně' },
+      // action: 'guitar' = u položky je tlačítko Hrát, které otevře kytaru uprostřed obrazovky
+      { icon: 'guitar', label: 'Kytara', note: 'akustická, hlavně u ohně', action: 'guitar' },
       { icon: 'scout', label: 'Klub Pathfinder', note: 'vedoucí oddílu, tábory, expedice' },
       { icon: 'marvel', label: 'Komiksové filmy', note: 'sleduju v pořadí, ve kterém vyšly' },
       { icon: 'games', label: 'Videohry', note: '' },
@@ -276,6 +279,7 @@ const cs = {
     strings: 'Struny',
     strumDown: 'Brnknout ↓',
     strumUp: 'Brnknout ↑',
+    play: 'Hrát',
   },
   pexeso: {
     title: 'Pexeso',
@@ -325,7 +329,7 @@ const cs = {
     tips: [
       'Větve v hlavičce jsou klikací, každá vede na jinou část spisu.',
       'Vlnovka (~) otevře terminál. Napište "help".',
-      'Kytara v sekci O mně opravdu hraje.',
+      'Kytara v Profilu opravdu hraje, stačí zmáčknout Hrát.',
       'Větev Hry spouští Pexeso. Serverovou verzi má na GitHubu, tahle běží v prohlížeči.',
       'V terminálu zkuste "variant".',
       'Zkuste kliknout na monitor. Víckrát.',
@@ -343,7 +347,7 @@ const cs = {
     },
     tour: [
       { target: '#top', text: 'Hlavička: Oldřich Švehla, pro přátele Olda, varianta 01. Větve jsou věci, které běží souběžně.' },
-      { target: '#about', text: 'Kdo to je: junior full-stack vývojář, absolvent FAV ZČU, vedoucí v Klubu Pathfinder. Kytara vpravo hraje.' },
+      { target: '#about', text: 'Kdo to je: junior full-stack vývojář, absolvent FAV ZČU, vedoucí v Klubu Pathfinder. U kytary vpravo je tlačítko Hrát.' },
       { target: '#education', text: 'Vzdělání: bakalář 2023 až 2026, od podzimu navazující SWIS.' },
       { target: '#experience', text: 'Praxe: vedení v Klubu Pathfinder a vývoj webového portálu na zakázku.' },
       { target: '#projects', text: 'Rejstřík projektů. Data se načítají z GitHubu.' },
@@ -444,7 +448,7 @@ const en: typeof cs = {
     ],
     interestsTitle: 'Beyond code',
     interests: [
-      { icon: 'guitar', label: 'Guitar', note: 'acoustic, mostly by the fire' },
+      { icon: 'guitar', label: 'Guitar', note: 'acoustic, mostly by the fire', action: 'guitar' },
       { icon: 'scout', label: 'Klub Pathfinder', note: 'troop leader, camps, expeditions' },
       { icon: 'marvel', label: 'Comic-book films', note: 'in release order' },
       { icon: 'games', label: 'Video games', note: '' },
@@ -605,6 +609,7 @@ const en: typeof cs = {
     strings: 'Strings',
     strumDown: 'Strum ↓',
     strumUp: 'Strum ↑',
+    play: 'Play',
   },
   pexeso: {
     title: 'Memory game',
@@ -654,7 +659,7 @@ const en: typeof cs = {
     tips: [
       'The branches in the header are clickable, each leads to a part of the file.',
       'The tilde (~) opens the terminal. Type "help".',
-      'The guitar in the About section really plays.',
+      'The guitar in the Profile really plays, just press Play.',
       'The Games branch starts the memory game. The server version is on GitHub; this one runs in the browser.',
       'In the terminal, try "variant".',
       'Try clicking the monitor. More than once.',
@@ -672,7 +677,7 @@ const en: typeof cs = {
     },
     tour: [
       { target: '#top', text: 'The header: Oldřich Švehla, Olda to friends, variant 01. The branches are things that run at the same time.' },
-      { target: '#about', text: 'Who he is: junior full-stack developer, FAV ZČU graduate, leader in Klub Pathfinder. The guitar on the right plays.' },
+      { target: '#about', text: 'Who he is: junior full-stack developer, FAV ZČU graduate, leader in Klub Pathfinder. Press Play next to the guitar on the right.' },
       { target: '#education', text: "Education: bachelor's 2023 to 2026, the SWIS master's from autumn." },
       { target: '#experience', text: 'Experience: leadership in Klub Pathfinder and a commissioned web portal.' },
       { target: '#projects', text: 'The project register. Data loads from GitHub.' },
