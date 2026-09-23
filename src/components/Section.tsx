@@ -6,10 +6,24 @@ import helmet from '../assets/horned-helmet.svg'
 /** pozadí sekce (index.css → .pat-*): obklad z kachliček, nebo zlatá helma s rohy */
 export type Pattern = 'tiles' | 'horns'
 
-/** zlatá helma se při každém načtení objeví na jiném místě sekce, jinak natočená a jinak velká */
-function randomHelmet() {
+/**
+ * Zlatá helma leží v rohu sekce, skoro celá vidět, lehce nakloněná ke středu. Roh se při
+ * každém načtení losuje (levý horní ne, tam je nadpis), natočení a velikost se jen mírně mění.
+ */
+const CORNERS = [
+  { right: '-2%', top: '5%', tilt: -10, origin: '100% 0' },
+  { right: '-2%', bottom: '4%', tilt: -8, origin: '100% 100%' },
+  { left: '-2%', bottom: '4%', tilt: 8, origin: '0 100%' },
+] as const
+function randomHelmet(): React.CSSProperties {
   const r = Math.random
-  return { left: 12 + r() * 76, top: 15 + r() * 70, px: 520 + r() * 320, pct: 60 + r() * 30, rotate: -22 + r() * 44 }
+  const { tilt, origin, ...place } = CORNERS[Math.floor(r() * CORNERS.length)]
+  return {
+    ...place,
+    width: `calc(clamp(220px, 26vw, 380px) * ${(0.9 + r() * 0.2).toFixed(2)})`,
+    transform: `rotate(${(tilt + (r() - 0.5) * 8).toFixed(1)}deg)`,
+    transformOrigin: origin,
+  }
 }
 
 /**
@@ -68,7 +82,7 @@ export function Section({ id, title, lead, children, className = '', pattern, ho
               alt=""
               loading="lazy"
               decoding="async"
-              style={{ left: `${helm.left}%`, top: `${helm.top}%`, width: `min(${Math.round(helm.px)}px, ${Math.round(helm.pct)}%)`, transform: `translate(-50%, -50%) rotate(${helm.rotate.toFixed(1)}deg)` }}
+              style={helm}
             />
           )}
         </div>

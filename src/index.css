@@ -421,16 +421,14 @@ body::before {
   mask-size: 96px 96px, 100% 100%, 100% 100%;
   mask-repeat: repeat, no-repeat, no-repeat;
 }
-/* sudé sekce: velká zlatá helma s rohy jako vodoznak za obsahem; pozici, velikost a natočení
-   losuje Section.tsx při každém načtení */
+/* sudé sekce: zlatá helma s rohy v rohu sekce; roh, velikost a natočení losuje Section.tsx */
 .pat-horns img {
   position: absolute;
   max-width: none;
   height: auto;
-  opacity: 0.13;
-  filter: drop-shadow(0 0 40px rgba(233, 201, 90, 0.25));
+  opacity: 0.24;
 }
-:root[data-theme="light"] .pat-horns img { opacity: 0.2; filter: none; }
+:root[data-theme="light"] .pat-horns img { opacity: 0.38; filter: drop-shadow(0 4px 14px rgba(122, 90, 18, 0.18)); }
 
 /* Lokiho rohy (Horns.tsx): skoro splývají, po najetí se rozzáří */
 .horns {
