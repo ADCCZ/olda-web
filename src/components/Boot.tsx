@@ -26,6 +26,8 @@ export function Boot() {
   function done() {
     setShow(false)
     try { sessionStorage.setItem('booted', '1') } catch { /* ignore */ }
+    // úvod (Hero) čeká s animacemi, dokud obrazovka nezmizí
+    window.dispatchEvent(new Event('boot:done'))
   }
 
   return (

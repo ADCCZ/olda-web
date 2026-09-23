@@ -32,13 +32,35 @@ function Cabinet({ x, y, w, h, drawers }: { x: number; y: number; w: number; h: 
   )
 }
 
-function Lamp({ x, flickerDelay }: { x: number; flickerDelay: string }) {
+/** deterministický "náhodný" šum 0..1, ať se prach při každém vykreslení nepřeskupí */
+const noise = (n: number) => { const v = Math.sin(n * 12.9898) * 43758.5453; return v - Math.floor(v) }
+
+function Lamp({ x, i }: { x: number; i: number }) {
   return (
-    <g className="flicker" style={{ animationDelay: flickerDelay }}>
+    <g className="flicker" style={{ animationDelay: `${(i * 2.1) % 6.3}s` }}>
       <line x1={x} y1="0" x2={x} y2="46" stroke="var(--line)" strokeWidth="1.5" />
       <path d={`M${x - 26} 66 L${x - 12} 46 L${x + 12} 46 L${x + 26} 66 Z`} fill="var(--bg-3)" stroke="var(--line)" strokeWidth="1.5" />
-      <circle cx={x} cy="64" r="5" fill="var(--crt-ink)" />
-      <polygon points={`${x - 26},66 ${x + 26},66 ${x + 150},${FLOOR} ${x - 150},${FLOOR}`} fill="url(#cone)" />
+      {/* světlo se při načtení rozsvítí s blikáním, jedna lampa po druhé */}
+      <g className="lamp-light" style={{ '--d': `${0.3 + (i % 6) * 0.3}s` } as React.CSSProperties}>
+        <circle cx={x} cy="64" r="5" fill="var(--crt-ink)" />
+        <polygon points={`${x - 26},66 ${x + 26},66 ${x + 150},${FLOOR} ${x - 150},${FLOOR}`} fill="url(#cone)" />
+        {/* prach poletující ve světle */}
+        {Array.from({ length: 6 }, (_, k) => {
+          const y = 110 + noise(x + k) * 120
+          const spread = ((y - 66) / (FLOOR - 66)) * 120
+          return (
+            <circle
+              key={k}
+              className="dust"
+              cx={x + (noise(x * 3 + k) - 0.5) * spread}
+              cy={y}
+              r={0.8 + noise(k + x * 7) * 1.2}
+              fill="var(--crt-bright)"
+              style={{ '--dx': `${(noise(k * 5 + x) - 0.5) * 30}px`, animationDuration: `${6 + noise(k + x * 2) * 6}s`, animationDelay: `${-noise(k * 9 + x) * 10}s` } as React.CSSProperties}
+            />
+          )
+        })}
+      </g>
     </g>
   )
 }
@@ -113,7 +135,7 @@ export function Scene() {
   const ladder = mid.reduce((a, b) => (Math.abs(b - target) < Math.abs(a - target) ? b : a)) + 24
 
   return (
-    <div ref={ref} className="scene relative h-[112px] w-full overflow-hidden sm:h-[132px] md:h-[150px] lg:h-[172px]" aria-hidden data-orbit>
+    <div ref={ref} className="scene relative h-[112px] w-full overflow-hidden sm:h-[132px] md:h-[150px] lg:h-[calc(var(--fu,1px)*172)]" aria-hidden data-orbit>
       <svg viewBox={`0 ${TOP} ${W} ${VB_H}`} preserveAspectRatio="xMaxYMax slice" className="absolute inset-0 h-full w-full">
         <defs>
           <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1">
@@ -161,7 +183,7 @@ export function Scene() {
 
         {/* lampy s kužely světla */}
         <motion.g style={{ y: frontY, x: mx * -18 }}>
-          {lamps.map((x, i) => <Lamp key={x} x={x} flickerDelay={`${(i * 2.1) % 6.3}s`} />)}
+          {lamps.map((x, i) => <Lamp key={x} x={x} i={lamps.length - 1 - i} />)}
         </motion.g>
 
         {/* podlaha: hrana desky, na které skříně stojí (deska sama je v Hero) */}

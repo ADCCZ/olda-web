@@ -36,31 +36,34 @@ export function Avatar({ className = '', onMessage }: { className?: string; onMe
         <clipPath id="screen"><rect x="24" y="22" width="132" height="94" rx="8" /></clipPath>
         <rect x="24" y="22" width="132" height="94" rx="8" fill="var(--crt-bg)" />
         <g clipPath="url(#screen)" className="flicker">
-          {t.photo && !static_ ? (
-            <g>
-              <filter id="phosphor"><feColorMatrix type="matrix" values="0 0 0 0 0.05  0.2 0.5 0.2 0 0.15  0 0 0 0 0.08  0 0 0 1 0" /></filter>
-              <image href={t.photo} x="24" y="22" width="132" height="94" preserveAspectRatio="xMidYMid slice" filter="url(#phosphor)" />
-            </g>
-          ) : static_ ? (
-            <g>
-              {Array.from({ length: 24 }, (_, i) => (
-                <rect key={i} x="24" y={22 + i * 4} width="132" height="2" fill="var(--crt-ink)" opacity={((i * 7) % 5) / 6} />
-              ))}
-            </g>
-          ) : (
-            <g stroke="var(--crt-ink)" fill="none" strokeWidth="3" strokeLinecap="round" style={{ filter: 'drop-shadow(0 0 3px var(--glow))' }}>
-              {/* hlava */}
-              <circle cx="90" cy="66" r="26" />
-              {/* oči */}
-              {wink ? <path d="M78 62q4 4 8 0" /> : <circle cx="82" cy="62" r="2.5" fill="var(--crt-ink)" />}
-              <circle cx="98" cy="62" r="2.5" fill="var(--crt-ink)" />
-              {/* úsměv */}
-              <path d={clicks >= 5 ? 'M78 74q12 12 24 0' : 'M80 75q10 7 20 0'} />
-              {/* límec a kravata – úředník */}
-              <path d="M62 112q28-24 56 0" />
-              <path d="M90 92v16" strokeWidth="4" />
-            </g>
-          )}
+          {/* obraz naskočí jako stará obrazovka: nejdřív vodorovná čára, pak se roztáhne */}
+          <g className="crt-on" style={{ transformOrigin: '90px 69px' }}>
+            {t.photo && !static_ ? (
+              <g>
+                <filter id="phosphor"><feColorMatrix type="matrix" values="0 0 0 0 0.05  0.2 0.5 0.2 0 0.15  0 0 0 0 0.08  0 0 0 1 0" /></filter>
+                <image href={t.photo} x="24" y="22" width="132" height="94" preserveAspectRatio="xMidYMid slice" filter="url(#phosphor)" />
+              </g>
+            ) : static_ ? (
+              <g>
+                {Array.from({ length: 24 }, (_, i) => (
+                  <rect key={i} x="24" y={22 + i * 4} width="132" height="2" fill="var(--crt-ink)" opacity={((i * 7) % 5) / 6} />
+                ))}
+              </g>
+            ) : (
+              <g stroke="var(--crt-ink)" fill="none" strokeWidth="3" strokeLinecap="round" style={{ filter: 'drop-shadow(0 0 3px var(--glow))' }}>
+                {/* hlava */}
+                <circle cx="90" cy="66" r="26" />
+                {/* oči */}
+                {wink ? <path d="M78 62q4 4 8 0" /> : <circle cx="82" cy="62" r="2.5" fill="var(--crt-ink)" />}
+                <circle cx="98" cy="62" r="2.5" fill="var(--crt-ink)" />
+                {/* úsměv */}
+                <path d={clicks >= 5 ? 'M78 74q12 12 24 0' : 'M80 75q10 7 20 0'} />
+                {/* límec a kravata – úředník */}
+                <path d="M62 112q28-24 56 0" />
+                <path d="M90 92v16" strokeWidth="4" />
+              </g>
+            )}
+          </g>
           {/* řádkování obrazovky */}
           <g fill="#000" opacity="0.25">
             {Array.from({ length: 32 }, (_, i) => <rect key={i} x="24" y={22 + i * 3} width="132" height="1" />)}

@@ -55,17 +55,17 @@ export function Branches({ onAvatarMessage, onAction }: { onAvatarMessage: (m: s
   }
 
   return (
-    <div ref={ref} className="relative mx-auto w-full max-w-[640px]" data-orbit onPointerMove={onMove} onPointerLeave={() => setTilt({ x: 0, y: 0 })} style={{ perspective: 900 }}>
+    <div ref={ref} className="relative mx-auto w-full max-w-[calc(var(--fu,1px)*640)]" data-orbit onPointerMove={onMove} onPointerLeave={() => setTilt({ x: 0, y: 0 })} style={{ perspective: 900 }}>
       <svg viewBox={`0 ${VB_Y} ${W} ${VB_H}`} className="h-auto w-full overflow-visible" aria-label={t.hero.orbitHint}>
         {/* roky na hlavní linii */}
-        {YEARS.map((y) => (
-          <g key={y.l}>
+        {YEARS.map((y, i) => (
+          <g key={y.l} className="enter" style={{ '--d': `${0.5 + i * 0.12}s` } as React.CSSProperties}>
             <line x1={y.x} y1={MAIN_Y - 6} x2={y.x} y2={MAIN_Y + 6} stroke="var(--ink-2)" strokeWidth="1" />
             <text x={y.x} y={MAIN_Y + 12 + yearFs} textAnchor="middle" fontFamily="var(--font-mono)" fontSize={yearFs} fill="var(--ink-2)">{y.l}</text>
           </g>
         ))}
         {/* hlavní linie */}
-        <line x1="10" y1={MAIN_Y} x2="530" y2={MAIN_Y} stroke="var(--accent)" strokeWidth="3" strokeLinecap="round" />
+        <line x1="10" y1={MAIN_Y} x2="530" y2={MAIN_Y} stroke="var(--accent)" strokeWidth="3" strokeLinecap="round" className="branch-draw" style={{ animationDelay: '0.3s' }} />
         {/* puls běžící po linii */}
         <circle r="5" fill="var(--accent-2)" style={{ offsetPath: `path('M10 ${MAIN_Y} L470 ${MAIN_Y}')`, animation: 'travel 5s linear infinite' } as React.CSSProperties}>
           <title>{t.hero.pulse}</title>
@@ -89,12 +89,13 @@ export function Branches({ onAvatarMessage, onAction }: { onAvatarMessage: (m: s
                 strokeLinecap="round"
                 opacity={active ? 1 : 0.75}
                 className="branch-draw"
-                style={{ animationDelay: `${0.15 + i * 0.18}s`, transition: 'stroke-width .2s, opacity .2s' }}
+                style={{ animationDelay: `${0.7 + i * 0.18}s`, transition: 'stroke-width .2s, opacity .2s' }}
               />
               <circle cx={L.bx} cy={MAIN_Y} r="4" fill="var(--bg)" stroke="var(--accent)" strokeWidth="2" />
               <a
                 href={b.target}
-                className="group cursor-pointer"
+                className="branch-node group cursor-pointer"
+                style={{ '--d': `${1.4 + i * 0.18}s` } as React.CSSProperties}
                 aria-label={b.label}
                 onClick={(e) => {
                   e.preventDefault()

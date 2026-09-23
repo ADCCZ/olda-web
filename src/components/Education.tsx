@@ -7,9 +7,9 @@ export function Education() {
     <Section id="education" title={t.education.title}>
       <div className="relative">
         <span className="stamp absolute right-0 -top-16 md:-top-6">{t.education.stamp}</span>
-        <ol className="divide-y divide-line border-y border-line">
-          {t.education.items.map((it) => (
-            <li key={it.title} className="grid gap-1 py-4 md:grid-cols-[200px_1fr] md:gap-8 md:py-5">
+        <ol className="rows divide-y divide-line border-y border-line">
+          {t.education.items.map((it, i) => (
+            <li key={it.title} className="grid gap-1 py-4 md:grid-cols-[200px_1fr] md:gap-8 md:py-5" style={{ '--i': i + 1 } as React.CSSProperties}>
               <p className="readout">{it.period}</p>
               <div>
                 <h3 className={`font-medium ${it.planned ? 'text-ink-2' : ''}`}>{it.title}</h3>

@@ -44,11 +44,11 @@ export function Projects({ onPexeso }: { onPexeso: () => void }) {
     .map((r) => ({ repo: r.name, title: r.name, desc: r.description ?? '', tags: r.language ? [r.language] : [] }))
   const all = [...t.projects.items, ...extra]
 
-  const Row = ({ p }: { p: Project }) => {
+  const Row = ({ p, i }: { p: Project; i: number }) => {
     const r: Repo | undefined = p.repo ? byName.get(p.repo) : undefined
     const live = p.live || r?.homepage
     return (
-      <li className="grid gap-3 py-5 md:grid-cols-[minmax(0,5fr)_minmax(0,3fr)_minmax(0,2fr)_minmax(0,3fr)] md:items-start md:gap-6 md:py-6">
+      <li className="grid gap-3 py-5 md:grid-cols-[minmax(0,5fr)_minmax(0,3fr)_minmax(0,2fr)_minmax(0,3fr)] md:items-start md:gap-6 md:py-6" style={{ '--i': Math.min(i, 10) + 3 } as React.CSSProperties}>
         <div>
           <h3 className={p.featured ? 'font-display text-sm md:text-base' : 'font-medium'}>{p.title}</h3>
           {p.desc && <p className="mt-1.5 max-w-prose text-sm leading-relaxed text-ink-2">{p.desc}</p>}
@@ -81,14 +81,14 @@ export function Projects({ onPexeso }: { onPexeso: () => void }) {
   return (
     <Section id="projects" title={t.projects.title} lead={source === 'snapshot' ? t.projects.offline : t.projects.lead}>
       {/* hlavička rejstříku */}
-      <div className="hidden border-b border-line pb-2 md:grid md:grid-cols-[minmax(0,5fr)_minmax(0,3fr)_minmax(0,2fr)_minmax(0,3fr)] md:gap-6">
+      <div className="reveal hidden border-b border-line pb-2 md:grid md:grid-cols-[minmax(0,5fr)_minmax(0,3fr)_minmax(0,2fr)_minmax(0,3fr)] md:gap-6">
         <span className="readout">{t.projects.cols.project}</span>
         <span className="readout">{t.projects.cols.tech}</span>
         <span className="readout">{t.projects.cols.updated}</span>
         <span className="readout md:text-right">{t.projects.cols.links}</span>
       </div>
-      <ul className="divide-y divide-line border-y border-line md:border-t-0">
-        {all.map((p) => <Row key={p.title} p={p} />)}
+      <ul className="rows divide-y divide-line border-y border-line md:border-t-0">
+        {all.map((p, i) => <Row key={p.title} p={p} i={i} />)}
       </ul>
       <p className="readout mt-3 flex items-center gap-2">
         <span className={`inline-block h-2 w-2 rounded-full ${source === 'snapshot' ? 'bg-ink-2' : 'bg-accent'}`} />

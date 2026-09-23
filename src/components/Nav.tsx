@@ -28,7 +28,7 @@ function Logo() {
   })
 
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden>
+    <svg width="24" height="24" viewBox="0 0 24 24" className="logo" aria-hidden>
       <circle cx="12" cy="12" r="10.5" fill="var(--bg-2)" stroke="var(--accent)" strokeWidth="1.5" />
       {[0, 90, 180, 270].map((a) => (
         <line key={a} x1="12" y1="2.5" x2="12" y2="4.5" stroke="var(--ink-2)" strokeWidth="1.2" transform={`rotate(${a} 12 12)`} />
@@ -54,7 +54,7 @@ export function Nav() {
   }, [])
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-40 transition-[background-color,border-color] duration-300 ${scrolled || open ? 'border-b border-line bg-bg/90 backdrop-blur' : 'border-b border-transparent'}`}>
+    <header className={`fit fixed inset-x-0 top-0 z-40 transition-[background-color,border-color] duration-300 ${scrolled || open ? 'border-b border-line bg-bg/90 backdrop-blur' : 'at-top border-b border-transparent'}`}>
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:px-8">
         <a href="#top" onClick={(e) => portalLink(e)} className="flex items-center gap-2.5 font-display text-sm" aria-label="Domů">
           <Logo />
@@ -63,7 +63,7 @@ export function Nav() {
 
         <nav className="hidden items-center gap-6 text-sm lg:flex" aria-label="Hlavní">
           {links.map((l) => (
-            <a key={l} href={`#${l}`} onClick={(e) => portalLink(e, t.nav[l])} className="text-ink-2 transition-colors hover:text-accent">{t.nav[l]}</a>
+            <a key={l} href={`#${l}`} onClick={(e) => portalLink(e, t.nav[l])} className="relative text-ink-2 transition-colors after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-accent hover:after:scale-x-100">{t.nav[l]}</a>
           ))}
         </nav>
 

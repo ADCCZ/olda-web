@@ -5,9 +5,9 @@ export function Experience() {
   const { t } = useI18n()
   return (
     <Section id="experience" title={t.experience.title} lead={t.experience.lead}>
-      <ol className="divide-y divide-line border-y border-line">
-        {t.experience.items.map((it) => (
-          <li key={it.title} className="grid gap-2 py-5 md:grid-cols-[200px_1fr] md:gap-8 md:py-6">
+      <ol className="rows divide-y divide-line border-y border-line">
+        {t.experience.items.map((it, i) => (
+          <li key={it.title} className="grid gap-2 py-5 md:grid-cols-[200px_1fr] md:gap-8 md:py-6" style={{ '--i': i + 3 } as React.CSSProperties}>
             <p className="readout">{it.period}</p>
             <div>
               <h3 className="font-medium">{it.title}</h3>
@@ -21,10 +21,10 @@ export function Experience() {
       </ol>
       {t.certs.length > 0 && (
         <div className="mt-10">
-          <h3 className="font-display text-xs">{t.certsTitle}</h3>
-          <ul className="mt-3 divide-y divide-line border-y border-line">
-            {t.certs.map((c) => (
-              <li key={c.name} className="grid gap-1 py-3 md:grid-cols-[200px_1fr] md:gap-8">
+          <h3 className="reveal font-display text-xs" style={{ '--i': t.experience.items.length + 3 } as React.CSSProperties}>{t.certsTitle}</h3>
+          <ul className="rows mt-3 divide-y divide-line border-y border-line">
+            {t.certs.map((c, i) => (
+              <li key={c.name} className="grid gap-1 py-3 md:grid-cols-[200px_1fr] md:gap-8" style={{ '--i': t.experience.items.length + 4 + i } as React.CSSProperties}>
                 <p className="readout">{c.year}</p>
                 <p><span className="font-medium">{c.name}</span><span className="text-ink-2">, {c.org}</span></p>
               </li>
