@@ -462,15 +462,16 @@ body::before {
   mask-repeat: repeat, no-repeat;
   mask-composite: intersect;
 }
-/* Dovednosti: paprsky a slunce jako na plakátu ze sedmdesátek */
+/* Dovednosti: paprsky a slunce jako na plakátu ze sedmdesátek.
+   Slunce je neprůhledné (smíchané s pozadím), takže paprsky vycházejí až zpoza něj. */
 .pat-sunburst {
   background-image:
-    radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--accent) 16%, transparent) 0 130px, transparent 131px),
+    radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--accent) 18%, var(--bg)) 0 128px, color-mix(in srgb, var(--accent) 45%, var(--bg)) 128px 130px, transparent 131px),
     repeating-conic-gradient(from -90deg at 100% 100%, color-mix(in srgb, var(--pat) 65%, transparent) 0deg 3deg, transparent 3deg 10deg);
   mask-image: radial-gradient(circle at 100% 100%, #000, transparent 58%);
 }
-/* Kontakt: synthwave obzor, ubíhající mřížka a pruhované slunce */
-.pat-horizon::before {
+/* Kontakt: synthwave obzor; slunce vzadu (::before), ubíhající mřížka podlahy před ním (::after) */
+.pat-horizon::after {
   left: -50%;
   right: -50%;
   bottom: 0;
@@ -483,7 +484,7 @@ body::before {
   mask-image: linear-gradient(to top, #000 35%, transparent 95%);
   animation: horizon-run 2.6s linear infinite;
 }
-.pat-horizon::after {
+.pat-horizon::before {
   right: 10%;
   bottom: 9%;
   width: clamp(90px, 12vw, 160px);
@@ -495,7 +496,7 @@ body::before {
 }
 @keyframes horizon-run { to { background-position: center 36px, center 0; } }
 /* na telefonu by slunce překáželo odkazům, zůstane jen mřížka */
-@media (max-width: 639px) { .pat-horizon::after { display: none; } }
+@media (max-width: 639px) { .pat-horizon::before { display: none; } }
 
 /* Lokiho rohy (Horns.tsx): skoro splývají, po najetí se rozzáří */
 .horns {
@@ -515,7 +516,7 @@ body::before {
   100% { transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .pat-horizon::before, .horns-glint { animation: none !important; }
+  .pat-horizon::after, .horns-glint { animation: none !important; }
   .pat-radar::after { display: none; }
 }
 
