@@ -111,7 +111,7 @@ const cs = {
     lead:
       'Junior full-stack vývojář. Absolvent bakalářského studia informatiky na FAV ZČU se zaměřením na vývoj webových aplikací a softwarové inženýrství.',
     body: [
-      'Mám praktické zkušenosti s návrhem backendové i frontendové architektury, integrací databází a prací s otevřenými daty. Nejčastěji píšu v PHP (Nette), JavaScriptu (React, Vue) a Javě, k tomu MySQL, Docker a Linux.',
+      'Mám praktické zkušenosti s návrhem backendové i frontendové architektury, integrací databází a prací s otevřenými daty. Nejčastěji píšu v PHP (Nette), JavaScriptu (React, Vue) a Javě, k tomu MySQL, Docker a Linux. Při vývoji pracuju s\u00a0AI asistentem Claude (Claude Code), se kterým vznikl i\u00a0tenhle web.',
       'Vedle školy vedu oddíl v Klubu Pathfinder. Plánuju tábory a vícedenní akce pro desítky lidí a mám na starosti vedoucí v regionu. Ve volném čase hraju na kytaru, vařím, koukám na komiksové filmy a hraju hry.',
       'Od podzimu 2026 pokračuju v navazujícím studiu Softwarové inženýrství (SWIS). Hledám stáž nebo částečný úvazek.',
     ],
@@ -442,7 +442,7 @@ const en: typeof cs = {
     lead:
       "Junior full-stack developer. Bachelor's graduate in Computer Science at FAV ZČU (University of West Bohemia), focused on web application development and software engineering.",
     body: [
-      'I have hands-on experience designing backend and frontend architecture, integrating databases and working with open data. I mostly write PHP (Nette), JavaScript (React, Vue) and Java, with MySQL, Docker and Linux around it.',
+      'I have hands-on experience designing backend and frontend architecture, integrating databases and working with open data. I mostly write PHP (Nette), JavaScript (React, Vue) and Java, with MySQL, Docker and Linux around it. I work with the AI assistant Claude (Claude Code); this website was built with it too.',
       'Alongside school I lead a troop in Klub Pathfinder: I plan camps and multi-day events for dozens of people and look after the leaders in our region. In my free time I play guitar, cook, watch comic-book films and play games.',
       "From autumn 2026 I continue with the Software Engineering (SWIS) master's. I'm looking for an internship or part-time role.",
     ],

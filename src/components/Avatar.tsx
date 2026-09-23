@@ -54,7 +54,8 @@ export function Avatar({ className = '', onMessage }: { className?: string; onMe
                   <feGaussianBlur in="face" stdDeviation="1.4" result="glow" />
                   <feMerge><feMergeNode in="glow" /><feMergeNode in="face" /></feMerge>
                 </filter>
-                <image href={t.photo} x="24" y="22" width="132" height="94" preserveAspectRatio="xMidYMid meet" filter="url(#phosphor)" />
+                {/* s okrajem: obrazovka je 132 × 94, fotka stejného poměru o něco menší a uprostřed */}
+                <image href={t.photo} x="35" y="30" width="110" height="78" preserveAspectRatio="xMidYMid meet" filter="url(#phosphor)" />
               </g>
             ) : static_ ? (
               <g>
