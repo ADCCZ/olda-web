@@ -13,7 +13,7 @@ export const COMMANDS = ['help', 'whoami', 'variant', 'timeline', 'prune', 'guid
 function fs(t: T): Record<string, string | null> {
   const files: Record<string, string | null> = {
     'cv.txt': [t.about.lead, '', ...t.about.body].join('\n'),
-    'skills.txt': t.skills.groups.map((g) => `${g.name}: ${g.items.join(', ')}`).join('\n'),
+    'skills.txt': t.skills.groups.map((g) => `${g.name}\n${g.items.map((i) => `  ${i.name.padEnd(26)} ${'■'.repeat(i.level)}${'□'.repeat(5 - i.level)}`).join('\n')}`).join('\n\n'),
     '.secret': t.terminal.secret,
     'projekty/': null,
   }

@@ -19,7 +19,9 @@ export type Project = {
   featured?: boolean
 }
 
-export type SkillGroup = { name: string; items: string[] }
+/** úroveň zkušenosti 1–5, popisky stupňů jsou v skills.levels */
+export type Skill = { name: string; level: 1 | 2 | 3 | 4 | 5 }
+export type SkillGroup = { name: string; items: Skill[] }
 
 export type OrbitItem = { id: string; label: string; target: string; action?: 'pexeso' }
 
@@ -192,13 +194,31 @@ const cs = {
   },
   skills: {
     title: 'Technologie',
-    lead: 'Co používám a co se chystám doučit.',
+    lead: 'Co používám a jak dobře. Stupnice je od prvního vyzkoušení po expertní úroveň.',
     plannedLabel: 'V plánu',
+    /** popisky stupňů 1–5 */
+    levels: ['zkoušel jsem', 'základy, školní projekty', 'samostatně na projektech', 'pokročile, dlouhodobě', 'expert'],
+    levelOf: (n: number) => `${n} z 5`,
     groups: [
-      { name: 'Backend', items: ['PHP (Nette)', 'C#', 'Java', 'Python', 'C', 'REST API', 'MVC architektura'] },
-      { name: 'Frontend', items: ['JavaScript', 'React', 'Vue.js', 'Tailwind CSS', 'HTML5 / CSS3'] },
-      { name: 'Databáze a nástroje', items: ['MySQL', 'Git', 'Docker', 'Linux CLI', 'Maven / Gradle'] },
-      { name: 'Grafika a data', items: ['OpenTK / OpenGL', 'JavaFX', 'Otevřená data', 'Vizualizace dat'] },
+      { name: 'Jazyky', items: [
+        { name: 'PHP', level: 4 }, { name: 'JavaScript', level: 3 }, { name: 'Java', level: 3 },
+        { name: 'C#', level: 3 }, { name: 'Python', level: 3 }, { name: 'C', level: 3 },
+      ] },
+      { name: 'Web a frameworky', items: [
+        { name: 'Nette', level: 4 }, { name: 'Latte / Twig', level: 3 }, { name: 'React', level: 3 },
+        { name: 'Vue.js', level: 2 }, { name: 'Tailwind CSS', level: 4 }, { name: 'HTML5 / CSS3', level: 4 },
+      ] },
+      { name: 'Architektura a sítě', items: [
+        { name: 'REST API', level: 3 }, { name: 'MVC architektura', level: 3 }, { name: 'TCP/IP, vlastní protokoly', level: 2 },
+      ] },
+      { name: 'Databáze a nástroje', items: [
+        { name: 'MySQL', level: 3 }, { name: 'Git', level: 3 }, { name: 'Linux CLI', level: 3 },
+        { name: 'Docker', level: 2 }, { name: 'Maven / Gradle', level: 2 },
+      ] },
+      { name: 'Grafika a data', items: [
+        { name: 'Otevřená data', level: 3 }, { name: 'pandas / matplotlib', level: 3 }, { name: 'JavaFX', level: 2 },
+        { name: 'Power BI', level: 2 }, { name: 'OpenTK / OpenGL', level: 2 },
+      ] },
     ] as SkillGroup[],
     planned: ['TypeScript', 'Next.js', 'PostgreSQL', 'Spring Boot', 'GitHub Actions (CI/CD)', 'Testování (JUnit, Jest)', 'Kubernetes', 'AWS / cloud'],
   },
@@ -535,13 +555,30 @@ const en: typeof cs = {
   },
   skills: {
     title: 'Technologies',
-    lead: 'What I use and what I plan to learn next.',
+    lead: 'What I use and how well. The scale runs from a first try to expert level.',
     plannedLabel: 'Planned',
+    levels: ['tried it', 'basics, school projects', 'independently on projects', 'advanced, long-term', 'expert'],
+    levelOf: (n: number) => `${n} of 5`,
     groups: [
-      { name: 'Backend', items: ['PHP (Nette)', 'C#', 'Java', 'Python', 'C', 'REST API', 'MVC architecture'] },
-      { name: 'Frontend', items: ['JavaScript', 'React', 'Vue.js', 'Tailwind CSS', 'HTML5 / CSS3'] },
-      { name: 'Databases & tools', items: ['MySQL', 'Git', 'Docker', 'Linux CLI', 'Maven / Gradle'] },
-      { name: 'Graphics & data', items: ['OpenTK / OpenGL', 'JavaFX', 'Open data', 'Data visualisation'] },
+      { name: 'Languages', items: [
+        { name: 'PHP', level: 4 }, { name: 'JavaScript', level: 3 }, { name: 'Java', level: 3 },
+        { name: 'C#', level: 3 }, { name: 'Python', level: 3 }, { name: 'C', level: 3 },
+      ] },
+      { name: 'Web & frameworks', items: [
+        { name: 'Nette', level: 4 }, { name: 'Latte / Twig', level: 3 }, { name: 'React', level: 3 },
+        { name: 'Vue.js', level: 2 }, { name: 'Tailwind CSS', level: 4 }, { name: 'HTML5 / CSS3', level: 4 },
+      ] },
+      { name: 'Architecture & networking', items: [
+        { name: 'REST API', level: 3 }, { name: 'MVC architecture', level: 3 }, { name: 'TCP/IP, custom protocols', level: 2 },
+      ] },
+      { name: 'Databases & tools', items: [
+        { name: 'MySQL', level: 3 }, { name: 'Git', level: 3 }, { name: 'Linux CLI', level: 3 },
+        { name: 'Docker', level: 2 }, { name: 'Maven / Gradle', level: 2 },
+      ] },
+      { name: 'Graphics & data', items: [
+        { name: 'Open data', level: 3 }, { name: 'pandas / matplotlib', level: 3 }, { name: 'JavaFX', level: 2 },
+        { name: 'Power BI', level: 2 }, { name: 'OpenTK / OpenGL', level: 2 },
+      ] },
     ],
     planned: ['TypeScript', 'Next.js', 'PostgreSQL', 'Spring Boot', 'GitHub Actions (CI/CD)', 'Testing (JUnit, Jest)', 'Kubernetes', 'AWS / cloud'],
   },

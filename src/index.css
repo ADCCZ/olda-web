@@ -280,6 +280,20 @@ body::before {
     --crt-bright: #d6ffe0;
   }
 
+  /* ukazatel zkušenosti (Skills.tsx): pět dílků jako LED na přístroji */
+  .meter i {
+    display: block;
+    width: 0.8rem;
+    height: 0.5rem;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+  }
+  .meter i.on {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 6px var(--glow);
+  }
+
   .readout {
     font-family: var(--font-mono);
     font-size: 0.8rem;
@@ -353,6 +367,8 @@ body::before {
   25% { opacity: 1; }
   to { opacity: 1; clip-path: inset(0 -2% 0 0); transform: none; }
 }
+/* dílek ukazatele se rozsvítí s krátkým zablikáním */
+@keyframes led-on { 0% { background: transparent; box-shadow: none; } 40% { background: var(--accent-2); } 60% { background: transparent; } 100% { background: var(--accent); } }
 /* služební záznam vyjede ze šanonu */
 @keyframes file-out { from { opacity: 0; transform: translateY(40px) rotate(-1.5deg); } to { opacity: 1; transform: none; } }
 /* po horní hraně sekce přejede světlo jako skener */
@@ -384,6 +400,7 @@ body::before {
   [data-inview] .pop-in > :nth-child(4) { animation-delay: 1.26s; }
   [data-inview] .pop-in > :nth-child(5) { animation-delay: 1.38s; }
   [data-inview] .stamp { animation: stamp-slam 0.8s cubic-bezier(0.3, 1.2, 0.4, 1) 1.3s both; }
+  [data-inview] .meter i.on { animation: led-on 0.5s ease-out calc(0.9s + var(--n, 1) * 0.12s) both; }
   [data-inview]::before {
     content: "";
     position: absolute;
