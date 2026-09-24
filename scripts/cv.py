@@ -51,9 +51,8 @@ DATA = {
             'Vedení oblasti: oddíly a vedoucí, účetnictví, víkendové akce. Tábory: 1× programový, 2× hlavní vedoucí.',
             'Kurzy: rádcovský (2020), vůdcovský (2024), MasterGuide – nejvyšší stupeň (do začátku 2027).',
         ]),
-        ('průběžně', 'Vývoj webů na zakázku', 'komunitní a spolkové weby', [
-            'Komunitní portál: full-stack v Nette, Tailwind CSS a MySQL, autentizace uživatelů a registrace na akce.',
-            'Správa multimediálního obsahu, nasazení a údržba; komunikace se zadavatelem a iterace podle zpětné vazby.',
+        ('během studia', 'Frontend samoobslužného kiosku', 'Eurosoftware, dnes GK Software Czech Republic s.r.o.', [
+            'Týmový projekt na zakázku firmy v předmětu KIV/ZSW-E: frontend kiosku, mimo jiné práce s NFC.',
         ]),
         ('od 2023', 'Dobrovolník, security', 'festival United', [
             'Security na festivalu United (2023, 2025), pravidelně na akcích United City.',

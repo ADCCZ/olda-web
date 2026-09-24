@@ -17,6 +17,8 @@ export type Project = {
   live?: string
   /** zvýraznit jako hlavní projekt */
   featured?: boolean
+  /** kód je v soukromém repozitáři (třeba týmu), na GitHub se neodkazuje */
+  privateRepo?: boolean
 }
 
 /** úroveň zkušenosti 1–5, popisky stupňů jsou v skills.levels */
@@ -144,6 +146,7 @@ const cs = {
     repoLabel: 'Repozitář',
     updated: 'Aktualizováno',
     noRepo: 'Mimo GitHub',
+    privateRepo: 'soukromé repo týmu',
     offline: 'GitHub teď neodpovídá, seznam je z poslední zálohy.',
     sourceLive: 'živě z GitHubu',
     sourceSnapshot: 'záložní snapshot',
@@ -155,6 +158,14 @@ const cs = {
         desc: 'Interaktivní dashboard pro řízení táborové hry: editace tras na mapě, správa týmů, pravidla a bodování v reálném čase. Semestrální projekt KIV/UUR.',
         tags: ['React', 'Tailwind CSS', 'Recharts', 'Leaflet'],
         live: 'https://campmaster-3000.vercel.app',
+        featured: true,
+      },
+      {
+        repo: null,
+        privateRepo: true,
+        title: 'Samoobslužný kiosek',
+        desc: 'Frontend samoobslužného kiosku pro firmu Eurosoftware (dnes GK Software Czech Republic). Týmový projekt na zakázku v předmětu KIV/ZSW-E, včetně práce s NFC.',
+        tags: ['Frontend', 'NFC', 'Týmová práce'],
         featured: true,
       },
       {
@@ -252,13 +263,12 @@ const cs = {
         ],
       },
       {
-        period: 'průběžně',
-        title: 'Vývoj webů na zakázku',
-        org: 'komunitní a spolkové weby',
+        period: 'během studia',
+        title: 'Frontend samoobslužného kiosku',
+        org: 'Eurosoftware, dnes GK Software Czech Republic s.r.o. · týmový projekt KIV/ZSW-E',
         bullets: [
-          'Informační a komunitní portál: full-stack řešení v Nette, Tailwind CSS a MySQL s autentizací uživatelů a registrací na akce.',
-          'Správa multimediálního obsahu, nasazení a údržba.',
-          'Komunikace se zadavatelem, sběr požadavků, iterace podle zpětné vazby.',
+          'Týmový projekt na zakázku firmy v předmětu KIV/ZSW-E na FAV ZČU. Pracoval jsem na frontendu samoobslužného kiosku.',
+          'Mimo jiné práce s technologií NFC.',
         ],
       },
       {
@@ -409,7 +419,7 @@ const cs = {
     sections: {
       about: 'Souhrn spisu. Vede oblast v Pathfinderu a k tomu dostuduje inženýra.',
       education: 'Vzdělání. Bakalář hotový, inženýr se otevírá.',
-      experience: 'Praxe. Oblast, tábory a jeden web na zakázku.',
+      experience: 'Praxe. Oblast, tábory a kiosek pro Eurosoftware.',
       projects: 'Rejstřík se plní z GitHubu. Nové repo se v něm objeví samo.',
       skills: 'Inventář technologií. Dole je to, co se teprve chystá doučit.',
       leadership: 'Služební záznam o měkkých dovednostech.',
@@ -419,7 +429,7 @@ const cs = {
       { target: '#top', text: 'Hlavička: Oldřich Švehla, pro přátele Olda, varianta 01. Větve jsou věci, které běží souběžně.' },
       { target: '#about', text: 'Kdo to je: junior full-stack vývojář, absolvent FAV ZČU, vedoucí v Klubu Pathfinder. U kytary vpravo je tlačítko Hrát.' },
       { target: '#education', text: 'Vzdělání: bakalář 2023 až 2026, od podzimu navazující SWIS.' },
-      { target: '#experience', text: 'Praxe: vedení v Klubu Pathfinder a vývoj webového portálu na zakázku.' },
+      { target: '#experience', text: 'Praxe: vedení v Klubu Pathfinder a frontend samoobslužného kiosku pro Eurosoftware.' },
       { target: '#projects', text: 'Rejstřík projektů. Data se načítají z GitHubu.' },
       { target: '#skills', text: 'Technologie, které používá, a co se chystá doučit.' },
       { target: '#leadership', text: 'Měkké dovednosti: vedení lidí, plánování, klid v terénu.' },
@@ -540,6 +550,7 @@ const en: typeof cs = {
     repoLabel: 'Repository',
     updated: 'Updated',
     noRepo: 'Off GitHub',
+    privateRepo: 'private team repo',
     offline: 'GitHub is not responding right now; this list is from the last backup.',
     sourceLive: 'live from GitHub',
     sourceSnapshot: 'fallback snapshot',
@@ -551,6 +562,14 @@ const en: typeof cs = {
         desc: 'Interactive dashboard for running a camp-wide game: route editing on a map, team management, rules and real-time scoring. Semester project for KIV/UUR.',
         tags: ['React', 'Tailwind CSS', 'Recharts', 'Leaflet'],
         live: 'https://campmaster-3000.vercel.app',
+        featured: true,
+      },
+      {
+        repo: null,
+        privateRepo: true,
+        title: 'Self-service kiosk',
+        desc: 'Frontend of a self-service kiosk for Eurosoftware (now GK Software Czech Republic). A commissioned team project in the KIV/ZSW-E course, including work with NFC.',
+        tags: ['Frontend', 'NFC', 'Teamwork'],
         featured: true,
       },
       {
@@ -647,13 +666,12 @@ const en: typeof cs = {
         ],
       },
       {
-        period: 'ongoing',
-        title: 'Commissioned web development',
-        org: 'community and club websites',
+        period: 'during studies',
+        title: 'Frontend of a self-service kiosk',
+        org: 'Eurosoftware, now GK Software Czech Republic s.r.o. · KIV/ZSW-E team project',
         bullets: [
-          'Community information portal: full-stack solution in Nette, Tailwind CSS and MySQL with user authentication and event registration.',
-          'Multimedia content management, deployment and maintenance.',
-          'Working with the client: gathering requirements, iterating on feedback.',
+          'A team project commissioned by the company in the KIV/ZSW-E course at FAV ZČU. I worked on the frontend of a self-service kiosk.',
+          'Among other things, working with NFC technology.',
         ],
       },
       {
@@ -804,7 +822,7 @@ const en: typeof cs = {
     sections: {
       about: "File summary. He leads a Pathfinder region and is finishing a master's on top of it.",
       education: "Education. Bachelor's done, master's opening.",
-      experience: 'Experience. The region, camps and one commissioned website.',
+      experience: 'Experience. The region, camps and a kiosk for Eurosoftware.',
       projects: 'The register fills from GitHub. A new repo shows up on its own.',
       skills: 'Inventory of technologies. At the bottom is what he still plans to learn.',
       leadership: 'Service record on soft skills.',
@@ -814,7 +832,7 @@ const en: typeof cs = {
       { target: '#top', text: 'The header: Oldřich Švehla, Olda to friends, variant 01. The branches are things that run at the same time.' },
       { target: '#about', text: 'Who he is: junior full-stack developer, FAV ZČU graduate, leader in Klub Pathfinder. Press Play next to the guitar on the right.' },
       { target: '#education', text: "Education: bachelor's 2023 to 2026, the SWIS master's from autumn." },
-      { target: '#experience', text: 'Experience: leadership in Klub Pathfinder and a commissioned web portal.' },
+      { target: '#experience', text: 'Experience: leadership in Klub Pathfinder and the frontend of a self-service kiosk for Eurosoftware.' },
       { target: '#projects', text: 'The project register. Data loads from GitHub.' },
       { target: '#skills', text: 'Technologies he uses, and what he plans to learn.' },
       { target: '#leadership', text: 'Soft skills: leading people, planning, staying calm in the field.' },

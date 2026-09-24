@@ -64,7 +64,7 @@ export function Projects({ onPexeso }: { onPexeso: () => void }) {
           ) : r ? (
             <>{r.language && !r.languages && <span className="mr-2 inline-block h-2 w-2 rounded-full align-middle" style={{ background: color(r.language) }} />}{fmtDate(r.pushed_at ?? r.updated_at, lang)}</>
           ) : (
-            t.projects.noRepo
+            p.privateRepo ? t.projects.privateRepo : t.projects.noRepo
           )}
         </p>
         <div className="flex flex-wrap gap-2 md:justify-end">
