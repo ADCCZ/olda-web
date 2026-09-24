@@ -24,17 +24,17 @@ export function Skills() {
   const label = (level: Skill['level']) => `${s.levelOf(level)}: ${s.levels[level - 1]}`
   return (
     <Section id="skills" title={s.title} lead={s.lead} pattern="horns" side="right">
-      {/* legenda stupnice jako stupnice přístroje: pět stejných polí, kontrolky přibývají zleva doprava;
-          na mobilu pod sebou, ukazatele zarovnané v jednom sloupci */}
+      {/* legenda stupnice jako stupnice přístroje: pět polí podle délky popisku (vždy na jednom řádku),
+          kontrolky přibývají zleva doprava; na užších obrazovkách pod sebou, ukazatele v jednom sloupci */}
       <section className="reveal panel mb-8 p-4 sm:p-5" style={{ '--i': 3 } as React.CSSProperties} aria-label={s.scaleTitle}>
         <h3 className="readout mb-3 text-ink">{s.scaleTitle}</h3>
-        <ol className="grid gap-2.5 md:grid-cols-5 md:gap-0 md:divide-x md:divide-line">
+        <ol className="grid gap-2.5 lg:flex lg:gap-0 lg:divide-x lg:divide-line">
           {s.levels.map((l, i) => (
-            <li key={l} className="flex items-center gap-3 md:flex-col md:items-start md:gap-2 md:px-4 md:first:pl-0 md:last:pr-0">
+            <li key={l} className="flex items-center gap-3 lg:flex-auto lg:flex-col lg:items-start lg:gap-2 lg:px-4 lg:first:pl-0 lg:last:pr-0">
               <Meter level={(i + 1) as Skill['level']} label={label((i + 1) as Skill['level'])} />
               <span className="flex items-baseline gap-2">
                 <span className="font-mono text-sm text-accent">{i + 1}</span>
-                <span className="text-sm leading-snug text-ink-2">{l}</span>
+                <span className="text-sm leading-snug text-ink-2 lg:whitespace-nowrap">{l}</span>
               </span>
             </li>
           ))}
