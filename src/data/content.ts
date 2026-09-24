@@ -122,11 +122,12 @@ const cs = {
   about: {
     title: 'Profil',
     lead:
-      'Junior full-stack vývojář. Absolvent bakalářského studia informatiky na FAV ZČU se zaměřením na vývoj webových aplikací a softwarové inženýrství.',
+      'Junior full-stack vývojář, který věci dotahuje do posledního puntíku. Absolvent bakalářského studia informatiky na FAV ZČU se zaměřením na vývoj webových aplikací a softwarové inženýrství.',
     body: [
-      'Mám praktické zkušenosti s návrhem backendové i frontendové architektury, integrací databází a prací s otevřenými daty. Nejčastěji píšu v PHP (Nette), JavaScriptu (React, Vue) a Javě, k tomu MySQL, Docker a Linux. Při vývoji pracuju s\u00a0AI asistentem Claude (Claude Code), se kterým vznikl i\u00a0tenhle web.',
-      'V Klubu Pathfinder jsem od roku 2012, od 2018 jako rádce a vedoucí a od 2024 jako oblastní vedoucí oblasti Jižní kříž. Moje srdcovka jsou tábory: jeden jsem vedl jako programový vedoucí a dva jako hlavní vedoucí. Teď dokončuju MasterGuide, nejvyšší stupeň vzdělání v\u00a0Pathfinderu. Ve volném čase hraju na kytaru, lezu po skalách a ferratách, koukám na marvelovky a seriály a hraju hry.',
-      'Od podzimu 2026 pokračuju v navazujícím studiu Softwarové inženýrství (SWIS). Hledám stáž nebo částečný úvazek.',
+      'Baví mě celá cesta od návrhu architektury přes backend a databáze až po poslední detail v\u00a0rozhraní. Nejčastěji píšu v PHP (Nette), JavaScriptu (React, Vue) a Javě, k tomu MySQL, Docker a Linux. Na čem se domluvíme, to dodám, a za hotové považuju až to, co je otestované a opravdu funguje.',
+      'Nové věci se učím rád. Během studia jsem si vyzkoušel třeba NFC, paralelní výpočty v\u00a0OpenMP nebo 3D grafiku v\u00a0OpenGL a teď se pouštím do TypeScriptu. Při vývoji pracuju s\u00a0AI asistentem Claude (Claude Code), se kterým vznikl i\u00a0tenhle web.',
+      'Zodpovědnost beru vážně i\u00a0mimo kód: v Klubu Pathfinder jsem od roku 2012, od 2018 jako rádce a vedoucí a od 2024 jako oblastní vedoucí oblasti Jižní kříž. Moje srdcovka jsou tábory: jeden jsem vedl jako programový vedoucí a dva jako hlavní vedoucí. Teď dokončuju MasterGuide, nejvyšší stupeň vzdělání v\u00a0Pathfinderu. Ve volném čase hraju na kytaru, lezu po skalách a ferratách, koukám na marvelovky a seriály a hraju hry.',
+      'Od podzimu 2026 pokračuju v navazujícím studiu Softwarové inženýrství (SWIS). Hledám stáž nebo částečný úvazek, kde přiložím ruku k\u00a0dílu a budu se dál učit od zkušenějších.',
     ],
     interestsTitle: 'Mimo kód',
     interests: [
@@ -611,11 +612,12 @@ const en: typeof cs = {
   about: {
     title: 'Profile',
     lead:
-      "Junior full-stack developer. Bachelor's graduate in Computer Science at FAV ZČU (University of West Bohemia), focused on web application development and software engineering.",
+      "Junior full-stack developer who sees things through to the last detail. Bachelor's graduate in Computer Science at FAV ZČU (University of West Bohemia), focused on web application development and software engineering.",
     body: [
-      'I have hands-on experience designing backend and frontend architecture, integrating databases and working with open data. I mostly write PHP (Nette), JavaScript (React, Vue) and Java, with MySQL, Docker and Linux around it. I work with the AI assistant Claude (Claude Code); this website was built with it too.',
-      "I've been in Klub Pathfinder since 2012, a patrol leader and leader since 2018, and since 2024 I've led the Jižní kříž region. Camps are my passion: I've run one as programme leader and two as head leader. I'm now finishing Master Guide, the highest level of training in Pathfinders. In my free time I play guitar, go rock climbing and do via ferratas, watch Marvel films and series and play games.",
-      "From autumn 2026 I continue with the Software Engineering (SWIS) master's. I'm looking for an internship or part-time role.",
+      "I enjoy the whole journey, from designing the architecture through the backend and databases to the last detail of the interface. I mostly write PHP (Nette), JavaScript (React, Vue) and Java, with MySQL, Docker and Linux around it. What we agree on, I deliver, and I only call something done once it's tested and actually works.",
+      "I love learning new things. During my studies I tried NFC, parallel computing with OpenMP and 3D graphics in OpenGL, and now I'm getting into TypeScript. I work with the AI assistant Claude (Claude Code); this website was built with it too.",
+      "I take responsibility seriously outside code too: I've been in Klub Pathfinder since 2012, a patrol leader and leader since 2018, and since 2024 I've led the Jižní kříž region. Camps are my passion: I've run one as programme leader and two as head leader. I'm now finishing Master Guide, the highest level of training in Pathfinders. In my free time I play guitar, go rock climbing and do via ferratas, watch Marvel films and series and play games.",
+      "From autumn 2026 I continue with the Software Engineering (SWIS) master's. I'm looking for an internship or part-time role where I can pitch in and keep learning from more experienced people.",
     ],
     interestsTitle: 'Beyond code',
     interests: [
