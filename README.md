@@ -75,7 +75,7 @@ plochu pro prst a tlačítka jsou na dotykových zařízeních vyšší.
 | co říká Složka | `content.ts` → `guide` (uvítání, tipy, komentáře k sekcím, kroky prohlídky) |
 | barvy obrazovek (terminál, boot, monitor) | `src/index.css` → `--crt-*` |
 | akordy, průběhy a rytmy kytary | `src/lib/guitar.ts` → `CHORDS`, `PROGRESSIONS`, `PATTERNS` |
-| seznam her u „Videohry“ (hodiny ze Steamu) | `src/data/games.ts` → `GAMES` |
+| seznam her u „Videohry“ (pořadí podle hodin, hodiny se nezobrazují) | `src/data/games.ts` → `GAMES`, `UPDATED` |
 | karty v Pexesu | `src/lib/pexeso.ts` → `TECH_PAIRS` |
 
 ## Struktura životopisu

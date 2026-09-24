@@ -1,60 +1,49 @@
 import { useState } from 'react'
-import { motion } from 'motion/react'
 import { useI18n } from '../lib/i18n'
-import { GAMES, byHours, epicOnly } from '../data/games'
+import { GAMES, UPDATED, byHours, withoutHours } from '../data/games'
 
 const TOP = 10
 
 /**
- * Rozbalený seznam her u „Videohry“: hry ze Steamu podle odehraných hodin s ukazatelem
- * (poměr k nejhranější), pod nimi hry jen z Epicu. Data: src/data/games.ts.
+ * Rozbalený seznam her u „Videohry“: jen pořadí podle odehraného času (hodiny se
+ * nezobrazují, slouží k řazení), pod ním hry mimo pořadí. Data: src/data/games.ts.
  */
 export function GamesList({ id }: { id: string }) {
   const { t, lang } = useI18n()
   const s = t.about.games
   const [all, setAll] = useState(false)
-  const played = byHours(GAMES)
-  const epic = epicOnly(GAMES)
-  const max = played[0]?.hours ?? 1
-  const fmt = new Intl.NumberFormat(lang === 'cs' ? 'cs-CZ' : 'en-GB', { maximumFractionDigits: 1 })
-  const total = played.reduce((a, g) => a + g.hours, 0)
-  const shown = all ? played : played.slice(0, TOP)
+  const ranked = byHours(GAMES)
+  const rest = withoutHours(GAMES)
+  const shown = all ? ranked : ranked.slice(0, TOP)
   const name = (g: (typeof GAMES)[number]) => (lang === 'cs' && g.cs) || g.name
+  // datum bez času v UTC, ať se v žádném pásmu neposune o den
+  const updated = new Intl.DateTimeFormat(lang === 'cs' ? 'cs-CZ' : 'en-GB', { day: 'numeric', month: lang === 'cs' ? 'numeric' : 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(UPDATED))
 
   return (
     <div id={id} className="mb-3 mt-1 rounded-lg bg-bg/85 p-3 backdrop-blur-[2px]">
-      <p className="readout mb-3">{s.summary(played.length, fmt.format(Math.round(total)))}</p>
-      <ol className="space-y-2">
+      <div className="mb-2 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+        <p className="readout">{s.summary(ranked.length)}</p>
+        <p className="readout text-[11px]">{s.updated}: <time dateTime={UPDATED} className="text-ink">{updated}</time></p>
+      </div>
+      <ol className="divide-y divide-line/60">
         {shown.map((g, k) => (
-          <li key={g.name} className="grid grid-cols-[1.75rem_1fr_auto] items-baseline gap-x-2 text-sm">
-            <span className="readout tabular-nums">{String(k + 1).padStart(2, '0')}</span>
-            <span className="min-w-0 truncate" title={name(g)}>
-              {name(g)}
-              {g.epic && <span className="readout ml-2 text-[11px]">{s.alsoEpic}</span>}
-            </span>
-            <span className="font-mono text-xs tabular-nums text-ink-2">{fmt.format(g.hours)} h</span>
-            {/* ukazatel: délka podle hodin vůči nejhranější hře */}
-            <span className="col-start-2 col-end-4 mt-1 block h-1 overflow-hidden rounded-full bg-line/40" aria-hidden>
-              <motion.span
-                className="block h-full rounded-full bg-accent"
-                initial={{ width: 0 }}
-                animate={{ width: `${Math.max(1, (g.hours / max) * 100)}%` }}
-                transition={{ duration: 0.7, delay: Math.min(k, TOP) * 0.04, ease: [0.2, 0.7, 0.2, 1] }}
-              />
-            </span>
+          <li key={g.name} className="flex items-baseline gap-2 py-1.5 text-sm">
+            <span className={`readout w-7 shrink-0 tabular-nums ${k < 3 ? 'text-accent' : ''}`}>{String(k + 1).padStart(2, '0')}</span>
+            <span className="min-w-0 truncate" title={name(g)}>{name(g)}</span>
+            {g.store && <span className="readout shrink-0 text-[11px]">{g.store === 'epic' ? s.onEpic : s.alsoEpic}</span>}
           </li>
         ))}
       </ol>
-      {played.length > TOP && (
-        <button type="button" onClick={() => setAll(!all)} className="pill mt-4 px-3 py-1.5 text-xs" aria-controls={id}>
-          {all ? s.showLess : s.showAll(played.length)}
+      {ranked.length > TOP && (
+        <button type="button" onClick={() => setAll(!all)} className="pill mt-3 px-3 py-1.5 text-xs" aria-controls={id}>
+          {all ? s.showLess : s.showAll(ranked.length)}
         </button>
       )}
-      {epic.length > 0 && (
+      {rest.length > 0 && (
         <>
-          <p className="readout mb-2 mt-5">{s.epic}</p>
+          <p className="readout mb-2 mt-5">{s.noHours}</p>
           <ul className="flex flex-wrap gap-1.5">
-            {epic.map((g) => (
+            {rest.map((g) => (
               <li key={g.name} className="rounded border border-line px-2 py-1 text-xs text-ink-2">{name(g)}</li>
             ))}
           </ul>

@@ -140,11 +140,13 @@ const cs = {
     ],
     games: {
       toggle: 'Seznam',
-      summary: (n: number, hours: string) => `Steam · ${n} ${n === 1 ? 'hra' : n < 5 ? 'hry' : 'her'} · ${hours} h celkem`,
+      summary: (n: number) => `${n} ${n === 1 ? 'hra' : n < 5 ? 'hry' : 'her'} podle odehraného času`,
       showAll: (n: number) => `Zobrazit všech ${n}`,
       showLess: 'Jen top 10',
+      onEpic: 'Epic',
       alsoEpic: 'i na Epicu',
-      epic: 'Epic Games · launcher odehraný čas neukazuje',
+      noHours: 'Další z Epic Games · mimo pořadí',
+      updated: 'Sepsáno',
     },
   },
   projects: {
@@ -627,11 +629,13 @@ const en: typeof cs = {
     ],
     games: {
       toggle: 'List',
-      summary: (n: number, hours: string) => `Steam · ${n} ${n === 1 ? 'game' : 'games'} · ${hours} h in total`,
+      summary: (n: number) => `${n} ${n === 1 ? 'game' : 'games'} by time played`,
       showAll: (n: number) => `Show all ${n}`,
       showLess: 'Top 10 only',
+      onEpic: 'Epic',
       alsoEpic: 'also on Epic',
-      epic: "Epic Games · the launcher doesn't show playtime",
+      noHours: 'More from Epic Games · unranked',
+      updated: 'Compiled',
     },
   },
   projects: {
