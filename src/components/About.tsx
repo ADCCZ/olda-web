@@ -30,7 +30,7 @@ export function About({ onPlayGuitar }: { onPlayGuitar: () => void }) {
                   </span>
                   <span>
                     {it.href ? (
-                      <a href={it.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 font-medium underline decoration-line underline-offset-4 hover:text-accent hover:decoration-accent">
+                      <a href={it.href} target="_blank" rel="noreferrer" title={new URL(it.href).hostname.replace(/^www\./, '')} className="inline-flex items-center gap-1.5 font-medium underline decoration-line underline-offset-4 hover:text-accent hover:decoration-accent">
                         {it.label}<External width={13} height={13} className="shrink-0" />
                       </a>
                     ) : (
