@@ -65,9 +65,6 @@ export const Chevron = (p: SVGProps<SVGSVGElement>) => (
 export const Gamepad = (p: SVGProps<SVGSVGElement>) => (
   <svg {...base(p)}><path d="M6 8h12a4 4 0 0 1 4 4v1.5a3.5 3.5 0 0 1-6.3 2.1L15 15H9l-.7.6A3.5 3.5 0 0 1 2 13.5V12a4 4 0 0 1 4-4z" /><path d="M7 11v3M5.5 12.5h3M16 11.5h.01M18.5 13h.01" /></svg>
 )
-export const Pot = (p: SVGProps<SVGSVGElement>) => (
-  <svg {...base(p)}><path d="M4 10h16v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4zM2 10h20M8 6c0-1 1-1 1-2M12 6c0-1 1-1 1-2M16 6c0-1 1-1 1-2" /></svg>
-)
 export const Mountain = (p: SVGProps<SVGSVGElement>) => (
   <svg {...base(p)}><path d="m3 19 6-11 4 6 2-3 6 8zM9 8l1.5 2.5L12 9" /></svg>
 )
@@ -79,5 +76,5 @@ export const School = (p: SVGProps<SVGSVGElement>) => (
 )
 
 export const interestIcon = {
-  guitar: Guitar, scout: Compass, marvel: Star, games: Gamepad, cook: Pot, mountain: Mountain, code: Code, school: School,
+  guitar: Guitar, scout: Compass, marvel: Star, games: Gamepad, mountain: Mountain, code: Code, school: School,
 } as const
