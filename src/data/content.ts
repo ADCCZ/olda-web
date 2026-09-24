@@ -130,14 +130,22 @@ const cs = {
     ],
     interestsTitle: 'Mimo kód',
     interests: [
-      // action: 'guitar' = u položky je tlačítko Hrát, které otevře kytaru uprostřed obrazovky; href = odkaz na web
+      // action: 'guitar' = tlačítko Hrát otevře kytaru; 'games' = tlačítko rozbalí seznam her (src/data/games.ts); href = odkaz na web
       { icon: 'guitar', label: 'Kytara', note: 'akustická, hraju od roku 2011, hlavně u\u00a0ohně', action: 'guitar' },
       { icon: 'scout', label: 'Klub Pathfinder', note: 'od roku 2012, oblastní vedoucí, tábory jsou srdcovka', href: 'https://www.pathfinder.cz/' },
       { icon: 'marvel', label: 'Filmy a seriály', note: 'viděl jsem snad každou marvelovku, teď sleduju Zrádce na Prima+', href: 'https://seriesgraph.com/user/d3854d39-022b-4c98-ab7e-9d17de583a78' },
-      { icon: 'games', label: 'Videohry', note: 'hraju od roku 2012' },
+      { icon: 'games', label: 'Videohry', note: 'hraju od roku 2012', action: 'games' },
       { icon: 'cook', label: 'Vaření', note: 'doma i pro tábor' },
       { icon: 'mountain', label: 'Hory a outdoor', note: 'pěšky, se stanem' },
     ],
+    games: {
+      toggle: 'Seznam',
+      summary: (n: number, hours: string) => `Steam · ${n} ${n === 1 ? 'hra' : n < 5 ? 'hry' : 'her'} · ${hours} h celkem`,
+      showAll: (n: number) => `Zobrazit všech ${n}`,
+      showLess: 'Jen top 10',
+      alsoEpic: 'i na Epicu',
+      epic: 'Epic Games · launcher odehraný čas neukazuje',
+    },
   },
   projects: {
     title: 'Rejstřík projektů',
@@ -613,10 +621,18 @@ const en: typeof cs = {
       { icon: 'guitar', label: 'Guitar', note: 'acoustic, playing since 2011, mostly by the fire', action: 'guitar' },
       { icon: 'scout', label: 'Klub Pathfinder', note: 'since 2012, regional leader, camps are my passion', href: 'https://www.pathfinder.cz/' },
       { icon: 'marvel', label: 'Films and series', note: "I've seen pretty much every Marvel film, now watching Zrádci (The Traitors) on Prima+", href: 'https://seriesgraph.com/user/d3854d39-022b-4c98-ab7e-9d17de583a78' },
-      { icon: 'games', label: 'Video games', note: 'playing since 2012' },
+      { icon: 'games', label: 'Video games', note: 'playing since 2012', action: 'games' },
       { icon: 'cook', label: 'Cooking', note: 'at home and for camp' },
       { icon: 'mountain', label: 'Mountains and outdoors', note: 'on foot, with a tent' },
     ],
+    games: {
+      toggle: 'List',
+      summary: (n: number, hours: string) => `Steam · ${n} ${n === 1 ? 'game' : 'games'} · ${hours} h in total`,
+      showAll: (n: number) => `Show all ${n}`,
+      showLess: 'Top 10 only',
+      alsoEpic: 'also on Epic',
+      epic: "Epic Games · the launcher doesn't show playtime",
+    },
   },
   projects: {
     title: 'Project register',

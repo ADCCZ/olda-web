@@ -59,6 +59,9 @@ export const Star = (p: SVGProps<SVGSVGElement>) => (
 export const Play = (p: SVGProps<SVGSVGElement>) => (
   <svg {...base(p)}><path d="M8 5.5v13l10.5-6.5z" /></svg>
 )
+export const Chevron = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...base(p)}><path d="m6 9 6 6 6-6" /></svg>
+)
 export const Gamepad = (p: SVGProps<SVGSVGElement>) => (
   <svg {...base(p)}><path d="M6 8h12a4 4 0 0 1 4 4v1.5a3.5 3.5 0 0 1-6.3 2.1L15 15H9l-.7.6A3.5 3.5 0 0 1 2 13.5V12a4 4 0 0 1 4-4z" /><path d="M7 11v3M5.5 12.5h3M16 11.5h.01M18.5 13h.01" /></svg>
 )
