@@ -98,7 +98,7 @@ const cs = {
   hero: {
     hello: 'spis varianty',
     stamp: 'evidováno',
-    plate: 'VARIANTA 67',
+    plate: 'VARIANTA 04',
     pulse: 'přítomnost',
     loop: 'smyčka',
     name: 'Oldřich Švehla',
@@ -577,7 +577,7 @@ const en: typeof cs = {
   hero: {
     hello: 'variant file',
     stamp: 'on record',
-    plate: 'VARIANT 67',
+    plate: 'VARIANT 04',
     pulse: 'present',
     loop: 'loop',
     name: 'Oldřich Švehla',
