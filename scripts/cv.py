@@ -16,11 +16,15 @@ zájmy a kurzy. Po úpravě webu stačí skript znovu spustit.
 V bloku PDF níže jsou jen zhuštěné texty, které se musí vejít na stránku (profil, body praxe,
 výběr projektů, krátké popisy měkkých dovedností), a jazyky, které web neukazuje.
 
-Potřebuje: Node 22+ (čte content.ts), pip install reportlab pillow. Písma jsou ve scripts/fonts/.
+Časová linie v hlavičce má stejné větve jako na webu: geometrii čte ze src/components/Branches.tsx
+(osa, pruhy, roky) a ikony ze src/components/Icons.tsx.
+
+Potřebuje: Node 22+ (čte content.ts), pip install reportlab pillow svglib. Písma jsou ve scripts/fonts/.
 """
 import io
 import json
 import os
+import re
 import subprocess
 
 from PIL import Image as PILImage
@@ -29,6 +33,8 @@ from reportlab.lib import colors
 from reportlab.lib.units import mm
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.utils import ImageReader
+from reportlab.graphics import renderPDF
+from svglib.svglib import svg2rlg
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (BaseDocTemplate, Frame, PageTemplate, Paragraph, Spacer, Table,
@@ -158,6 +164,45 @@ def photo_reader():
     return buf, im.size
 
 
+# ------------------------------------------------------------ časová linie a ikony z webu
+def _read(rel):
+    with open(os.path.join(ROOT, rel), encoding='utf-8') as f: return f.read()
+
+
+def load_branches():
+    """osa, hlavní linie, pruhy a roky ze src/components/Branches.tsx"""
+    src = _read('src/components/Branches.tsx')
+    num = lambda name: float(re.search(r'const %s = (\d+)' % name, src).group(1))
+    axis = [tuple(map(float, m)) for m in re.findall(r'\[(\d+(?:\.\d+)?), (\d+(?:\.\d+)?)\]', re.search(r'const AXIS[^=]*= (\[.*?\]\])', src).group(1))]
+    lanes = [dict(y=float(y), bx=float(bx), ex=float(ex), label=lab) for y, bx, ex, lab in
+             re.findall(r"\{ y: (\d+), bx: at\(([\d.]+)\), ex: (\d+), label: '(\w+)' \}", src)]
+    years = [int(y) for y in re.search(r'const YEARS = \[([\d, ]+)\]', src).group(1).split(',')]
+    assert axis and len(lanes) == len(WEB['hero']['orbit']) and years, 'Branches.tsx: změnil se formát, uprav load_branches()'
+    return dict(W=num('W'), MAIN_Y=num('MAIN_Y'), VB_Y=num('VB_Y'), VB_H=num('VB_H'), axis=axis, lanes=lanes, years=years)
+
+
+def load_icons():
+    """ikony větví ze src/components/Icons.tsx jako SVG (id → text SVG)"""
+    src = _read('src/components/Icons.tsx')
+    bodies = dict(re.findall(r'export const (\w+) = \(p: SVGProps<SVGSVGElement>\) => \(\s*<svg \{\.\.\.base\(p\)\}>(.*?)</svg>\s*\)', src, re.S))
+    mapping = dict(re.findall(r'(\w+): (\w+)', re.search(r'interestIcon = \{(.*?)\}', src, re.S).group(1)))
+    head = ('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#221508" '
+            'stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">')
+    return {k: head + bodies[v] + '</svg>' for k, v in mapping.items() if v in bodies}
+
+
+BR = load_branches()
+ICONS = load_icons()
+
+
+def axis_x(year):
+    """rok → x na ose webu (stejné jako at() v Branches.tsx)"""
+    ax = BR['axis']
+    for (y0, x0), (y1, x1) in zip(ax, ax[1:]):
+        if year <= y1: return x0 + (year - y0) / (y1 - y0) * (x1 - x0)
+    return ax[-1][1]
+
+
 # ============================================================ FONTS
 for name, file in [('Plex', 'PlexSans-400.ttf'), ('PlexB', 'PlexSans-600.ttf'), ('PlexI', 'PlexSans-400i.ttf'),
                    ('Michroma', 'Michroma-Regular.ttf'), ('Mono', 'CourierPrime-Regular.ttf'), ('MonoB', 'CourierPrime-Bold.ttf')]:
@@ -254,27 +299,43 @@ def evidence_photo(c, x, y, w, h):
 
 
 def branches(c, x, y, w, h, end_x):
-    """větvící se časová linie; hlavní linka vede až k fotce (end_x)"""
+    """časová linie jako na webu (Branches.tsx) v obdélníku x, y, w × h; hlavní linie vede až k fotce (end_x).
+    Vodorovně a svisle má jiné měřítko, uzly a písmo mají pevnou velikost."""
+    kx = w / (BR['W'] - 30)
+    ky = h / BR['VB_H']
+    X = lambda wx: x + (wx - 10) * kx
+    Y = lambda wy: y + h - (wy - BR['VB_Y']) * ky
+    my = Y(BR['MAIN_Y'])
+    r, fs = 5.6, 5.8
     c.saveState()
-    c.translate(x, y)
-    main_y = h * 0.5
+    # roky
+    c.setFont('Mono', 5.4); c.setFillColor(INK2); c.setStrokeColor(INK2); c.setLineWidth(0.6)
+    for yr in BR['years']:
+        xx = X(axis_x(yr)); c.line(xx, my - 2.5, xx, my + 2.5); c.drawCentredString(xx, my - 8.5, str(yr))
+    # hlavní linie
     c.setStrokeColor(ACCENT); c.setLineWidth(1.8); c.setLineCap(1)
-    c.line(0, main_y, end_x, main_y)
-    c.setFont('Mono', 5.6); c.setFillColor(INK2); c.setLineWidth(0.7)
-    for i, yr in enumerate(['2023', '2024', '2025', '2026']):
-        xx = w * (0.1 + i * 0.2)
-        c.setStrokeColor(INK2); c.line(xx, main_y - 3, xx, main_y + 3)
-        c.drawCentredString(xx, main_y - 10, yr)
-    lanes = [(h * 0.92, 0.06, 0.72, 'FAV ZČU'), (h * 0.74, 0.02, 0.64, 'Pathfinder'), (h * 0.26, 0.24, 0.6, 'Kód'), (h * 0.08, 0.38, 0.68, 'Kytara')]
-    c.setLineWidth(1)
-    for ly, bx, ex, label in lanes:
-        bxp = w * bx; exp = w * ex
-        c.setStrokeColor(ACCENT)
-        p = c.beginPath(); p.moveTo(bxp, main_y); p.curveTo(bxp + 12, main_y, bxp + 12, ly, bxp + 24, ly); p.lineTo(exp, ly)
+    c.line(X(10), my, end_x, my)
+    # větve: bx = odbočení podle roku, pruh y, konec ex; popisek vpravo se musí vejít před fotku
+    for b, L in zip(WEB['hero']['orbit'], BR['lanes']):
+        bx, ly = X(axis_x(L['bx'])), Y(L['y'])
+        ex = X(L['ex'])
+        if L['label'] == 'right':
+            ex = min(ex, x + w - r - 3 - pdfmetrics.stringWidth(b['label'], 'Mono', fs))
+        c.setStrokeColor(ACCENT); c.setLineWidth(1)
+        p = c.beginPath(); p.moveTo(bx, my)
+        p.curveTo(bx + 34 * kx, my, bx + 34 * kx, ly, bx + 68 * kx, ly); p.lineTo(ex, ly)
         c.drawPath(p, stroke=1, fill=0)
-        c.setFillColor(PAPER); c.circle(bxp, main_y, 1.8, stroke=1, fill=1)
-        c.setFillColor(PANEL); c.circle(exp, ly, 4.2, stroke=1, fill=1)
-        c.setFillColor(INK2); c.setFont('Mono', 5.6); c.drawString(exp + 7, ly - 2, label)
+        c.setFillColor(PAPER); c.setLineWidth(1.2); c.circle(bx, my, 1.9, stroke=1, fill=1)
+        c.setFillColor(PANEL); c.setLineWidth(0.9); c.circle(ex, ly, r, stroke=1, fill=1)
+        if b['id'] in ICONS:
+            d = svg2rlg(io.BytesIO(ICONS[b['id']].encode('utf-8')))
+            sc = 2 * r * 0.66 / 24
+            d.scale(sc, sc); d.width, d.height = 24 * sc, 24 * sc
+            renderPDF.draw(d, c, ex - 12 * sc, ly - 12 * sc)
+        c.setFillColor(INK2); c.setFont('Mono', fs)
+        if L['label'] == 'right': c.drawString(ex + r + 3, ly - fs * 0.35, b['label'])
+        elif L['label'] == 'above': c.drawCentredString(ex, ly + r + 2.2, b['label'])
+        else: c.drawCentredString(ex, ly - r - fs - 0.6, b['label'])
     c.restoreState()
 
 
@@ -310,28 +371,28 @@ class Header(Flowable):
     def __init__(self):
         Flowable.__init__(self)
         self.width = W - 2 * M
-        self.height = 104
+        self.height = 122
 
     def draw(self):
         c = self.canv
         stamp(c, 0, self.height - 10, WEB['hero']['stamp'])
         c.setFont('Mono', 7.4); c.setFillColor(INK2); c.drawString(58, self.height - 9, WEB['hero']['hello'])
         c.setFont('Michroma', 21); c.setFillColor(INK)
-        c.drawString(0, self.height - 38, NAME_LINES[0])
-        c.drawString(0, self.height - 62, NAME_LINES[1])
-        c.setFont('MonoB', 9.5); c.setFillColor(ACCENT); c.drawString(0, self.height - 78, '> ' + ROLE)
-        # kontakty: každý je odkaz (web, e-mail, GitHub…)
+        c.drawString(0, self.height - 40, NAME_LINES[0])
+        c.drawString(0, self.height - 66, NAME_LINES[1])
+        c.setFont('MonoB', 9.5); c.setFillColor(ACCENT); c.drawString(0, self.height - 84, '> ' + ROLE)
+        # kontakty: každý je odkaz (web, e-mail, GitHub…); leží pod časovou linií
         c.setFont('Mono', 7.6); c.setFillColor(INK2)
-        x, y = 0, self.height - 92
+        x, y = 0, 6
         for text, url in CONTACTS:
             tw = pdfmetrics.stringWidth(text, 'Mono', 7.6)
             c.drawString(x, y, text)
             c.linkURL(url, (x, y - 2, x + tw, y + 8), relative=1, thickness=0)
             x += tw + 12
         px = self.width - self.PHOTO_W
-        evidence_photo(c, px, 4, self.PHOTO_W, self.PHOTO_H)
-        bw = 150
-        branches(c, px - bw - 22, 8, bw, 80, end_x=bw + 22)
+        evidence_photo(c, px, 10, self.PHOTO_W, self.PHOTO_H)
+        x0 = pdfmetrics.stringWidth(NAME_LINES[0], 'Michroma', 21) + 16
+        branches(c, x0, 18, px - 8 - x0, self.height - 20, end_x=px + 2)
 
 
 class Memo(Flowable):

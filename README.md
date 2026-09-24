@@ -65,7 +65,7 @@ plochu pro prst a tlačítka jsou na dotykových zařízeních vyšší.
 | jméno, přezdívka, lokalita | `src/data/content.ts` → `shared` (`fullName`, `firstName`, `lastName`, `nickname`, `location`) |
 | text, projekty, dovednosti, vzdělání, praxe | `src/data/content.ts` |
 | e‑mail, LinkedIn | `content.ts` → `shared.email`, `shared.linkedin` (tlačítka se pak aktivují) |
-| CV ke stažení | `python3 scripts/cv.py` (fakta bere z `content.ts`, ve skriptu jsou jen zhuštěné texty v bloku `PDF`; potřebuje Node 22+ a `pip install reportlab pillow`); vytvoří hravé `public/cv.pdf` i strohé `public/cv-plain.pdf` se stejným obsahem |
+| CV ke stažení | `python3 scripts/cv.py` (fakta bere z `content.ts`, ve skriptu jsou jen zhuštěné texty v bloku `PDF`; potřebuje Node 22+ a `pip install reportlab pillow svglib`); vytvoří hravé `public/cv.pdf` i strohé `public/cv-plain.pdf` se stejným obsahem |
 | fotka na monitoru místo kresleného obličeje | dej soubor do `public/` a nastav `shared.photo: '/photo.jpg'` v `content.ts` (obarví se do fosforu) |
 | náhledový obrázek pro sdílení | nahraď `public/og.png` (1200×630) |
 | barvy, fonty | `src/index.css` (proměnné v `:root`) |
