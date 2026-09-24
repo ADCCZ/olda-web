@@ -65,7 +65,7 @@ plochu pro prst a tlačítka jsou na dotykových zařízeních vyšší.
 | jméno, přezdívka, lokalita | `src/data/content.ts` → `shared` (`fullName`, `firstName`, `lastName`, `nickname`, `location`) |
 | text, projekty, dovednosti, vzdělání, praxe | `src/data/content.ts` |
 | e‑mail, LinkedIn | `content.ts` → `shared.email`, `shared.linkedin` (tlačítka se pak aktivují) |
-| CV ke stažení | `python3 scripts/cv.py` (údaje v bloku `DATA` ve skriptu, potřebuje `pip install reportlab`); vytvoří hravé `public/cv.pdf` i strohé `public/cv-plain.pdf` pro personální systémy |
+| CV ke stažení | `python3 scripts/cv.py` (fakta bere z `content.ts`, ve skriptu jsou jen zhuštěné texty v bloku `PDF`; potřebuje Node 22+ a `pip install reportlab pillow`); vytvoří hravé `public/cv.pdf` i strohé `public/cv-plain.pdf` se stejným obsahem |
 | fotka na monitoru místo kresleného obličeje | dej soubor do `public/` a nastav `shared.photo: '/photo.jpg'` v `content.ts` (obarví se do fosforu) |
 | náhledový obrázek pro sdílení | nahraď `public/og.png` (1200×630) |
 | barvy, fonty | `src/index.css` (proměnné v `:root`) |
@@ -82,10 +82,16 @@ plochu pro prst a tlačítka jsou na dotykových zařízeních vyšší.
 
 Sekce jdou v pořadí, které doporučují personalisté (např. Indeed): kontakt, profil,
 vzdělání, praxe, projekty, technické dovednosti, měkké dovednosti. Stejně je poskládané
-i `public/cv.pdf`. Pole `certs` (certifikáty) se zobrazí, až do něj něco přidáš.
-E-mail a telefon doplň do `shared.email` / `shared.phone` a do `scripts/cv.py` (`DATA`),
-pak spusť `python3 scripts/cv.py`. Hravé PDF má stejný styl jako web (spis, razítka,
-časová linie); strohé PDF je pro portály, které životopisy čtou strojově.
+i `public/cv.pdf`.
+
+PDF životopis se generuje z dat webu: `scripts/export-content.mjs` načte `src/data/content.ts`
+a `scripts/cv.py` z nich vezme jméno s titulem, roli, kontakty (`shared.email`, `shared.phone`,
+`shared.linkedin`, `shared.site`), fotku, vzdělání, praxi, kurzy (`certs`), technologie podle
+úrovní, plány, měkké dovednosti a zájmy. Ve skriptu (blok `PDF`) zůstávají jen zhuštěné texty,
+které se musí vejít na stránku: profil, body praxe, výběr projektů a krátké popisy měkkých
+dovedností, plus jazyky. Po úpravě webu stačí spustit `python3 scripts/cv.py`. Obě PDF mají
+stejný obsah i pořadí; hravé má styl webu (spis, razítka, časová linie, fotka se sponkou),
+strohé je bez grafiky pro portály, které životopisy čtou strojově. Odkazy v obou jsou klikací.
 
 ## Portál a razítka
 

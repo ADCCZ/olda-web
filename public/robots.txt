@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://olda.vercel.app/sitemap.xml
+Sitemap: https://cv-oldjas-tan.vercel.app/sitemap.xml
