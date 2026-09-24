@@ -75,12 +75,14 @@ const cs = {
     theme: 'Přepnout téma',
     lang: 'EN',
   },
+  /** úvodní terminál při načtení: "$ " na začátku = příkaz psaný znak po znaku, {bar} = ukazatel průběhu */
   boot: [
-    'ARCHIV ČASOVÝCH LINIÍ, terminál 07',
+    '$ archiv --boot',
+    'ARCHIV ČASOVÝCH LINIÍ · terminál 07',
     'kontrola hlavní linie ........ v pořádku',
     'hledám odchylky .............. 1 nalezena',
-    'varianta: ŠVEHLA OLDŘICH, Plzeň',
-    'otevírám spis',
+    'načítám spis ................. {bar}',
+    '$ open varianta/svehla-oldrich',
   ],
   hero: {
     hello: 'spis varianty',
@@ -407,11 +409,12 @@ const en: typeof cs = {
     lang: 'CS',
   },
   boot: [
-    'TIMELINE ARCHIVE, terminal 07',
+    '$ archive --boot',
+    'TIMELINE ARCHIVE · terminal 07',
     'checking main line ........... nominal',
     'scanning for deviations ...... 1 found',
-    'variant: ŠVEHLA OLDŘICH, Pilsen',
-    'opening file',
+    'loading file ................. {bar}',
+    '$ open variant/svehla-oldrich',
   ],
   hero: {
     hello: 'variant file',

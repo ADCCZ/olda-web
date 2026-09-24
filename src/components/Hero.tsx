@@ -16,10 +16,8 @@ function loopCount() {
 
 const reducedMotion = () => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches } catch { return true } }
 
-/** běží ještě úvodní obrazovka (Boot)? stejná podmínka jako v Boot.tsx */
-function bootPending() {
-  try { return !reducedMotion() && !sessionStorage.getItem('booted') } catch { return false }
-}
+/** běží ještě úvodní terminál (Boot)? ukazuje se při každém načtení, kromě omezeného pohybu */
+const bootPending = () => !reducedMotion()
 
 /** psací stroj: kolik znaků textu už je napsáno (po změně jazyka se píše znovu) */
 function useTyped(text: string, start: boolean, delay: number, speed = 42) {

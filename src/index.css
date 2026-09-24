@@ -272,6 +272,14 @@ body::before {
       var(--bg-3);
   }
 
+  /* úvodní terminál je vždy zelený fosfor, i ve světlém tématu */
+  .boot-green {
+    --crt-bg: #04110a;
+    --crt-ink: #9cf5b0;
+    --crt-ink-2: #6fcf88;
+    --crt-bright: #d6ffe0;
+  }
+
   .readout {
     font-family: var(--font-mono);
     font-size: 0.8rem;
