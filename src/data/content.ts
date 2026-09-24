@@ -575,7 +575,7 @@ const en: typeof cs = {
   hero: {
     hello: 'variant file',
     stamp: 'on record',
-    plate: 'VARIANT 01',
+    plate: 'VARIANT 67',
     pulse: 'present',
     loop: 'loop',
     name: 'Oldřich Švehla',
@@ -729,21 +729,21 @@ const en: typeof cs = {
     levelOf: (n: number) => `${n} of 5`,
     groups: [
       { name: 'Languages', items: [
-        { name: 'PHP', level: 4 }, { name: 'C', level: 4 }, { name: 'JavaScript', level: 3 }, { name: 'Java', level: 3 },
-        { name: 'C#', level: 3 }, { name: 'Python', level: 3 }, { name: 'SQL', level: 3 }, { name: 'C++', level: 2 },
+        { name: 'PHP', level: 4 }, { name: 'Python', level: 4 }, { name: 'C', level: 3 }, { name: 'JavaScript', level: 3 },
+        { name: 'SQL', level: 3 }, { name: 'Java', level: 2 }, { name: 'C#', level: 2 }, { name: 'C++', level: 2 }, { name: 'TypeScript', level: 1 },
       ] },
       { name: 'Web & frameworks', items: [
-        { name: 'Nette', level: 4 }, { name: 'Latte', level: 4 }, { name: 'HTML5 / CSS3', level: 4 }, { name: 'Tailwind CSS', level: 3 },
-        { name: 'React', level: 3 }, { name: 'Vue.js', level: 3 }, { name: 'Twig', level: 3 }, { name: 'Node.js (Express, Socket.IO)', level: 2 },
-        { name: 'UX/UI design', level: 3 },
+        { name: 'HTML5 / CSS3', level: 4 }, { name: 'Nette', level: 3 }, { name: 'Latte', level: 3 }, { name: 'Tailwind CSS', level: 3 },
+        { name: 'React', level: 3 }, { name: 'Vue.js', level: 3 }, { name: 'Twig', level: 2 }, { name: 'UX/UI design', level: 2 },
+        { name: 'Node.js (Express, Socket.IO)', level: 2 },
       ] },
       { name: 'Architecture & networking', items: [
-        { name: 'MVC / MVP architecture', level: 3 }, { name: 'TCP/IP sockets, custom protocol', level: 3 }, { name: 'REST API', level: 2 },
-        { name: 'WebSockets (Socket.IO)', level: 2 }, { name: 'OAuth 2.0', level: 2 }, { name: 'Parallelism (OpenMP)', level: 2 }, { name: 'NFC', level: 2 },
+        { name: 'MVC / MVP architecture', level: 4 }, { name: 'TCP/IP sockets, custom protocol', level: 3 }, { name: 'REST API', level: 2 },
+        { name: 'WebSockets (Socket.IO)', level: 2 }, { name: 'Parallelism (OpenMP)', level: 2 }, { name: 'OAuth 2.0', level: 1 }, { name: 'NFC', level: 1 },
       ] },
       { name: 'Databases & tools', items: [
-        { name: 'MySQL', level: 3 }, { name: 'Git & GitHub', level: 3 }, { name: 'Linux CLI', level: 3 }, { name: 'Vite', level: 3 },
-        { name: 'LaTeX', level: 3 }, { name: 'Docker', level: 2 }, { name: 'Make / CMake / Maven', level: 2 },
+        { name: 'Git & GitHub', level: 4 }, { name: 'LaTeX', level: 4 }, { name: 'MySQL', level: 3 }, { name: 'Linux WSL', level: 3 },
+        { name: 'Vite', level: 3 }, { name: 'Make / CMake / Maven', level: 3 }, { name: 'Docker', level: 1 },
       ] },
       { name: 'Graphics & data', items: [
         { name: 'pandas / matplotlib', level: 3 }, { name: 'Open data', level: 3 }, { name: 'Power BI', level: 2 },

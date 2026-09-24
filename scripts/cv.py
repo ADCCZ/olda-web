@@ -78,10 +78,10 @@ DATA = {
          '', 'Soukromé repozitáře, přístup na vyžádání'),
     ],
     'skills': [
-        ('Jazyky', 'PHP, C (pokročile); JavaScript, Java, C#, Python, SQL; C++ (základy)'),
-        ('Web', 'Nette, Latte, HTML5 / CSS3 (pokročile); Tailwind CSS, React, Vue.js, Twig, UX/UI design; Node.js'),
-        ('Nástroje', 'MySQL, Git a GitHub, Linux CLI, Vite, LaTeX; Docker, Make / CMake / Maven'),
-        ('Další', 'TCP/IP sokety, REST API, WebSockety, OAuth 2.0, OpenMP, NFC, OpenGL / OpenTK, pandas, Power BI'),
+        ('Jazyky', 'PHP, Python (pokročile); C, JavaScript, SQL; Java, C#, C++ (základy); TypeScript (vyzkoušeno)'),
+        ('Web', 'HTML5 / CSS3 (pokročile); Nette, Latte, Tailwind CSS, React, Vue.js; Twig, UX/UI design, Node.js (základy)'),
+        ('Nástroje', 'Git a GitHub, LaTeX (pokročile); MySQL, Linux WSL, Vite, Make / CMake / Maven; Docker (vyzkoušeno)'),
+        ('Další', 'MVC / MVP (pokročile); TCP/IP sokety, pandas; REST API, WebSockety, OpenMP, OpenGL / OpenTK, Power BI (základy); OAuth 2.0, NFC (vyzkoušeno)'),
         ('V plánu', 'TypeScript, Next.js, PostgreSQL, Spring Boot, GitHub Actions (CI/CD), testování (JUnit, Jest), Kubernetes, AWS / cloud'),
     ],
     'soft': [
@@ -177,7 +177,7 @@ def monitor(c, x, y, s=1.0):
     c.setFillColor(ACCENT); c.circle(50, 13.5, 1.1, stroke=0, fill=1)
     c.setFillColor(LINE); c.rect(24, 6, 12, 4, stroke=0, fill=1)
     c.setFillColor(WOOD); c.roundRect(14, 0, 32, 7, 1.5, stroke=0, fill=1)
-    c.setFillColor(CREAM); c.setFont('Mono', 3.6); c.drawCentredString(30, 2.2, 'VARIANTA 01')
+    c.setFillColor(CREAM); c.setFont('Mono', 3.6); c.drawCentredString(30, 2.2, 'VARIANTA 67')
     c.restoreState()
 
 
@@ -223,7 +223,7 @@ def page_deco(c, doc):
     yb = H - M - TOP_BAND + 1.5 * mm + 3.3 * mm
     c.setFillColor(AMBER); c.circle(M - 1.5 * mm, yb + 1.5, 1.6, stroke=0, fill=1)
     c.setFillColor(CREAM)
-    c.drawString(M + 1.5 * mm, yb, 'ARCHIV ČASOVÝCH LINIÍ    spis varianty 01    ' + DATA['location'].upper())
+    c.drawString(M + 1.5 * mm, yb, 'ARCHIV ČASOVÝCH LINIÍ    spis varianty 67    ' + DATA['location'].upper())
     c.drawRightString(W - M + 3 * mm, yb, 'strana %d' % doc.page)
     # patička
     c.setFillColor(INK2); c.setFont('Mono', 6.6)
