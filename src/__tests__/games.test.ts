@@ -4,7 +4,7 @@ import { GAMES, byHours, withoutHours, type Game } from '../data/games'
 describe('herní knihovna', () => {
   it('řadí hry s časem od nejhranější a hry bez času drží zvlášť', () => {
     const played = byHours(GAMES)
-    expect(played[0].name).toBe('Marvel Snap')
+    expect(played[0].hours).toBe(Math.max(...played.map((g) => g.hours)))
     expect(played.every((g, i) => i === 0 || played[i - 1].hours >= g.hours)).toBe(true)
     expect(played.length + withoutHours(GAMES).length).toBe(GAMES.length)
     // bez času jsou zatím jen hry z Epicu (Steam čas vždycky má)

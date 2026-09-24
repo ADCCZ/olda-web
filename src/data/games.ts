@@ -48,27 +48,12 @@ export const GAMES: Game[] = [
   { name: 'Cyberpunk 2077', hours: 9.3 },
   { name: 'Propnight', hours: 7.4 },
   { name: 'Max Payne 2: The Fall of Max Payne', hours: 6 },
-<<<<<<< HEAD
-  // jen Epic Games (bez hodin)
-  { name: 'Fortnite', epic: true, hours: 771.65 },
-  { name: 'Among Us', epic: true, hours: 35.73 },
-  { name: "Marvel's Spider-Man Remastered", epic: true, hours: 35.15 },
-  { name: 'Star Wars Battlefront II', epic: true, hours: 23.5 },
-  { name: 'Kingdom Come: Deliverance', epic: true, hours: 22.1 },
-  { name: 'Ghostrunner', epic: true },
-  { name: 'Ghostrunner 2', epic: true },
-  { name: 'PC Building Simulator', epic: true },
-  { name: 'Borderlands: The Pre-Sequel', epic: true },
-  { name: 'A Plague Tale: Innocence', epic: true },
-  { name: 'Hitman', epic: true },
-  { name: 'Just Cause 4', epic: true },
-=======
   // Epic Games (hodiny doplň jako u Steamu, např. { name: 'Fortnite', store: 'epic', hours: 120 })
-  { name: 'Fortnite', store: 'epic' },
-  { name: 'Among Us', store: 'epic' },
-  { name: "Marvel's Spider-Man Remastered", store: 'epic' },
-  { name: 'Star Wars Battlefront II', store: 'epic' },
-  { name: 'Kingdom Come: Deliverance', store: 'epic' },
+  { name: 'Fortnite', store: 'epic', hours: 771.65 },
+  { name: 'Among Us', store: 'epic', hours: 35.73 },
+  { name: "Marvel's Spider-Man Remastered", store: 'epic', hours: 35.15 },
+  { name: 'Star Wars Battlefront II', store: 'epic', hours: 23.5 },
+  { name: 'Kingdom Come: Deliverance', store: 'epic', hours: 22.1 },
   { name: 'Ghostrunner', store: 'epic' },
   { name: 'Ghostrunner 2', store: 'epic' },
   { name: 'PC Building Simulator', store: 'epic' },
@@ -76,7 +61,6 @@ export const GAMES: Game[] = [
   { name: 'A Plague Tale: Innocence', store: 'epic' },
   { name: 'Hitman', store: 'epic' },
   { name: 'Just Cause 4', store: 'epic' },
->>>>>>> 76be5ea0ef1efc77b5fcf69d7037ca93662998d6
 ]
 
 /** hry s odehraným časem (Steam i Epic), od nejhranější */
