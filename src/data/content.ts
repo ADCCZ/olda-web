@@ -237,8 +237,8 @@ const cs = {
       {
         repo: 'web-foodapp',
         title: 'FoodApp',
-        desc: 'Webová aplikace kolem jídla a receptů postavená na PHP šablonách Twig.',
-        tags: ['PHP', 'Twig'],
+        desc: 'Objednávkový systém rozvozu jídla „Délicious“: zákazník vybírá z\u00a0nabídky dodavatelů, plní košík bez načítání stránky (AJAX) a objednává, dodavatel spravuje své produkty včetně obrázků a administrátor schvaluje dodavatele a spravuje uživatele i objednávky. Vlastní MVC v PHP 8 bez frameworku, šablony Twig, MySQL přes PDO, Bootstrap 5, hesla v Bcryptu a ochrana proti SQL injection a XSS. Semestrální práce KIV/WEB.',
+        tags: ['PHP', 'Twig', 'MySQL', 'JavaScript (AJAX)', 'Bootstrap 5'],
       },
     ] as Project[],
   },
@@ -722,8 +722,8 @@ const en: typeof cs = {
       {
         repo: 'web-foodapp',
         title: 'FoodApp',
-        desc: 'Web application around food and recipes built on PHP with Twig templates.',
-        tags: ['PHP', 'Twig'],
+        desc: "Food delivery ordering system “Délicious”: customers browse suppliers' offers, fill the cart without page reloads (AJAX) and order; suppliers manage their products including images; administrators approve suppliers and manage users and orders. Custom MVC in PHP 8 without a framework, Twig templates, MySQL via PDO, Bootstrap 5, Bcrypt passwords and protection against SQL injection and XSS. Semester project for KIV/WEB.",
+        tags: ['PHP', 'Twig', 'MySQL', 'JavaScript (AJAX)', 'Bootstrap 5'],
       },
     ],
   },

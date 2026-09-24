@@ -75,8 +75,8 @@ export function Projects({ onPexeso }: { onPexeso: () => void }) {
             p.privateRepo ? t.projects.privateRepo[p.privateRepo] : t.projects.noRepo
           )}
         </p>
-        {/* odkazy: na desktopu pod sebou u pravého okraje, všechny stejně široké */}
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(9.5rem,1fr))] gap-2 md:ml-auto md:w-[9.5rem] md:grid-cols-1">
+        {/* odkazy: na desktopu pod sebou u pravého okraje, všechny stejně široké, svisle na středu řádku */}
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(9.5rem,1fr))] gap-2 md:ml-auto md:w-[9.5rem] md:grid-cols-1 md:self-center">
           {r && <a href={r.html_url} target="_blank" rel="noreferrer" className={LINK}><Github width={15} height={15} />{t.projects.repoLabel}</a>}
           {live && <a href={live} target="_blank" rel="noreferrer" className={`${LINK} pill-solid`}><External width={15} height={15} />{t.projects.liveLabel}</a>}
           {p.repo === 'tmwmf_sem_UPS' && (

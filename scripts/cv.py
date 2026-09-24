@@ -73,6 +73,7 @@ DATA = {
          'C, TCP/IP, JavaFX, Maven', 'github: adccz/tmwmf_sem_UPS'),
         ('Další semestrální práce', 'emulátor počítače KMX v C (KIV/PC), virtuální souborový systém v C (KIV/ZOS), '
          'paralelní zpracování meteodat v C++ a OpenMP (KIV/UPP), 3D hra v C# a OpenTK (KIV/ZPG), '
+         'rozvoz jídla v PHP a Twig (KIV/WEB), '
          '10 úloh z testování softwaru (KIV/OKS).',
          '', 'Soukromé repozitáře, přístup na vyžádání'),
     ],
