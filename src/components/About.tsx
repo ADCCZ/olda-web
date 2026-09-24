@@ -1,6 +1,6 @@
 import { useI18n } from '../lib/i18n'
 import { Section } from './Section'
-import { interestIcon, Play } from './Icons'
+import { External, interestIcon, Play } from './Icons'
 
 /**
  * Profil: dva vyvážené sloupce (text | "mimo kód"). U kytary je tlačítko Hrát,
@@ -29,7 +29,13 @@ export function About({ onPlayGuitar }: { onPlayGuitar: () => void }) {
                     <Icon width={16} height={16} />
                   </span>
                   <span>
-                    <span className="block font-medium">{it.label}</span>
+                    {it.href ? (
+                      <a href={it.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 font-medium underline decoration-line underline-offset-4 hover:text-accent hover:decoration-accent">
+                        {it.label}<External width={13} height={13} className="shrink-0" />
+                      </a>
+                    ) : (
+                      <span className="block font-medium">{it.label}</span>
+                    )}
                     {it.note && <span className="block text-sm text-ink-2">{it.note}</span>}
                   </span>
                   {it.action === 'guitar' && (

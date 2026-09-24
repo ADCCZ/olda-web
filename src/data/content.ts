@@ -130,9 +130,9 @@ const cs = {
     ],
     interestsTitle: 'Mimo kód',
     interests: [
-      // action: 'guitar' = u položky je tlačítko Hrát, které otevře kytaru uprostřed obrazovky
-      { icon: 'guitar', label: 'Kytara', note: 'akustická, hraju od roku 2011, hlavně u ohně', action: 'guitar' },
-      { icon: 'scout', label: 'Klub Pathfinder', note: 'od roku 2012, oblastní vedoucí, tábory jsou srdcovka' },
+      // action: 'guitar' = u položky je tlačítko Hrát, které otevře kytaru uprostřed obrazovky; href = odkaz na web
+      { icon: 'guitar', label: 'Kytara', note: 'akustická, hraju od roku 2011, hlavně u\u00a0ohně', action: 'guitar' },
+      { icon: 'scout', label: 'Klub Pathfinder', note: 'od roku 2012, oblastní vedoucí, tábory jsou srdcovka', href: 'https://www.pathfinder.cz/' },
       { icon: 'marvel', label: 'Komiksové filmy', note: 'sleduju v pořadí, ve kterém vyšly' },
       { icon: 'games', label: 'Videohry', note: 'hraju od roku 2012' },
       { icon: 'cook', label: 'Vaření', note: 'doma i pro tábor' },
@@ -603,7 +603,7 @@ const en: typeof cs = {
     interestsTitle: 'Beyond code',
     interests: [
       { icon: 'guitar', label: 'Guitar', note: 'acoustic, playing since 2011, mostly by the fire', action: 'guitar' },
-      { icon: 'scout', label: 'Klub Pathfinder', note: 'since 2012, regional leader, camps are my passion' },
+      { icon: 'scout', label: 'Klub Pathfinder', note: 'since 2012, regional leader, camps are my passion', href: 'https://www.pathfinder.cz/' },
       { icon: 'marvel', label: 'Comic-book films', note: 'in release order' },
       { icon: 'games', label: 'Video games', note: 'playing since 2012' },
       { icon: 'cook', label: 'Cooking', note: 'at home and for camp' },
