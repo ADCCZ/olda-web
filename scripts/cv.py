@@ -51,8 +51,8 @@ DATA = {
             'Vedení oblasti: oddíly a vedoucí, účetnictví, víkendové akce. Tábory: 1× programový, 2× hlavní vedoucí.',
             'Kurzy: rádcovský (2020), vůdcovský (2024), MasterGuide – nejvyšší stupeň (do začátku 2027).',
         ]),
-        ('během studia', 'Frontend samoobslužného kiosku', 'Eurosoftware, dnes GK Software Czech Republic s.r.o.', [
-            'Týmový projekt na zakázku firmy v předmětu KIV/ZSW-E: frontend kiosku, mimo jiné práce s NFC.',
+        ('LS 2025', 'Frontend samoobslužného kiosku', 'Eurosoftware, dnes GK Software Czech Republic s.r.o.', [
+            'Týmový projekt na zakázku firmy v předmětu KIV/ZSW-E: frontend kiosku ve Vue.js, mimo jiné práce s NFC.',
         ]),
         ('od 2023', 'Dobrovolník, security', 'festival United', [
             'Security na festivalu United (2023, 2025), pravidelně na akcích United City.',
@@ -75,10 +75,10 @@ DATA = {
          '', 'Soukromé repozitáře, přístup na vyžádání'),
     ],
     'skills': [
-        ('Backend', 'PHP (Nette), C#, Java, Python, C, REST API, architektonický návrh (MVC)'),
-        ('Frontend', 'JavaScript, React, Vue.js, Tailwind CSS, HTML5 / CSS3'),
-        ('Databáze a nástroje', 'MySQL, Git, Docker, Linux CLI, Maven / Gradle'),
-        ('Grafika a data', 'OpenTK / OpenGL, JavaFX, otevřená data, vizualizace dat'),
+        ('Jazyky', 'PHP, C (pokročile); JavaScript, Java, C#, Python, SQL; C++ (základy)'),
+        ('Web', 'Nette, Latte, HTML5 / CSS3 (pokročile); Tailwind CSS, React, Vue.js, Twig; Node.js (Express, Socket.IO)'),
+        ('Nástroje', 'MySQL, Git a GitHub, Linux CLI, Vite, LaTeX; Docker, Make / CMake / Maven, pytest'),
+        ('Další', 'TCP/IP sokety, REST API, WebSockety, OAuth 2.0, OpenMP, NFC, OpenGL / OpenTK, pandas, Power BI'),
         ('V plánu', 'TypeScript, Next.js, PostgreSQL, Spring Boot, GitHub Actions (CI/CD), testování (JUnit, Jest), Kubernetes, AWS / cloud'),
     ],
     'soft': [

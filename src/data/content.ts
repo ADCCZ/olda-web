@@ -164,8 +164,8 @@ const cs = {
         repo: null,
         privateRepo: 'team',
         title: 'Samoobslužný kiosek',
-        desc: 'Frontend samoobslužného kiosku pro firmu Eurosoftware (dnes GK Software Czech Republic). Týmový projekt na zakázku v předmětu KIV/ZSW-E, včetně práce s NFC.',
-        tags: ['Frontend', 'NFC', 'Týmová práce'],
+        desc: 'Frontend samoobslužného kiosku ve Vue.js pro firmu Eurosoftware (dnes GK Software Czech Republic). Týmový projekt na zakázku v předmětu KIV/ZSW-E v letním semestru 2025, včetně práce s NFC.',
+        tags: ['Vue.js', 'JavaScript', 'NFC', 'Týmová práce'],
         featured: true,
       },
       {
@@ -239,24 +239,54 @@ const cs = {
     levels: ['zkoušel jsem', 'základy, školní projekty', 'samostatně na projektech', 'pokročile, dlouhodobě', 'expert'],
     levelOf: (n: number) => `${n} z 5`,
     groups: [
+      // Úrovně podle repozitářů na GitHubu (řádky kódu bez prázdných, počet a velikost projektů):
+      // 4 = hlavní technologie ve 2+ větších projektech nebo ve velkém nasazeném, 3 = samostatně ve větším
+      // projektu (~1,5k+ řádků) nebo v několika menších, 2 = jeden projekt / podpůrná role, 1 = vyzkoušeno.
       { name: 'Jazyky', items: [
-        { name: 'PHP', level: 4 }, { name: 'JavaScript', level: 3 }, { name: 'Java', level: 3 },
-        { name: 'C#', level: 3 }, { name: 'Python', level: 3 }, { name: 'C', level: 3 },
+        { name: 'PHP', level: 4 }, // komunitní portál (Nette, 3,9k ř. PHP) + FoodApp (2k ř.)
+        { name: 'C', level: 4 }, // emulátor KMX (2,5k ř.), server Pexesa (2,7k ř.), souborový systém (1,9k ř.)
+        { name: 'JavaScript', level: 3 }, // CampMaster (5,1k ř. JS/JSX), kiosek (Vue)
+        { name: 'Java', level: 3 }, // klient Pexesa v JavaFX (2,2k ř.)
+        { name: 'C#', level: 3 }, // 3D hra v OpenTK (2,1k ř.)
+        { name: 'Python', level: 3 }, // bakalářka (3,1k ř.) + skripty k UPP
+        { name: 'SQL', level: 3 }, // MySQL migrace portálu, schéma FoodApp
+        { name: 'C++', level: 2 }, // UPP (OpenMP)
       ] },
       { name: 'Web a frameworky', items: [
-        { name: 'Nette', level: 4 }, { name: 'Latte / Twig', level: 3 }, { name: 'React', level: 3 },
-        { name: 'Vue.js', level: 2 }, { name: 'Tailwind CSS', level: 4 }, { name: 'HTML5 / CSS3', level: 4 },
+        { name: 'Nette', level: 4 }, // portál: 12 presenterů, formuláře, OAuth, nasazený
+        { name: 'Latte', level: 4 }, // portál (10,5k ř. šablon)
+        { name: 'HTML5 / CSS3', level: 4 }, // všechny webové projekty
+        { name: 'Tailwind CSS', level: 3 }, // portál, CampMaster
+        { name: 'React', level: 3 }, // CampMaster (React 19, MUI, Recharts, Leaflet)
+        { name: 'Vue.js', level: 3 }, // kiosek pro Eurosoftware (LS 2025)
+        { name: 'Twig', level: 3 }, // FoodApp (2,5k ř. šablon)
+        { name: 'Node.js (Express, Socket.IO)', level: 2 }, // server CampMasteru
       ] },
       { name: 'Architektura a sítě', items: [
-        { name: 'REST API', level: 3 }, { name: 'MVC architektura', level: 3 }, { name: 'TCP/IP, vlastní protokoly', level: 2 },
+        { name: 'MVC / MVP architektura', level: 3 }, // Nette presentery, FoodApp
+        { name: 'TCP/IP sokety, vlastní protokol', level: 3 }, // Síťové Pexeso (select())
+        { name: 'REST API', level: 2 }, // CampMaster, kiosek
+        { name: 'WebSockety (Socket.IO)', level: 2 }, // CampMaster
+        { name: 'OAuth 2.0', level: 2 }, // portál: Google, Facebook, Discord, Instagram
+        { name: 'Paralelizace (OpenMP)', level: 2 }, // UPP
+        { name: 'NFC', level: 2 }, // kiosek
       ] },
       { name: 'Databáze a nástroje', items: [
-        { name: 'MySQL', level: 3 }, { name: 'Git', level: 3 }, { name: 'Linux CLI', level: 3 },
-        { name: 'Docker', level: 2 }, { name: 'Maven / Gradle', level: 2 },
+        { name: 'MySQL', level: 3 }, // portál (MySQL 8, 8 migrací), FoodApp (PDO)
+        { name: 'Git a GitHub', level: 3 }, // všechny projekty
+        { name: 'Linux CLI', level: 3 }, // C projekty, skripty, nasazení
+        { name: 'Vite', level: 3 }, // portál, CampMaster, tento web
+        { name: 'LaTeX', level: 3 }, // dokumentace k šesti projektům
+        { name: 'Docker', level: 2 }, // portál (Dockerfile, compose, nasazení na Railway)
+        { name: 'Make / CMake / Maven', level: 2 }, // C projekty, klient Pexesa
+        { name: 'pytest', level: 2 }, // bakalářka (24 testů)
       ] },
       { name: 'Grafika a data', items: [
-        { name: 'Otevřená data', level: 3 }, { name: 'pandas / matplotlib', level: 3 }, { name: 'JavaFX', level: 2 },
-        { name: 'Power BI', level: 2 }, { name: 'OpenTK / OpenGL', level: 2 },
+        { name: 'pandas / matplotlib', level: 3 }, // bakalářka, UPP
+        { name: 'Otevřená data', level: 3 }, // bakalářka (ČSÚ, MŠMT, MF, MPSV)
+        { name: 'Power BI', level: 2 }, // bakalářka
+        { name: 'OpenGL / OpenTK, GLSL', level: 2 }, // 3D hra
+        { name: 'JavaFX', level: 2 }, // klient Pexesa
       ] },
     ] as SkillGroup[],
     planned: ['TypeScript', 'Next.js', 'PostgreSQL', 'Spring Boot', 'GitHub Actions (CI/CD)', 'Testování (JUnit, Jest)', 'Kubernetes', 'AWS / cloud'],
@@ -285,11 +315,11 @@ const cs = {
         ],
       },
       {
-        period: 'během studia',
+        period: 'letní semestr 2025',
         title: 'Frontend samoobslužného kiosku',
         org: 'Eurosoftware, dnes GK Software Czech Republic s.r.o. · týmový projekt KIV/ZSW-E',
         bullets: [
-          'Týmový projekt na zakázku firmy v předmětu KIV/ZSW-E na FAV ZČU. Pracoval jsem na frontendu samoobslužného kiosku.',
+          'Týmový projekt na zakázku firmy v předmětu KIV/ZSW-E na FAV ZČU. Pracoval jsem na frontendu samoobslužného kiosku ve Vue.js.',
           'Mimo jiné práce s technologií NFC.',
         ],
       },
@@ -399,7 +429,7 @@ const cs = {
     help: 'Příkazy: help, whoami, variant, timeline, prune, guide, ls, cat <soubor>, neofetch, skills, projects, open <repo>, pexeso, scout, guitar, marvel, games, theme, lang, date, history, clear, exit. Tab doplňuje, šipky procházejí historii.',
     variant: 'Evidované varianty subjektu ŠVEHLA:\n  01  junior full-stack vývojář stav: aktivní\n  02  oblastní vedoucí         stav: aktivní\n  03  kytarista                stav: aktivní, občas rozladěný\n  04  hráč videoher            stav: aktivní po půlnoci\n  05  student SWIS             stav: startuje\nVšechny varianty běží souběžně. Odchylka: žádná. Zvláštnost: vaří pro padesát lidí.',
     prune: 'Žádost o ořezání zamítnuta. Tahle linie se líbí.',
-    timelineCmd: '2011 ─┬─ kytara\n2012 ─┼─ Klub Pathfinder, hry\n2018 ─┼─ rádce a vedoucí v Pathfinderu\n2019 ─┼─ SPŠ Strakonice, počítačová grafika a CNC\n2020 ─┼─ rádcovský kurz\n2021 ─┼─ praxe v Automa CZ (i 2022)\n2023 ─┼─ FAV ZČU, Bc. Počítačové vědy, první kód, festival United\n2024 ─┼─ web-foodapp, vůdcovský kurz, oblastní vedoucí Jižního kříže\n2025 ─┼─ Síťové Pexeso (C + JavaFX)\n2026 ─┼─ CampMaster 3000, bakalářka, komunitní portál, tenhle web\n2027 ─┼─ MasterGuide\n      └─ SWIS ▶ (větev se otevírá)',
+    timelineCmd: '2011 ─┬─ kytara\n2012 ─┼─ Klub Pathfinder, hry\n2018 ─┼─ rádce a vedoucí v Pathfinderu\n2019 ─┼─ SPŠ Strakonice, počítačová grafika a CNC\n2020 ─┼─ rádcovský kurz\n2021 ─┼─ praxe v Automa CZ (i 2022)\n2023 ─┼─ FAV ZČU, Bc. Počítačové vědy, první kód, festival United\n2024 ─┼─ web-foodapp, vůdcovský kurz, oblastní vedoucí Jižního kříže\n2025 ─┼─ kiosek pro Eurosoftware (Vue.js), Síťové Pexeso (C + JavaFX)\n2026 ─┼─ CampMaster 3000, bakalářka, komunitní portál, tenhle web\n2027 ─┼─ MasterGuide\n      └─ SWIS ▶ (větev se otevírá)',
     unknown: (c: string) => `příkaz nenalezen: ${c}. Zkus "help".`,
     cd: 'Bydlím v /home/olda a nikam se nestěhuju.',
     catUsage: 'použití: cat <soubor>. Soubory vypíše "ls".',
@@ -590,8 +620,8 @@ const en: typeof cs = {
         repo: null,
         privateRepo: 'team',
         title: 'Self-service kiosk',
-        desc: 'Frontend of a self-service kiosk for Eurosoftware (now GK Software Czech Republic). A commissioned team project in the KIV/ZSW-E course, including work with NFC.',
-        tags: ['Frontend', 'NFC', 'Teamwork'],
+        desc: 'Vue.js frontend of a self-service kiosk for Eurosoftware (now GK Software Czech Republic). A commissioned team project in the KIV/ZSW-E course in spring 2025, including work with NFC.',
+        tags: ['Vue.js', 'JavaScript', 'NFC', 'Teamwork'],
         featured: true,
       },
       {
@@ -665,23 +695,24 @@ const en: typeof cs = {
     levelOf: (n: number) => `${n} of 5`,
     groups: [
       { name: 'Languages', items: [
-        { name: 'PHP', level: 4 }, { name: 'JavaScript', level: 3 }, { name: 'Java', level: 3 },
-        { name: 'C#', level: 3 }, { name: 'Python', level: 3 }, { name: 'C', level: 3 },
+        { name: 'PHP', level: 4 }, { name: 'C', level: 4 }, { name: 'JavaScript', level: 3 }, { name: 'Java', level: 3 },
+        { name: 'C#', level: 3 }, { name: 'Python', level: 3 }, { name: 'SQL', level: 3 }, { name: 'C++', level: 2 },
       ] },
       { name: 'Web & frameworks', items: [
-        { name: 'Nette', level: 4 }, { name: 'Latte / Twig', level: 3 }, { name: 'React', level: 3 },
-        { name: 'Vue.js', level: 2 }, { name: 'Tailwind CSS', level: 4 }, { name: 'HTML5 / CSS3', level: 4 },
+        { name: 'Nette', level: 4 }, { name: 'Latte', level: 4 }, { name: 'HTML5 / CSS3', level: 4 }, { name: 'Tailwind CSS', level: 3 },
+        { name: 'React', level: 3 }, { name: 'Vue.js', level: 3 }, { name: 'Twig', level: 3 }, { name: 'Node.js (Express, Socket.IO)', level: 2 },
       ] },
       { name: 'Architecture & networking', items: [
-        { name: 'REST API', level: 3 }, { name: 'MVC architecture', level: 3 }, { name: 'TCP/IP, custom protocols', level: 2 },
+        { name: 'MVC / MVP architecture', level: 3 }, { name: 'TCP/IP sockets, custom protocol', level: 3 }, { name: 'REST API', level: 2 },
+        { name: 'WebSockets (Socket.IO)', level: 2 }, { name: 'OAuth 2.0', level: 2 }, { name: 'Parallelism (OpenMP)', level: 2 }, { name: 'NFC', level: 2 },
       ] },
       { name: 'Databases & tools', items: [
-        { name: 'MySQL', level: 3 }, { name: 'Git', level: 3 }, { name: 'Linux CLI', level: 3 },
-        { name: 'Docker', level: 2 }, { name: 'Maven / Gradle', level: 2 },
+        { name: 'MySQL', level: 3 }, { name: 'Git & GitHub', level: 3 }, { name: 'Linux CLI', level: 3 }, { name: 'Vite', level: 3 },
+        { name: 'LaTeX', level: 3 }, { name: 'Docker', level: 2 }, { name: 'Make / CMake / Maven', level: 2 }, { name: 'pytest', level: 2 },
       ] },
       { name: 'Graphics & data', items: [
-        { name: 'Open data', level: 3 }, { name: 'pandas / matplotlib', level: 3 }, { name: 'JavaFX', level: 2 },
-        { name: 'Power BI', level: 2 }, { name: 'OpenTK / OpenGL', level: 2 },
+        { name: 'pandas / matplotlib', level: 3 }, { name: 'Open data', level: 3 }, { name: 'Power BI', level: 2 },
+        { name: 'OpenGL / OpenTK, GLSL', level: 2 }, { name: 'JavaFX', level: 2 },
       ] },
     ],
     planned: ['TypeScript', 'Next.js', 'PostgreSQL', 'Spring Boot', 'GitHub Actions (CI/CD)', 'Testing (JUnit, Jest)', 'Kubernetes', 'AWS / cloud'],
@@ -710,11 +741,11 @@ const en: typeof cs = {
         ],
       },
       {
-        period: 'during studies',
+        period: 'spring semester 2025',
         title: 'Frontend of a self-service kiosk',
         org: 'Eurosoftware, now GK Software Czech Republic s.r.o. · KIV/ZSW-E team project',
         bullets: [
-          'A team project commissioned by the company in the KIV/ZSW-E course at FAV ZČU. I worked on the frontend of a self-service kiosk.',
+          'A team project commissioned by the company in the KIV/ZSW-E course at FAV ZČU. I worked on the Vue.js frontend of a self-service kiosk.',
           'Among other things, working with NFC technology.',
         ],
       },
@@ -824,7 +855,7 @@ const en: typeof cs = {
     help: 'Commands: help, whoami, variant, timeline, prune, guide, ls, cat <file>, neofetch, skills, projects, open <repo>, pexeso, scout, guitar, marvel, games, theme, lang, date, history, clear, exit. Tab completes, arrows walk history.',
     variant: 'Variants on record for subject ŠVEHLA:\n  01  junior full-stack developer status: active\n  02  regional leader          status: active\n  03  guitarist                status: active, occasionally out of tune\n  04  gamer                    status: active after midnight\n  05  SWIS student             status: starting\nAll variants run concurrently. Deviation: none. Notable: cooks for fifty people.',
     prune: 'Pruning request denied. We like this line.',
-    timelineCmd: '2011 ─┬─ guitar\n2012 ─┼─ Klub Pathfinder, games\n2018 ─┼─ patrol leader and leader in Pathfinders\n2019 ─┼─ SPŠ Strakonice, computer graphics and CNC\n2020 ─┼─ patrol leader course\n2021 ─┼─ placement at Automa CZ (also 2022)\n2023 ─┼─ FAV ZČU, BSc Computer Science, first code, United festival\n2024 ─┼─ web-foodapp, unit leader course, regional leader of Jižní kříž\n2025 ─┼─ Networked Memory game (C + JavaFX)\n2026 ─┼─ CampMaster 3000, thesis, community portal, this website\n2027 ─┼─ Master Guide\n      └─ SWIS ▶ (branch opening)',
+    timelineCmd: '2011 ─┬─ guitar\n2012 ─┼─ Klub Pathfinder, games\n2018 ─┼─ patrol leader and leader in Pathfinders\n2019 ─┼─ SPŠ Strakonice, computer graphics and CNC\n2020 ─┼─ patrol leader course\n2021 ─┼─ placement at Automa CZ (also 2022)\n2023 ─┼─ FAV ZČU, BSc Computer Science, first code, United festival\n2024 ─┼─ web-foodapp, unit leader course, regional leader of Jižní kříž\n2025 ─┼─ kiosk for Eurosoftware (Vue.js), Networked Memory game (C + JavaFX)\n2026 ─┼─ CampMaster 3000, thesis, community portal, this website\n2027 ─┼─ Master Guide\n      └─ SWIS ▶ (branch opening)',
     unknown: (c: string) => `command not found: ${c}. Try "help".`,
     cd: "I live in /home/olda and I'm not moving.",
     catUsage: 'usage: cat <file>. "ls" lists the files.',
