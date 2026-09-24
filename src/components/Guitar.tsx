@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useI18n } from '../lib/i18n'
 import { StringSynth, stringFreq, type Tone } from '../lib/synth'
 import {
-  CHORDS, CHORD_GROUPS, CHORD_KEYS, CHORD_ORDER, PATTERNS, PROGRESSIONS, STRING_KEYS, STRING_NAMES,
-  chordName, keyForChord, keyLabel, matchChord, noteName, stroke, strumStrings,
-  type PatternId, type ProgressionId, type Shape,
+  CHORDS, CHORD_GROUPS, CHORD_KEYS, CHORD_ORDER, MAX_BARS, METERS, PATTERNS, PROGRESSIONS, STRING_KEYS, STRING_NAMES,
+  chordName, keyForChord, keyLabel, matchChord, nextStep, noteName, resizePattern, sanitizeCustom, stroke, strumStrings,
+  type CustomAccomp, type PatternId, type ProgressionId, type Shape,
 } from '../lib/guitar'
 import { earnStamp } from '../lib/stamps'
 import { Close, Play } from './Icons'
@@ -27,6 +27,12 @@ const FRET_FR = FRET_W.map((w) => `${((w / FRET_W.reduce((a, b) => a + b)) * FRE
 const ROW = `1.5rem 2rem ${FRET_FR} 1.75rem`
 /** jak zobrazit krok rytmického vzorce */
 const SYMBOL: Record<string, string> = { D: '↓', U: '↑', '-': '·', B: 'B', A: 'b' }
+
+/** vlastní průběh a rytmus si pamatuje prohlížeč */
+const CUSTOM_KEY = 'guitar-custom'
+function loadCustom(): CustomAccomp {
+  try { return sanitizeCustom(JSON.parse(localStorage.getItem(CUSTOM_KEY) ?? 'null')) } catch { return sanitizeCustom(null) }
+}
 
 /** Kytara uprostřed obrazovky (tlačítko Hrát v Profilu). Esc zavře (App.tsx). */
 export function GuitarModal({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -66,8 +72,9 @@ export function Guitar({ onClose }: { onClose?: () => void }) {
   const [tone, setToneState] = useState<Tone>('steel')
   const [vibrating, setVibrating] = useState<number[]>([])
   const [playing, setPlaying] = useState(false)
-  const [progression, setProgression] = useState<ProgressionId>('camp')
-  const [pattern, setPattern] = useState<PatternId>('camp')
+  const [progression, setProgression] = useState<ProgressionId | 'custom'>('camp')
+  const [pattern, setPattern] = useState<PatternId | 'custom'>('camp')
+  const [custom, setCustomState] = useState<CustomAccomp>(loadCustom)
   const [bpm, setBpm] = useState(96)
   const [beat, setBeat] = useState<{ bar: number; step: number } | null>(null)
 
@@ -82,6 +89,10 @@ export function Guitar({ onClose }: { onClose?: () => void }) {
   const setShape = (next: Shape) => { shapeRef.current = next; setShapeState(next) }
   const setCapo = (c: number) => { const v = Math.max(0, Math.min(MAX_CAPO, c)); capoRef.current = v; setCapoState(v) }
   const setTone = (v: Tone) => { toneRef.current = v; setToneState(v) }
+  const setCustom = (next: CustomAccomp) => {
+    setCustomState(next)
+    try { localStorage.setItem(CUSTOM_KEY, JSON.stringify(next)) } catch { /* ignore */ }
+  }
 
   const later = (ms: number, fn: () => void) => {
     const id = window.setTimeout(() => { timers.current.delete(id); fn() }, ms)
@@ -139,20 +150,33 @@ export function Guitar({ onClose }: { onClose?: () => void }) {
     setShape(next)
   }
 
-  // doprovod: plánuje osminy kousek dopředu podle hodin zvukové karty, ať rytmus nekolísá
+  // co se hraje: předvolby, nebo vlastní průběh a rytmus (null = aktuální hmat)
+  const current = matchChord(shape)
+  const steps = pattern === 'custom' ? custom.rhythm : PATTERNS[pattern]
+  const progChords: readonly string[] = progression === 'custom' ? custom.prog : progression === 'current' ? (current ? [current] : []) : PROGRESSIONS[progression]
+  const stepsRef = useRef(steps)
+  const progRef = useRef<readonly string[] | null>(null)
+  useLayoutEffect(() => {
+    stepsRef.current = steps
+    progRef.current = progression === 'current' ? null : progChords
+  })
+
+  // doprovod: plánuje osminy kousek dopředu podle hodin zvukové karty, ať rytmus nekolísá;
+  // rytmus a průběh čte přes refy, takže změny (i ve vlastním doprovodu) platí hned
   useEffect(() => {
     if (!playing) return
-    const steps = PATTERNS[pattern]
-    const prog = progression === 'current' ? null : PROGRESSIONS[progression]
     const stepDur = 60 / bpm / 2
     let next = synth.time() + 0.06
     const tick = () => {
       while (next < synth.time() + 0.15) {
-        const { bar, step } = pos.current
+        const steps = stepsRef.current
+        const prog = progRef.current
+        const bar = pos.current.bar
+        const step = pos.current.step % steps.length
         const name = prog ? prog[bar % prog.length] : null
         const sh = name ? CHORDS[name] : shapeRef.current
         const delay = next - synth.time()
-        const s = stroke(steps[step] ?? '-', sh)
+        const s = stroke(steps[step], sh)
         if (s.kind === 'down' || s.kind === 'up') strumShape(sh, s.kind, delay, s.kind === 'up' ? 0.62 : step === 0 ? 1 : 0.82)
         if (s.kind === 'string') pluck(s.string, sh, delay, step === 0 ? 0.95 : 0.75)
         later(delay * 1000, () => {
@@ -168,7 +192,7 @@ export function Guitar({ onClose }: { onClose?: () => void }) {
     const id = window.setInterval(tick, 25)
     return () => window.clearInterval(id)
     // strumShape/pluck/later čtou jen refy a stabilní settery, proto nejsou v závislostech
-  }, [playing, pattern, progression, bpm])
+  }, [playing, bpm])
 
   const start = async () => {
     await synth.resume()
@@ -183,12 +207,19 @@ export function Guitar({ onClose }: { onClose?: () => void }) {
     setBeat(null)
     setVibrating([])
   }
-  const current = matchChord(shape)
+
+  // úpravy vlastního doprovodu
+  const setBar = (k: number, name: string) => setCustom({ ...custom, prog: custom.prog.map((c, i) => (i === k ? name : c)) })
+  const addBar = () => setCustom({ ...custom, prog: [...custom.prog, current ?? custom.prog[custom.prog.length - 1] ?? 'G'].slice(0, MAX_BARS) })
+  const removeBar = (k: number) => setCustom({ ...custom, prog: custom.prog.filter((_, i) => i !== k) })
+  const cycleStep = (k: number) => setCustom({ ...custom, rhythm: [...custom.rhythm].map((c, i) => (i === k ? nextStep(c) : c)).join('') })
 
   // hraní na klávesnici (klávesy podle polohy, viz lib/guitar.ts)
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.ctrlKey || e.metaKey || e.altKey) return
+      // v rozbalovacím seznamu (akord taktu) nechat klávesy seznamu
+      if ((e.target as HTMLElement | null)?.tagName === 'SELECT') return
       const chord = CHORD_KEYS[e.code]
       if (chord) { e.preventDefault(); if (!e.repeat) playChord(chord); return }
       const si = STRING_KEYS.indexOf(e.code)
@@ -207,8 +238,6 @@ export function Guitar({ onClose }: { onClose?: () => void }) {
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   })
-
-  const progChords = progression === 'current' ? (current ? [current] : []) : PROGRESSIONS[progression]
 
   return (
     <div className="panel max-h-[92svh] overflow-y-auto p-4 sm:p-5 md:p-6" data-guitar>
@@ -348,28 +377,74 @@ export function Guitar({ onClose }: { onClose?: () => void }) {
           <div>
             <p className="readout mb-2">{g.progression}</p>
             <div className="flex flex-wrap gap-1.5" role="radiogroup" aria-label={g.progression}>
-              {(Object.keys(PROGRESSIONS) as ProgressionId[]).map((id) => (
+              {([...Object.keys(PROGRESSIONS), 'custom'] as (ProgressionId | 'custom')[]).map((id) => (
                 <button key={id} type="button" role="radio" aria-checked={progression === id} onClick={() => { pos.current = { bar: 0, step: 0 }; setProgression(id) }} className={`pill text-xs ${progression === id ? 'pill-solid' : ''}`}>{g.progressions[id]}</button>
               ))}
             </div>
-            <p className="mt-2 flex flex-wrap gap-1 font-mono text-xs">
-              {progChords.map((c, k) => (
-                <span key={k} className={`rounded px-1.5 py-0.5 ${beat && beat.bar % progChords.length === k ? 'bg-accent text-accent-ink' : 'text-ink-2'}`}>{chordName(c, 0, lang)}</span>
-              ))}
-            </p>
+            {progression === 'custom' ? (
+              // vlastní průběh: každý takt má svůj akord
+              <div className="mt-2 flex flex-wrap items-center gap-1.5 font-mono text-xs">
+                {custom.prog.map((c, k) => (
+                  <span key={k} className={`inline-flex items-center rounded border ${beat && beat.bar % custom.prog.length === k ? 'border-accent bg-accent text-accent-ink' : 'border-line'}`}>
+                    <span className="relative inline-flex items-center">
+                      <select value={c} onChange={(e) => setBar(k, e.target.value)} aria-label={g.bar(k + 1)} className="cursor-pointer appearance-none bg-transparent py-1 pl-2 pr-5 font-mono text-xs">
+                        {CHORD_ORDER.map((n) => <option key={n} value={n} className="bg-bg text-ink">{chordName(n, 0, lang)}</option>)}
+                      </select>
+                      <svg className="pointer-events-none absolute right-1.5 opacity-60" width="8" height="5" viewBox="0 0 8 5" aria-hidden><path d="M1 1l3 3 3-3" fill="none" stroke="currentColor" strokeWidth="1.4" /></svg>
+                    </span>
+                    {custom.prog.length > 1 && <button type="button" onClick={() => removeBar(k)} aria-label={g.removeBar(k + 1)} className="border-l border-current/20 px-1.5 py-1 hover:text-accent">×</button>}
+                  </span>
+                ))}
+                {custom.prog.length < MAX_BARS && <button type="button" onClick={addBar} className="pill px-2.5 py-1 text-xs">{g.addBar}</button>}
+              </div>
+            ) : (
+              <p className="mt-2 flex flex-wrap gap-1 font-mono text-xs">
+                {progChords.map((c, k) => (
+                  <span key={k} className={`rounded px-1.5 py-0.5 ${beat && beat.bar % progChords.length === k ? 'bg-accent text-accent-ink' : 'text-ink-2'}`}>{chordName(c, 0, lang)}</span>
+                ))}
+              </p>
+            )}
           </div>
           <div>
             <p className="readout mb-2">{g.rhythm}</p>
             <div className="flex flex-wrap gap-1.5" role="radiogroup" aria-label={g.rhythm}>
-              {(Object.keys(PATTERNS) as PatternId[]).map((id) => (
+              {([...Object.keys(PATTERNS), 'custom'] as (PatternId | 'custom')[]).map((id) => (
                 <button key={id} type="button" role="radio" aria-checked={pattern === id} onClick={() => { pos.current = { ...pos.current, step: 0 }; setPattern(id) }} className={`pill text-xs ${pattern === id ? 'pill-solid' : ''}`}>{g.patterns[id]}</button>
               ))}
             </div>
-            <p className="mt-2 flex gap-1 font-mono text-xs" aria-hidden>
-              {[...PATTERNS[pattern]].map((sym, k) => (
-                <span key={k} className={`grid h-6 w-6 place-items-center rounded border border-line ${beat?.step === k ? 'border-accent bg-accent text-accent-ink' : 'text-ink-2'}`}>{SYMBOL[sym] ?? sym}</span>
-              ))}
-            </p>
+            {pattern === 'custom' ? (
+              // vlastní rytmus: klik na krok ho přepne na další úhoz
+              <>
+                <div className="mt-2 flex flex-wrap gap-1 font-mono text-xs">
+                  {[...custom.rhythm].map((sym, k) => (
+                    <button
+                      key={k}
+                      type="button"
+                      onClick={() => cycleStep(k)}
+                      aria-label={g.stepLabel(k + 1, g.symbols[sym] ?? sym)}
+                      title={g.symbols[sym] ?? sym}
+                      className={`grid h-8 w-8 place-items-center rounded border text-sm transition-colors hover:border-accent ${beat?.step === k ? 'border-accent bg-accent text-accent-ink' : 'border-line text-ink'}`}
+                    >
+                      {SYMBOL[sym] ?? sym}
+                    </button>
+                  ))}
+                </div>
+                <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                  <span className="readout mr-1">{g.meter}</span>
+                  {METERS.map((len) => (
+                    <button key={len} type="button" onClick={() => setCustom({ ...custom, rhythm: resizePattern(custom.rhythm, len) })} className={`pill px-2.5 py-1 text-xs ${custom.rhythm.length === len ? 'pill-solid' : ''}`}>{len === 8 ? '4/4' : '3/4'}</button>
+                  ))}
+                  <button type="button" onClick={() => setCustom({ ...custom, rhythm: '-'.repeat(custom.rhythm.length) })} className="pill px-2.5 py-1 text-xs">{g.clear}</button>
+                </div>
+                <p className="readout mt-2 text-[11px] leading-snug">{g.stepHelp}</p>
+              </>
+            ) : (
+              <p className="mt-2 flex gap-1 font-mono text-xs" aria-hidden>
+                {[...steps].map((sym, k) => (
+                  <span key={k} className={`grid h-6 w-6 place-items-center rounded border border-line ${beat?.step === k ? 'border-accent bg-accent text-accent-ink' : 'text-ink-2'}`}>{SYMBOL[sym] ?? sym}</span>
+                ))}
+              </p>
+            )}
           </div>
         </div>
         <label className="mt-4 flex flex-wrap items-center gap-3">

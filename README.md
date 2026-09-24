@@ -74,7 +74,7 @@ plochu pro prst a tlačítka jsou na dotykových zařízeních vyšší.
 | razítka, dřevěná lišta, CRT | `src/index.css` → `.stamp`, `.wood`, `.crt` |
 | co říká Složka | `content.ts` → `guide` (uvítání, tipy, komentáře k sekcím, kroky prohlídky) |
 | barvy obrazovek (terminál, boot, monitor) | `src/index.css` → `--crt-*` |
-| akordy kytary | `src/lib/synth.ts` → `CHORDS` |
+| akordy, průběhy a rytmy kytary | `src/lib/guitar.ts` → `CHORDS`, `PROGRESSIONS`, `PATTERNS` |
 | karty v Pexesu | `src/lib/pexeso.ts` → `TECH_PAIRS` |
 
 ## Struktura životopisu
@@ -122,11 +122,11 @@ a při spuštění Pexesa.
 - Konami kód `↑↑↓↓←→←→BA` (nebo příkaz `hyperdrive`) spustí „odchylku“ – po obrazovce se rozvětví časové linie
 - Stavová lišta počítá, pokolikáté jsi tu (smyčka #n)
 - Planeta **Hry** a tlačítko **Zahrát si** u Pexesa spustí hru
-- Kytara v sekci O mně opravdu hraje (klik, přejetí, klávesy 1–6, mezerník = brnknutí)
+- Kytara v sekci O mně opravdu hraje (klik, přejetí, klávesy 1–6, mezerník = brnknutí) a umí doprovod – předvolby i vlastní průběh akordů a rytmus, který si prohlížeč zapamatuje
 - Klikání na monitor (5× = ztráta signálu)
 - Hodiny v navigaci ukazují, jak daleko na stránce jsi
 - Zpráva v konzoli prohlížeče; titulek karty se změní, když z ní odejdeš
-- Boot sekvence při prvním načtení (jednou za sezení, klik přeskočí)
+- Boot sekvence (zelený terminál) při každém načtení, klik nebo klávesa ji přeskočí
 - Ctrl+P vytiskne čistý životopis bez chromu
 
 ## Jednosouborový build (náhled / offline)

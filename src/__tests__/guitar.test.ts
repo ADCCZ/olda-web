@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import {
-  CHORDS, CHORD_KEYS, CHORD_ORDER, PATTERNS, PROGRESSIONS, chordName, keyForChord, keyLabel,
-  matchChord, noteName, stroke, strumStrings,
+  CHORDS, CHORD_KEYS, CHORD_ORDER, DEFAULT_CUSTOM, MAX_BARS, PATTERNS, PROGRESSIONS, STEP_CYCLE, chordName, keyForChord, keyLabel,
+  matchChord, nextStep, noteName, resizePattern, sanitizeCustom, stroke, strumStrings,
 } from '../lib/guitar'
 
 describe('kytara', () => {
@@ -68,5 +68,21 @@ describe('kytara', () => {
     expect(keyLabel('KeyZ', 'cs')).toBe('Y')
     expect(keyLabel('KeyY', 'en')).toBe('Y')
     expect(keyLabel('Digit3', 'cs')).toBe('3')
+  })
+
+  it('vlastní rytmus: krok se přepíná dokola a takt mění délku', () => {
+    expect(nextStep('-')).toBe('D')
+    expect(nextStep('1')).toBe('-')
+    for (const sym of STEP_CYCLE) expect(STEP_CYCLE).toContain(nextStep(sym))
+    expect(resizePattern('D-DU-UDU', 6)).toBe('D-DU-U')
+    expect(resizePattern('B-D-D-', 8)).toBe('B-D-D---')
+  })
+
+  it('uložené vlastní nastavení se očistí, poškozené nahradí výchozím', () => {
+    expect(sanitizeCustom(null)).toEqual(DEFAULT_CUSTOM)
+    expect(sanitizeCustom({ prog: ['G', 'Xm', 'D'], rhythm: 'B-D-D-' })).toEqual({ prog: ['G', 'D'], rhythm: 'B-D-D-' })
+    expect(sanitizeCustom({ prog: [], rhythm: 'DDDDD' })).toEqual(DEFAULT_CUSTOM)
+    expect(sanitizeCustom({ prog: Array(30).fill('C'), rhythm: 'D-DU-UDX' }).prog).toHaveLength(MAX_BARS)
+    for (const c of DEFAULT_CUSTOM.prog) expect(CHORDS[c]).toBeDefined()
   })
 })

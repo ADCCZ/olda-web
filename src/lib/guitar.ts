@@ -130,3 +130,25 @@ export function keyLabel(code: string, lang: Lang) {
   if (lang === 'cs' && c === 'Z') return 'Y'
   return c
 }
+
+/* ---------- vlastní doprovod ---------- */
+
+/** krok vlastního rytmu se kliknutím přepíná v tomto pořadí (1–3 = horní struny) */
+export const STEP_CYCLE = ['-', 'D', 'U', 'B', 'A', '3', '2', '1'] as const
+export const nextStep = (sym: string) => STEP_CYCLE[(STEP_CYCLE.indexOf(sym as (typeof STEP_CYCLE)[number]) + 1) % STEP_CYCLE.length]
+/** takt 4/4 = 8 osmin, 3/4 = 6 */
+export const METERS = [8, 6] as const
+export const MAX_BARS = 16
+/** změna taktu: vzorec se zkrátí, nebo doplní pauzami */
+export const resizePattern = (p: string, len: number) => (p + '-'.repeat(len)).slice(0, len)
+
+export type CustomAccomp = { prog: string[]; rhythm: string }
+export const DEFAULT_CUSTOM: CustomAccomp = { prog: ['C', 'G', 'Am', 'F'], rhythm: PATTERNS.camp }
+
+/** uložené nastavení z prohlížeče: neznámé akordy a znaky zahodí, jinak výchozí */
+export function sanitizeCustom(raw: unknown): CustomAccomp {
+  const r = (raw ?? {}) as Partial<CustomAccomp>
+  const prog = Array.isArray(r.prog) ? r.prog.filter((c): c is string => typeof c === 'string' && c in CHORDS).slice(0, MAX_BARS) : []
+  const okRhythm = typeof r.rhythm === 'string' && (METERS as readonly number[]).includes(r.rhythm.length) && [...r.rhythm].every((c) => (STEP_CYCLE as readonly string[]).includes(c))
+  return { prog: prog.length ? prog : [...DEFAULT_CUSTOM.prog], rhythm: okRhythm ? (r.rhythm as string) : DEFAULT_CUSTOM.rhythm }
+}
