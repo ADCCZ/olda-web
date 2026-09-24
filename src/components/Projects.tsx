@@ -11,6 +11,8 @@ const langColor: Record<string, string> = {
   Makefile: '#427819', Shell: '#89e051', Dockerfile: '#384d54', Vue: '#41b883', SCSS: '#c6538c',
 }
 const color = (l: string) => langColor[l] ?? 'var(--ink-2)'
+/** tlačítko odkazu v rejstříku: vyplní šířku sloupce, obsah na střed */
+const LINK = 'pill w-full justify-center whitespace-nowrap'
 
 function fmtDate(iso: string, lang: string) {
   return new Date(iso).toLocaleDateString(lang === 'cs' ? 'cs-CZ' : 'en-GB', { month: 'long', year: 'numeric' })
@@ -67,11 +69,12 @@ export function Projects({ onPexeso }: { onPexeso: () => void }) {
             p.privateRepo ? t.projects.privateRepo[p.privateRepo] : t.projects.noRepo
           )}
         </p>
-        <div className="flex flex-wrap gap-2 md:justify-end">
-          {r && <a href={r.html_url} target="_blank" rel="noreferrer" className="pill"><Github width={15} height={15} />{t.projects.repoLabel}</a>}
-          {live && <a href={live} target="_blank" rel="noreferrer" className="pill pill-solid"><External width={15} height={15} />{t.projects.liveLabel}</a>}
+        {/* odkazy: na desktopu pod sebou u pravého okraje, všechny stejně široké */}
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(9.5rem,1fr))] gap-2 md:ml-auto md:w-[9.5rem] md:grid-cols-1">
+          {r && <a href={r.html_url} target="_blank" rel="noreferrer" className={LINK}><Github width={15} height={15} />{t.projects.repoLabel}</a>}
+          {live && <a href={live} target="_blank" rel="noreferrer" className={`${LINK} pill-solid`}><External width={15} height={15} />{t.projects.liveLabel}</a>}
           {p.repo === 'tmwmf_sem_UPS' && (
-            <button type="button" onClick={onPexeso} className="pill pill-solid"><Gamepad width={15} height={15} />{t.projects.play}</button>
+            <button type="button" onClick={onPexeso} className={`${LINK} pill-solid`}><Gamepad width={15} height={15} />{t.projects.play}</button>
           )}
         </div>
       </li>
