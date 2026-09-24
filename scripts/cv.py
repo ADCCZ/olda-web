@@ -71,13 +71,15 @@ DATA = {
         ('Síťové Pexeso', 'Server v čistém C (TCP, select() multiplexing), klient v JavaFX, vlastní textový protokol, 2–4 hráči. KIV/UPS.',
          'C, TCP/IP, JavaFX, Maven', 'github: adccz/tmwmf_sem_UPS'),
         ('Další semestrální práce', 'emulátor počítače KMX v C (KIV/PC), virtuální souborový systém v C (KIV/ZOS), '
-         'paralelní zpracování meteodat v C++ a OpenMP (KIV/UPP), 3D hra v C# a OpenTK (KIV/ZPG).',
+         'paralelní zpracování meteodat v C++ a OpenMP (KIV/UPP), 3D hra v C# a OpenTK (KIV/ZPG), '
+         '10 úloh z testování softwaru (KIV/OKS).',
          '', 'Soukromé repozitáře, přístup na vyžádání'),
     ],
     'skills': [
         ('Jazyky', 'PHP, C (pokročile); JavaScript, Java, C#, Python, SQL; C++ (základy)'),
         ('Web', 'Nette, Latte, HTML5 / CSS3 (pokročile); Tailwind CSS, React, Vue.js, Twig; Node.js (Express, Socket.IO)'),
-        ('Nástroje', 'MySQL, Git a GitHub, Linux CLI, Vite, LaTeX; Docker, Make / CMake / Maven, pytest'),
+        ('Nástroje', 'MySQL, Git a GitHub, Linux CLI, Vite, LaTeX; Docker, Make / CMake / Maven'),
+        ('Testování', 'pytest (mock, parametrizace); coverage, Squash TM, Robot Framework, BDD (Gherkin)'),
         ('Další', 'TCP/IP sokety, REST API, WebSockety, OAuth 2.0, JWT, OpenMP, NFC, OpenGL / OpenTK, pandas, Power BI'),
         ('V plánu', 'TypeScript, Next.js, PostgreSQL, Spring Boot, GitHub Actions (CI/CD), testování (JUnit, Jest), Kubernetes, AWS / cloud'),
     ],
@@ -371,7 +373,9 @@ def build_plain(path):
     for t, d, tech, link in DATA['projects']:
         s.append(Paragraph('<b>%s:</b> %s <font color="#6f5636">%s</font>' % (t, d, ', '.join(x for x in (tech, link) if x)), bl, bulletText='•'))
     s.append(Paragraph('Technické dovednosti', h))
-    for k, v in DATA['skills']: s.append(Paragraph('<b>%s:</b> %s' % (k, v), body))
+    # plánované technologie do strohé verze (pro personální systémy) nepatří, ať se vejde na jednu stranu
+    for k, v in DATA['skills']:
+        if k != 'V plánu': s.append(Paragraph('<b>%s:</b> %s' % (k, v), body))
     s.append(Paragraph('Měkké dovednosti', h))
     for k, v in DATA['soft']: s.append(Paragraph('<b>%s:</b> %s' % (k, v), bl, bulletText='•'))
     s.append(Paragraph('Jazyky', h)); s.append(Paragraph(', '.join('%s (%s)' % (l, lv) for l, lv in DATA['languages']), body))

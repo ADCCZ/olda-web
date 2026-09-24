@@ -224,6 +224,12 @@ const cs = {
         tags: ['C#', '.NET 8', 'OpenTK', 'GLSL'],
       },
       {
+        repo: null,
+        title: 'Testování softwaru (10 úloh KIV/OKS)',
+        desc: 'Jednotkové testy odhalující zanesené chyby, parametrizace a mock objekty, 100% pokrytí příkazů a větví, návrh požadavků a testovacích případů a manuální testovací kampaně ve Squash TM, automatizované testy webové aplikace v Robot Frameworku a Browser Library (Page Object Model) i řízené daty, BDD v Gherkinu, testy logování a testy databáze SQLite.',
+        tags: ['pytest', 'mock', 'coverage', 'Squash TM', 'Robot Framework', 'BDD / Gherkin', 'SQLite'],
+      },
+      {
         repo: 'web-foodapp',
         title: 'FoodApp',
         desc: 'Webová aplikace kolem jídla a receptů postavená na PHP šablonách Twig.',
@@ -279,7 +285,15 @@ const cs = {
         { name: 'LaTeX', level: 3 }, // dokumentace k šesti projektům
         { name: 'Docker', level: 2 }, // portál (Dockerfile, compose, nasazení na Railway)
         { name: 'Make / CMake / Maven', level: 2 }, // C projekty, klient Pexesa
-        { name: 'pytest', level: 2 }, // bakalářka (24 testů)
+      ] },
+      { name: 'Testování', items: [
+        { name: 'pytest (fixtures, parametrizace, mock)', level: 3 }, // bakalářka (24 testů), KIV/OKS úlohy 01–03, 08, 09
+        { name: 'Pokrytí kódu (coverage)', level: 2 }, // KIV/OKS 03: 100% pokrytí příkazů a větví
+        { name: 'Návrh testů, Squash TM', level: 2 }, // KIV/OKS 04–05: požadavky, testovací případy, manuální kampaně
+        { name: 'Robot Framework + Browser Library', level: 2 }, // KIV/OKS 06, 07, 10: webové testy s POM, řízené daty, DB
+        { name: 'BDD (Gherkin)', level: 2 }, // KIV/OKS 09: Scenario Outline, tagy, pozitivní i negativní testy
+        { name: 'Testy databáze (SQLite)', level: 2 }, // KIV/OKS 10: tabulky, sloupce, triggery
+        { name: 'Logování (Python logging)', level: 2 }, // KIV/OKS 08: dictConfig z JSON, testy úrovní
       ] },
       { name: 'Grafika a data', items: [
         { name: 'pandas / matplotlib', level: 3 }, // bakalářka, UPP
@@ -429,7 +443,7 @@ const cs = {
     help: 'Příkazy: help, whoami, variant, timeline, prune, guide, ls, cat <soubor>, neofetch, skills, projects, open <repo>, pexeso, scout, guitar, marvel, games, theme, lang, date, history, clear, exit. Tab doplňuje, šipky procházejí historii.',
     variant: 'Evidované varianty subjektu ŠVEHLA:\n  01  junior full-stack vývojář stav: aktivní\n  02  oblastní vedoucí         stav: aktivní\n  03  kytarista                stav: aktivní, občas rozladěný\n  04  hráč videoher            stav: aktivní po půlnoci\n  05  student SWIS             stav: startuje\nVšechny varianty běží souběžně. Odchylka: žádná. Zvláštnost: vaří pro padesát lidí.',
     prune: 'Žádost o ořezání zamítnuta. Tahle linie se líbí.',
-    timelineCmd: '2011 ─┬─ kytara\n2012 ─┼─ Klub Pathfinder, hry\n2018 ─┼─ rádce a vedoucí v Pathfinderu\n2019 ─┼─ SPŠ Strakonice, počítačová grafika a CNC\n2020 ─┼─ rádcovský kurz\n2021 ─┼─ praxe v Automa CZ (i 2022)\n2023 ─┼─ FAV ZČU, Bc. Počítačové vědy, první kód, festival United\n2024 ─┼─ web-foodapp, vůdcovský kurz, oblastní vedoucí Jižního kříže\n2025 ─┼─ kiosek pro Eurosoftware (Vue.js), Síťové Pexeso (C + JavaFX)\n2026 ─┼─ CampMaster 3000, bakalářka, komunitní portál, tenhle web\n2027 ─┼─ MasterGuide\n      └─ SWIS ▶ (větev se otevírá)',
+    timelineCmd: '2011 ─┬─ kytara\n2012 ─┼─ Klub Pathfinder, hry\n2018 ─┼─ rádce a vedoucí v Pathfinderu\n2019 ─┼─ SPŠ Strakonice, počítačová grafika a CNC\n2020 ─┼─ rádcovský kurz\n2021 ─┼─ praxe v Automa CZ (i 2022)\n2023 ─┼─ FAV ZČU, Bc. Počítačové vědy, první kód, festival United\n2024 ─┼─ web-foodapp, vůdcovský kurz, oblastní vedoucí Jižního kříže\n2025 ─┼─ kiosek pro Eurosoftware (Vue.js), Síťové Pexeso (C + JavaFX), úlohy z testování (KIV/OKS)\n2026 ─┼─ CampMaster 3000, bakalářka, komunitní portál, tenhle web\n2027 ─┼─ MasterGuide\n      └─ SWIS ▶ (větev se otevírá)',
     unknown: (c: string) => `příkaz nenalezen: ${c}. Zkus "help".`,
     cd: 'Bydlím v /home/olda a nikam se nestěhuju.',
     catUsage: 'použití: cat <soubor>. Soubory vypíše "ls".',
@@ -680,6 +694,12 @@ const en: typeof cs = {
         tags: ['C#', '.NET 8', 'OpenTK', 'GLSL'],
       },
       {
+        repo: null,
+        title: 'Software testing (10 KIV/OKS assignments)',
+        desc: 'Unit tests that expose planted bugs, parametrisation and mock objects, 100% statement and branch coverage, designing requirements and test cases and running manual test campaigns in Squash TM, automated and data-driven tests of a web app in Robot Framework and Browser Library (Page Object Model), BDD in Gherkin, logging tests and SQLite database tests.',
+        tags: ['pytest', 'mock', 'coverage', 'Squash TM', 'Robot Framework', 'BDD / Gherkin', 'SQLite'],
+      },
+      {
         repo: 'web-foodapp',
         title: 'FoodApp',
         desc: 'Web application around food and recipes built on PHP with Twig templates.',
@@ -708,7 +728,12 @@ const en: typeof cs = {
       ] },
       { name: 'Databases & tools', items: [
         { name: 'MySQL', level: 3 }, { name: 'Git & GitHub', level: 3 }, { name: 'Linux CLI', level: 3 }, { name: 'Vite', level: 3 },
-        { name: 'LaTeX', level: 3 }, { name: 'Docker', level: 2 }, { name: 'Make / CMake / Maven', level: 2 }, { name: 'pytest', level: 2 },
+        { name: 'LaTeX', level: 3 }, { name: 'Docker', level: 2 }, { name: 'Make / CMake / Maven', level: 2 },
+      ] },
+      { name: 'Testing', items: [
+        { name: 'pytest (fixtures, parametrisation, mocks)', level: 3 }, { name: 'Code coverage', level: 2 }, { name: 'Test design, Squash TM', level: 2 },
+        { name: 'Robot Framework + Browser Library', level: 2 }, { name: 'BDD (Gherkin)', level: 2 },
+        { name: 'Database tests (SQLite)', level: 2 }, { name: 'Logging (Python logging)', level: 2 },
       ] },
       { name: 'Graphics & data', items: [
         { name: 'pandas / matplotlib', level: 3 }, { name: 'Open data', level: 3 }, { name: 'Power BI', level: 2 },
@@ -855,7 +880,7 @@ const en: typeof cs = {
     help: 'Commands: help, whoami, variant, timeline, prune, guide, ls, cat <file>, neofetch, skills, projects, open <repo>, pexeso, scout, guitar, marvel, games, theme, lang, date, history, clear, exit. Tab completes, arrows walk history.',
     variant: 'Variants on record for subject ŠVEHLA:\n  01  junior full-stack developer status: active\n  02  regional leader          status: active\n  03  guitarist                status: active, occasionally out of tune\n  04  gamer                    status: active after midnight\n  05  SWIS student             status: starting\nAll variants run concurrently. Deviation: none. Notable: cooks for fifty people.',
     prune: 'Pruning request denied. We like this line.',
-    timelineCmd: '2011 ─┬─ guitar\n2012 ─┼─ Klub Pathfinder, games\n2018 ─┼─ patrol leader and leader in Pathfinders\n2019 ─┼─ SPŠ Strakonice, computer graphics and CNC\n2020 ─┼─ patrol leader course\n2021 ─┼─ placement at Automa CZ (also 2022)\n2023 ─┼─ FAV ZČU, BSc Computer Science, first code, United festival\n2024 ─┼─ web-foodapp, unit leader course, regional leader of Jižní kříž\n2025 ─┼─ kiosk for Eurosoftware (Vue.js), Networked Memory game (C + JavaFX)\n2026 ─┼─ CampMaster 3000, thesis, community portal, this website\n2027 ─┼─ Master Guide\n      └─ SWIS ▶ (branch opening)',
+    timelineCmd: '2011 ─┬─ guitar\n2012 ─┼─ Klub Pathfinder, games\n2018 ─┼─ patrol leader and leader in Pathfinders\n2019 ─┼─ SPŠ Strakonice, computer graphics and CNC\n2020 ─┼─ patrol leader course\n2021 ─┼─ placement at Automa CZ (also 2022)\n2023 ─┼─ FAV ZČU, BSc Computer Science, first code, United festival\n2024 ─┼─ web-foodapp, unit leader course, regional leader of Jižní kříž\n2025 ─┼─ kiosk for Eurosoftware (Vue.js), Networked Memory game (C + JavaFX), testing assignments (KIV/OKS)\n2026 ─┼─ CampMaster 3000, thesis, community portal, this website\n2027 ─┼─ Master Guide\n      └─ SWIS ▶ (branch opening)',
     unknown: (c: string) => `command not found: ${c}. Try "help".`,
     cd: "I live in /home/olda and I'm not moving.",
     catUsage: 'usage: cat <file>. "ls" lists the files.',
