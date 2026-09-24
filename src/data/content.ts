@@ -127,7 +127,7 @@ const cs = {
       'Baví mě celá cesta od návrhu architektury přes backend a databáze až po poslední detail v\u00a0rozhraní. Nejčastěji píšu v PHP (Nette), JavaScriptu (React, Vue) a Pythonu, k tomu MySQL, Git a Linux. Na čem se domluvíme, to dodám, a za hotové považuju až to, co je otestované a opravdu funguje.',
       'Nové věci se učím rád. Díky školním projektům jsem si vyzkoušel třeba NFC, paralelní výpočty v\u00a0OpenMP nebo 3D grafiku v\u00a0OpenGL a teď se pouštím do TypeScriptu. Při vývoji pracuju s\u00a0AI asistentem Claude (Claude Code), se kterým vznikl i\u00a0tenhle web.',
       'Zodpovědnost beru vážně i\u00a0mimo kód: v Klubu Pathfinder jsem od roku 2012, od 2018 jako rádce a vedoucí a od 2024 jako oblastní vedoucí oblasti Jižní kříž. Moje srdcovka jsou tábory: jeden jsem vedl jako programový vedoucí a dva jako hlavní vedoucí. Teď dokončuju MasterGuide, nejvyšší stupeň vzdělání v\u00a0Pathfinderu. Ve volném čase hraju na kytaru, lezu po skalách a ferratách, koukám na marvelovky a seriály a hraju hry.',
-      'Od podzimu 2026 pokračuju v navazujícím studiu Softwarové inženýrství (SWIS). Hledám stáž nebo částečný úvazek, kde přiložím ruku k\u00a0dílu a budu se dál učit od zkušenějších.',
+      'Od podzimu 2026 pokračuju v navazujícím studiu Softwarové a informační systémy (SWIS). Hledám stáž nebo částečný úvazek, kde přiložím ruku k\u00a0dílu a budu se dál učit od zkušenějších.',
     ],
     interestsTitle: 'Mimo kód',
     interests: [
@@ -312,7 +312,7 @@ const cs = {
     items: [
       { period: '2019 – 2023', title: 'Počítačová grafika a CNC technika', place: 'Střední průmyslová škola Strakonice (VOŠ, SPŠ a SOŠ řemesel a služeb)' },
       { period: '2023 – 2026', title: 'Bc. Počítačové vědy', place: 'Fakulta aplikovaných věd, ZČU v Plzni', note: 'Bakalářský projekt: Otevřená data a\u00a0jejich analýzy v\u00a0lázeňských místech pro demografii/školství a\u00a0turismus' },
-      { period: '2026 –', title: 'Ing. Softwarové inženýrství (SWIS)', place: 'Fakulta aplikovaných věd, ZČU v Plzni', note: 'Navazující studium', planned: true },
+      { period: '2026 –', title: 'Ing. Softwarové a informační systémy (SWIS)', place: 'Fakulta aplikovaných věd, ZČU v Plzni', note: 'Navazující studium', planned: true },
     ] as TimelineItem[],
   },
   experience: {
@@ -606,7 +606,7 @@ const en: typeof cs = {
       "I enjoy the whole journey, from designing the architecture through the backend and databases to the last detail of the interface. I mostly write PHP (Nette), JavaScript (React, Vue) and Python, with MySQL, Git and Linux around it. What we agree on, I deliver, and I only call something done once it's tested and actually works.",
       "I love learning new things. Thanks to school projects I got to try NFC, parallel computing with OpenMP and 3D graphics in OpenGL, and now I'm getting into TypeScript. I work with the AI assistant Claude (Claude Code); this website was built with it too.",
       "I take responsibility seriously outside code too: I've been in Klub Pathfinder since 2012, a patrol leader and leader since 2018, and since 2024 I've led the Jižní kříž region. Camps are my passion: I've run one as programme leader and two as head leader. I'm now finishing Master Guide, the highest level of training in Pathfinders. In my free time I play guitar, go rock climbing and do via ferratas, watch Marvel films and series and play games.",
-      "From autumn 2026 I continue with the Software Engineering (SWIS) master's. I'm looking for an internship or part-time role where I can pitch in and keep learning from more experienced people.",
+      "From autumn 2026 I continue with the Software and Information Systems (SWIS) master's. I'm looking for an internship or part-time role where I can pitch in and keep learning from more experienced people.",
     ],
     interestsTitle: 'Beyond code',
     interests: [
@@ -760,7 +760,7 @@ const en: typeof cs = {
     items: [
       { period: '2019 – 2023', title: 'Computer Graphics and CNC Technology', place: 'Secondary Technical School (SPŠ), Strakonice' },
       { period: '2023 – 2026', title: 'BSc Computer Science', place: 'Faculty of Applied Sciences, University of West Bohemia, Pilsen', note: "Bachelor's project: Open data and their analyses in spa towns for demography/education and tourism" },
-      { period: '2026 –', title: 'MSc Software Engineering (SWIS)', place: 'Faculty of Applied Sciences, University of West Bohemia, Pilsen', note: "Master's programme", planned: true },
+      { period: '2026 –', title: 'MSc Software and Information Systems (SWIS)', place: 'Faculty of Applied Sciences, University of West Bohemia, Pilsen', note: "Master's programme", planned: true },
     ],
   },
   experience: {
