@@ -40,6 +40,7 @@ DATA = {
                 's vedením týmů, organizací projektů a krizovým řízením z neziskového sektoru. '
                 'Hledám stáž nebo částečný úvazek.'),
     'education': [
+        ('2019 – 2023', 'Počítačová grafika a CNC technika', 'Střední průmyslová škola Strakonice', ''),
         ('2023 – 2026', 'Bc. Počítačové vědy', 'Fakulta aplikovaných věd, Západočeská univerzita v Plzni',
          'Bakalářská práce: vizualizace regionálních otevřených dat.'),
         ('2026 –', 'Ing. Softwarové inženýrství (SWIS)', 'Fakulta aplikovaných věd, ZČU v Plzni',
@@ -54,6 +55,9 @@ DATA = {
         ('průběžně', 'Vývoj webů na zakázku', 'komunitní a spolkové weby', [
             'Informační a komunitní portál: full-stack řešení v Nette, Tailwind CSS a MySQL s autentizací uživatelů a registrací na akce.',
             'Správa multimediálního obsahu, nasazení a údržba; komunikace se zadavatelem a iterace podle zpětné vazby.',
+        ]),
+        ('2021, 2022', 'Odborná praxe na střední škole', 'Automa CZ s.r.o., Strakonice', [
+            'Montáž testovacích zařízení pro displeje Audi a Renault podle výkresů a Inventoru, ruční dokončování dílů, skladová evidence.',
         ]),
     ],
     'projects': [
@@ -278,7 +282,7 @@ def build_playful(path):
 
     # vzdělání
     s.append(Paragraph('Vzdělání', S['h'])); s.append(rule())
-    rows = [[Paragraph(p, S['mono']), Paragraph('<b>%s</b><br/><font color="#6f5636">%s. %s</font>' % (t, pl, n), S['body'])] for p, t, pl, n in DATA['education']]
+    rows = [[Paragraph(p, S['mono']), Paragraph('<b>%s</b><br/><font color="#6f5636">%s</font>' % (t, '. '.join(x for x in (pl, n) if x)), S['body'])] for p, t, pl, n in DATA['education']]
     t = Table(rows, colWidths=[30 * mm, W - 2 * M - 30 * mm])
     t.setStyle(TableStyle([('VALIGN', (0, 0), (-1, -1), 'TOP'), ('LEFTPADDING', (0, 0), (-1, -1), 0), ('TOPPADDING', (0, 0), (-1, -1), 2.5), ('BOTTOMPADDING', (0, 0), (-1, -1), 2.5),
                            ('LINEBELOW', (0, 0), (-1, -2), 0.4, LINE)]))
@@ -344,7 +348,7 @@ def build_playful(path):
 
 # ============================================================ STROHÁ VERZE (ATS)
 def build_plain(path):
-    doc = SimpleDocTemplate(path, pagesize=A4, leftMargin=18 * mm, rightMargin=18 * mm, topMargin=15 * mm, bottomMargin=13 * mm,
+    doc = SimpleDocTemplate(path, pagesize=A4, leftMargin=18 * mm, rightMargin=18 * mm, topMargin=12 * mm, bottomMargin=11 * mm,
                             title=DATA['name'] + ', životopis', author=DATA['name'])
     n = ParagraphStyle('n', fontName='PlexB', fontSize=20, leading=24, textColor=INK)
     sub = ParagraphStyle('s', fontName='Plex', fontSize=9.5, leading=13, textColor=INK2)
@@ -356,7 +360,7 @@ def build_plain(path):
     s.append(Paragraph(', '.join(parts), sub)); s.append(rule(INK, 0.6, W - 36 * mm, 4))
     s.append(Paragraph('Profil', h)); s.append(Paragraph(DATA['profile'], body))
     s.append(Paragraph('Vzdělání', h))
-    for p, t, pl, note in DATA['education']: s.append(Paragraph('<b>%s</b>  %s, %s. %s' % (p, t, pl, note), body))
+    for p, t, pl, note in DATA['education']: s.append(Paragraph('<b>%s</b>  %s, %s' % (p, t, '. '.join(x for x in (pl, note) if x)), body))
     s.append(Paragraph('Praxe', h))
     for p, t, org, bullets in DATA['experience']:
         s.append(Paragraph('<b>%s</b>, %s (%s)' % (t, org, p), body))

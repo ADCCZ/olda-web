@@ -205,6 +205,7 @@ const cs = {
     title: 'Vzdělání',
     stamp: 'neořezávat',
     items: [
+      { period: '2019 – 2023', title: 'Počítačová grafika a CNC technika', place: 'Střední průmyslová škola Strakonice (VOŠ, SPŠ a SOŠ řemesel a služeb)' },
       { period: '2023 – 2026', title: 'Bc. Počítačové vědy', place: 'Fakulta aplikovaných věd, ZČU v Plzni', note: 'Bakalářská práce: vizualizace regionálních otevřených dat' },
       { period: '2026 –', title: 'Ing. Softwarové inženýrství (SWIS)', place: 'Fakulta aplikovaných věd, ZČU v Plzni', note: 'Navazující studium', planned: true },
     ] as TimelineItem[],
@@ -231,6 +232,16 @@ const cs = {
           'Informační a komunitní portál: full-stack řešení v Nette, Tailwind CSS a MySQL s autentizací uživatelů a registrací na akce.',
           'Správa multimediálního obsahu, nasazení a údržba.',
           'Komunikace se zadavatelem, sběr požadavků, iterace podle zpětné vazby.',
+        ],
+      },
+      {
+        period: '2021, 2022',
+        title: 'Odborná praxe na střední škole',
+        org: 'Automa CZ s.r.o., Strakonice · průmyslová automatizace, jednoúčelové stroje',
+        bullets: [
+          'Dva dvoutýdenní bloky. Montáž klimakomory pro testování displejů do aut Audi a přípravku pro kontrolu displejů Renault podle výkresů a modelu v Inventoru.',
+          'Ruční dokončování strojních dílů: srážení hran, kosení děr, dořezávání závitů, leštění a broušení.',
+          'Sklad a dokumentace: příjem dílů a skladová evidence, inventura se čtečkou kódů, třídění výkresové dokumentace.',
         ],
       },
     ],
@@ -536,6 +547,7 @@ const en: typeof cs = {
     title: 'Education',
     stamp: 'do not prune',
     items: [
+      { period: '2019 – 2023', title: 'Computer Graphics and CNC Technology', place: 'Secondary Technical School (SPŠ), Strakonice' },
       { period: '2023 – 2026', title: 'BSc Computer Science', place: 'Faculty of Applied Sciences, University of West Bohemia, Pilsen', note: 'Thesis: regional open-data visualisation' },
       { period: '2026 –', title: 'MSc Software Engineering (SWIS)', place: 'Faculty of Applied Sciences, University of West Bohemia, Pilsen', note: "Master's programme", planned: true },
     ],
@@ -562,6 +574,16 @@ const en: typeof cs = {
           'Community information portal: full-stack solution in Nette, Tailwind CSS and MySQL with user authentication and event registration.',
           'Multimedia content management, deployment and maintenance.',
           'Working with the client: gathering requirements, iterating on feedback.',
+        ],
+      },
+      {
+        period: '2021, 2022',
+        title: 'Secondary school work placement',
+        org: 'Automa CZ s.r.o., Strakonice · industrial automation, special-purpose machines',
+        bullets: [
+          'Two two-week placements. Assembling a climate chamber for testing Audi car displays and a test fixture for Renault displays from drawings and an Inventor model.',
+          'Manual finishing of machined parts: deburring, chamfering holes, cutting threads, polishing and grinding.',
+          'Warehouse and documentation: receiving parts and keeping stock records, stock-taking with a barcode scanner, sorting technical drawings.',
         ],
       },
     ],
