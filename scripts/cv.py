@@ -64,7 +64,7 @@ DATA = {
     'projects': [
         ('CampMaster 3000', 'Dashboard pro řízení táborové hry: trasy na mapě, týmy, pravidla, bodování v reálném čase. Semestrální projekt KIV/UUR.',
          'React, Tailwind CSS, Recharts, Leaflet', 'campmaster-3000.vercel.app'),
-        ('Informační a komunitní portál', 'Full-stack řešení na míru: autentizace, registrace na akce, správa multimediálního obsahu.',
+        ('Informační a komunitní portál', 'Web oblasti Jižní kříž Klubu Pathfinder, ve vývoji: autentizace, registrace na akce, správa multimediálního obsahu.',
          'PHP, Nette, Latte, Tailwind CSS, MySQL', 'github: adccz'),
         ('Otevřená data v lázeňských místech', 'Bakalářský projekt: ETL pipeline nad daty ČSÚ, MŠMT a MPSV, 15 grafů a Power BI report.',
          'Python, pandas, Power BI', 'github: adccz/bkp-tmwmf'),

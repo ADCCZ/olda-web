@@ -182,7 +182,7 @@ const cs = {
       {
         repo: 'web_oblastni-stranky_jk',
         title: 'Informační a komunitní portál',
-        desc: 'Full-stack řešení na míru pro oblastní web mládežnické organizace: autentizace uživatelů, registrace na akce, správa multimediálního obsahu.',
+        desc: 'Web pro oblast Jižní kříž Klubu Pathfinder, který mám momentálně ve vývoji. Full-stack řešení na míru: autentizace uživatelů, registrace na akce, správa multimediálního obsahu.',
         tags: ['PHP', 'Nette', 'Latte', 'Tailwind CSS', 'MySQL'],
         featured: true,
       },
@@ -671,7 +671,7 @@ const en: typeof cs = {
       {
         repo: 'web_oblastni-stranky_jk',
         title: 'Community information portal',
-        desc: "Custom full-stack solution for a youth organisation's regional site: user authentication, event registration, multimedia content management.",
+        desc: 'Website for the Jižní kříž region of Klub Pathfinder, currently in development. A custom full-stack solution: user authentication, event registration, multimedia content management.',
         tags: ['PHP', 'Nette', 'Latte', 'Tailwind CSS', 'MySQL'],
         featured: true,
       },
