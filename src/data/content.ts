@@ -101,8 +101,8 @@ const cs = {
     loop: 'smyčka',
     name: 'Oldřich Švehla',
     tagline:
-      'Junior full-stack vývojář z Plzně, pro přátele Olda. Letos jsem dokončil bakaláře na FAV ZČU, jsem oblastní vedoucí v Klubu Pathfinder a hledám stáž nebo částečný úvazek.',
-    role: 'junior full-stack vývojář, Plzeň',
+      'Junior full-stack vývojář pocházející ze Strakonic, pro přátele Olda. Letos jsem dokončil bakaláře na FAV ZČU v Plznia pokračuji v navazujícím studiu, jsem oblastní vedoucí v Klubu Pathfinder a hledám stáž nebo částečný úvazek.',
+    role: 'Junior full-stack vývojář, Plzeň',
     ctaProjects: 'Ukaž projekty',
     ctaContact: 'nebo mi napiš',
     orbitHint: 'Každá větev je něco, co běží dál. Klikni na ni.',
@@ -302,7 +302,7 @@ const cs = {
         { name: 'JavaFX', level: 2 }, // klient Pexesa
       ] },
     ] as SkillGroup[],
-    planned: ['TypeScript', 'Next.js', 'PostgreSQL', 'Spring Boot', 'GitHub Actions (CI/CD)', 'Testování (JUnit, Jest)', 'Kubernetes', 'AWS / cloud'],
+    planned: ['Next.js', 'PostgreSQL', 'Spring Boot', 'GitHub Actions (CI/CD)', 'Testování (JUnit, Jest)', 'Kubernetes', 'AWS / cloud'],
   },
   education: {
     title: 'Vzdělání',
