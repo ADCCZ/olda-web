@@ -20,24 +20,28 @@ export class StringSynth {
     return this.ctx
   }
 
+  /** čas zvukové karty v sekundách (pro plánování doprovodu dopředu) */
+  time() {
+    return this.ensure().currentTime
+  }
+
   async resume() {
     const ctx = this.ensure()
     if (ctx.state === 'suspended') await ctx.resume()
   }
 
-  pluck(freq: number, delay = 0, velocity = 1) {
+  pluck(freq: number, delay = 0, velocity = 1, tone: Tone = 'steel') {
+    const { decay, cutoff, seconds } = TONES[tone]
     const ctx = this.ensure()
     if (ctx.state === 'suspended') void ctx.resume()
     const sr = ctx.sampleRate
     // průměrovací filtr přidává půl vzorku zpoždění, proto -0.5 (jinak hraje mírně vysoko)
     const n = Math.max(2, Math.round(sr / freq - 0.5))
-    const seconds = 2.2
     const buffer = ctx.createBuffer(1, Math.round(sr * seconds), sr)
     const out = buffer.getChannelData(0)
     const ring = new Float32Array(n)
     for (let i = 0; i < n; i++) ring[i] = Math.random() * 2 - 1
-    // 0.999: struna doznívá cca 2 s, vyšší tóny přirozeně dřív (tlumí je průměrovací filtr)
-    const decay = 0.999
+    // decay 0.999: struna doznívá cca 2 s, vyšší tóny přirozeně dřív (tlumí je průměrovací filtr)
     let idx = 0
     for (let i = 0; i < out.length; i++) {
       const cur = ring[idx]
@@ -50,26 +54,25 @@ export class StringSynth {
     src.buffer = buffer
     const lp = ctx.createBiquadFilter()
     lp.type = 'lowpass'
-    lp.frequency.value = 3200
+    lp.frequency.value = cutoff
     const gain = ctx.createGain()
     gain.gain.value = 0.55 * velocity
     src.connect(lp).connect(gain).connect(this.master!)
-    src.start(ctx.currentTime + delay)
-    src.stop(ctx.currentTime + delay + seconds)
+    const at = ctx.currentTime + Math.max(0, delay)
+    src.start(at)
+    src.stop(at + seconds)
   }
 }
 
 /** Standardní ladění E A D G H E (Hz) */
 export const OPEN_STRINGS = [82.41, 110.0, 146.83, 196.0, 246.94, 329.63]
 
-/** Táborákové akordy: pražec na každé struně, null = struna se nehraje */
-export const CHORDS: Record<string, (number | null)[]> = {
-  Em: [0, 2, 2, 0, 0, 0],
-  G: [3, 2, 0, 0, 0, 3],
-  C: [null, 3, 2, 0, 1, 0],
-  D: [null, null, 0, 2, 3, 2],
-  Am: [null, 0, 2, 2, 1, 0],
-  E: [0, 2, 2, 1, 0, 0],
+/** barva zvuku: ocelové struny, nylonové (měkčí, tlumenější), dusítko dlaní (krátké, tupé) */
+export type Tone = 'steel' | 'nylon' | 'muted'
+const TONES: Record<Tone, { decay: number; cutoff: number; seconds: number }> = {
+  steel: { decay: 0.999, cutoff: 3200, seconds: 2.2 },
+  nylon: { decay: 0.998, cutoff: 1700, seconds: 2 },
+  muted: { decay: 0.985, cutoff: 1300, seconds: 0.45 },
 }
 
 export const stringFreq = (index: number, fret: number) => OPEN_STRINGS[index] * Math.pow(2, fret / 12)

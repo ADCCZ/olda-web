@@ -280,6 +280,48 @@ body::before {
     --crt-bright: #d6ffe0;
   }
 
+  /* kytara (Guitar.tsx): prst na hmatníku, vložky na pražcích, kapodastr, popisky kláves */
+  .finger {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 0 2px var(--bg), 0 0 8px var(--glow);
+  }
+  .inlay {
+    position: absolute;
+    left: 50%;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+    background: var(--line);
+    transform: translate(-50%, -50%);
+  }
+  .capo-bar {
+    position: absolute;
+    top: -2px;
+    bottom: -2px;
+    right: 3px;
+    width: 0.55rem;
+    border-radius: 4px;
+    background: var(--ink-2);
+    box-shadow: 0 0 0 1px var(--bg);
+  }
+  .kbd, .chord-key {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    line-height: 1;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--bg);
+    color: var(--ink-2);
+  }
+  .kbd { padding: 0.15rem 0.3rem; }
+  .chord-key { position: absolute; top: -0.45rem; right: -0.35rem; padding: 0.1rem 0.22rem; }
+  @media (pointer: coarse) {
+    .chord-key, .keys-help { display: none; }
+  }
+
   /* ukazatel zkušenosti (Skills.tsx): pět dílků jako LED na přístroji */
   .meter i {
     display: block;
