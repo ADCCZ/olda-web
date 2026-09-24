@@ -96,7 +96,7 @@ const cs = {
   hero: {
     hello: 'spis varianty',
     stamp: 'evidováno',
-    plate: 'VARIANTA 01',
+    plate: 'VARIANTA 67',
     pulse: 'přítomnost',
     loop: 'smyčka',
     name: 'Oldřich Švehla',
@@ -256,42 +256,43 @@ const cs = {
       // projektu (~1,5k+ řádků) nebo v několika menších, 2 = jeden projekt / podpůrná role, 1 = vyzkoušeno.
       { name: 'Jazyky', items: [
         { name: 'PHP', level: 4 }, // komunitní portál (Nette, 3,9k ř. PHP) + FoodApp (2k ř.)
-        { name: 'C', level: 4 }, // emulátor KMX (2,5k ř.), server Pexesa (2,7k ř.), souborový systém (1,9k ř.)
+        { name: 'Python', level: 4 }, // bakalářský projekt (3,1k ř.) + skripty k UPP
+        { name: 'C', level: 3 }, // emulátor KMX (2,5k ř.), server Pexesa (2,7k ř.), souborový systém (1,9k ř.)
         { name: 'JavaScript', level: 3 }, // CampMaster (5,1k ř. JS/JSX), kiosek (Vue)
-        { name: 'Java', level: 3 }, // klient Pexesa v JavaFX (2,2k ř.)
-        { name: 'C#', level: 3 }, // 3D hra v OpenTK (2,1k ř.)
-        { name: 'Python', level: 3 }, // bakalářský projekt (3,1k ř.) + skripty k UPP
         { name: 'SQL', level: 3 }, // MySQL migrace portálu, schéma FoodApp
+        { name: 'Java', level: 2 }, // klient Pexesa v JavaFX (2,2k ř.)
+        { name: 'C#', level: 2 }, // 3D hra v OpenTK (2,1k ř.)
         { name: 'C++', level: 2 }, // UPP (OpenMP)
+        { name: 'TypeScript', level: 1 }, // začínám na tomto webu
       ] },
       { name: 'Web a frameworky', items: [
-        { name: 'Nette', level: 4 }, // portál: 12 presenterů, formuláře, OAuth, nasazený
-        { name: 'Latte', level: 4 }, // portál (10,5k ř. šablon)
         { name: 'HTML5 / CSS3', level: 4 }, // všechny webové projekty
+        { name: 'Nette', level: 3 }, // portál: 12 presenterů, formuláře, OAuth, nasazený
+        { name: 'Latte', level: 3 }, // portál (10,5k ř. šablon)
         { name: 'Tailwind CSS', level: 3 }, // portál, CampMaster
         { name: 'React', level: 3 }, // CampMaster (React 19, MUI, Recharts, Leaflet)
         { name: 'Vue.js', level: 3 }, // kiosek pro Eurosoftware (LS 2025)
-        { name: 'Twig', level: 3 }, // FoodApp (2,5k ř. šablon)
+        { name: 'Twig', level: 2 }, // FoodApp (2,5k ř. šablon)
+        { name: 'UX/UI design', level: 2 }, // kiosek (design a UX/UI), návrh CampMasteru, vlastní
         { name: 'Node.js (Express, Socket.IO)', level: 2 }, // server CampMasteru
-        { name: 'UX/UI design', level: 3 }, // kiosek (design a UX/UI), návrh CampMasteru, vlastní weby
       ] },
       { name: 'Architektura a sítě', items: [
-        { name: 'MVC / MVP architektura', level: 3 }, // Nette presentery, FoodApp
+        { name: 'MVC / MVP architektura', level: 4 }, // Nette presentery, FoodApp
         { name: 'TCP/IP sokety, vlastní protokol', level: 3 }, // Síťové Pexeso (select())
         { name: 'REST API', level: 2 }, // server CampMasteru (Express)
         { name: 'WebSockety (Socket.IO)', level: 2 }, // CampMaster
-        { name: 'OAuth 2.0', level: 2 }, // portál: Google, Facebook, Discord, Instagram
         { name: 'Paralelizace (OpenMP)', level: 2 }, // UPP
-        { name: 'NFC', level: 2 }, // kiosek: přihlašování NFC kartou na frontendu
+        { name: 'OAuth 2.0', level: 1 }, // portál: Google, Facebook, Discord, Instagram
+        { name: 'NFC', level: 1 }, // kiosek: přihlašování NFC kartou na frontendu
       ] },
       { name: 'Databáze a nástroje', items: [
+        { name: 'Git a GitHub', level: 4 }, // všechny projekty
+        { name: 'LaTeX', level: 4 }, // dokumentace k šesti projektům
         { name: 'MySQL', level: 3 }, // portál (MySQL 8, 8 migrací), FoodApp (PDO)
-        { name: 'Git a GitHub', level: 3 }, // všechny projekty
-        { name: 'Linux CLI', level: 3 }, // C projekty, skripty, nasazení
+        { name: 'Linux WSL', level: 3 }, // C projekty, skripty, nasazení
         { name: 'Vite', level: 3 }, // portál, CampMaster, tento web
-        { name: 'LaTeX', level: 3 }, // dokumentace k šesti projektům
-        { name: 'Docker', level: 2 }, // portál (Dockerfile, compose, nasazení na Railway)
-        { name: 'Make / CMake / Maven', level: 2 }, // C projekty, klient Pexesa
+        { name: 'Make / CMake / Maven', level: 3 }, // C projekty, klient Pexesa
+        { name: 'Docker', level: 1 }, // portál (Dockerfile, compose, nasazení na Railway)
       ] },
       { name: 'Grafika a data', items: [
         { name: 'pandas / matplotlib', level: 3 }, // bakalářský projekt, UPP
