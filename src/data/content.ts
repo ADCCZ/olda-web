@@ -64,6 +64,12 @@ const shared = {
 
 const cs = {
   ...shared,
+  /** kurzy a certifikáty (zobrazují se pod Praxí) */
+  certs: [
+    { year: '2020', name: 'Rádcovský kurz', org: 'Klub Pathfinder' },
+    { year: '2024', name: 'Vůdcovský kurz', org: 'Klub Pathfinder' },
+    { year: 'probíhá, do začátku 2027', name: 'MasterGuide, nejvyšší stupeň vzdělání v Pathfinderu', org: 'Klub Pathfinder' },
+  ],
   meta: { title: 'Oldřich Švehla, junior full-stack vývojář' },
   nav: {
     about: 'Profil',
@@ -94,7 +100,7 @@ const cs = {
     loop: 'smyčka',
     name: 'Oldřich Švehla',
     tagline:
-      'Junior full-stack vývojář z Plzně, pro přátele Olda. Letos jsem dokončil bakaláře na FAV ZČU, vedu oddíl v Klubu Pathfinder a hledám stáž nebo částečný úvazek.',
+      'Junior full-stack vývojář z Plzně, pro přátele Olda. Letos jsem dokončil bakaláře na FAV ZČU, jsem oblastní vedoucí v Klubu Pathfinder a hledám stáž nebo částečný úvazek.',
     role: 'junior full-stack vývojář, Plzeň',
     ctaProjects: 'Ukaž projekty',
     ctaContact: 'nebo mi napiš',
@@ -116,14 +122,14 @@ const cs = {
       'Junior full-stack vývojář. Absolvent bakalářského studia informatiky na FAV ZČU se zaměřením na vývoj webových aplikací a softwarové inženýrství.',
     body: [
       'Mám praktické zkušenosti s návrhem backendové i frontendové architektury, integrací databází a prací s otevřenými daty. Nejčastěji píšu v PHP (Nette), JavaScriptu (React, Vue) a Javě, k tomu MySQL, Docker a Linux. Při vývoji pracuju s\u00a0AI asistentem Claude (Claude Code), se kterým vznikl i\u00a0tenhle web.',
-      'Vedle školy vedu oddíl v Klubu Pathfinder. Plánuju tábory a vícedenní akce pro desítky lidí a mám na starosti vedoucí v regionu. Ve volném čase hraju na kytaru, vařím, koukám na komiksové filmy a hraju hry.',
+      'V Klubu Pathfinder jsem od roku 2012, od 2018 jako rádce a vedoucí, dnes jako oblastní vedoucí oblasti Jižní kříž. Moje srdcovka jsou tábory: jeden jsem vedl jako programový vedoucí a dva jako hlavní vedoucí. Teď dokončuju MasterGuide, nejvyšší stupeň vzdělání v\u00a0Pathfinderu. Ve volném čase hraju na kytaru, vařím, koukám na komiksové filmy a hraju hry.',
       'Od podzimu 2026 pokračuju v navazujícím studiu Softwarové inženýrství (SWIS). Hledám stáž nebo částečný úvazek.',
     ],
     interestsTitle: 'Mimo kód',
     interests: [
       // action: 'guitar' = u položky je tlačítko Hrát, které otevře kytaru uprostřed obrazovky
       { icon: 'guitar', label: 'Kytara', note: 'akustická, hraju od roku 2011, hlavně u ohně', action: 'guitar' },
-      { icon: 'scout', label: 'Klub Pathfinder', note: 'v klubu od roku 2012, vedoucí oddílu, tábory, expedice' },
+      { icon: 'scout', label: 'Klub Pathfinder', note: 'od roku 2012, oblastní vedoucí, tábory jsou srdcovka' },
       { icon: 'marvel', label: 'Komiksové filmy', note: 'sleduju v pořadí, ve kterém vyšly' },
       { icon: 'games', label: 'Videohry', note: 'hraju od roku 2012' },
       { icon: 'cook', label: 'Vaření', note: 'doma i pro tábor' },
@@ -236,12 +242,12 @@ const cs = {
     lead: 'Placenou praxi v IT teprve hledám. Tohle je to, co mám za sebou.',
     items: [
       {
-        period: 'dlouhodobě',
-        title: 'Vedoucí a oblastní koordinátor',
-        org: 'Klub Pathfinder, v klubu od roku 2012',
+        period: 'od 2018',
+        title: 'Oblastní vedoucí, oblast Jižní kříž',
+        org: 'Klub Pathfinder · v klubu od 2012, rádce a vedoucí od 2018',
         bullets: [
-          'Koordinace regionálních aktivit mládežnické organizace a vedení vedoucích.',
-          'Kompletní plánování vícedenních akcí a táborů pro desítky účastníků: rozpočet, program, bezpečnost, zázemí.',
+          'Vedení oblasti: koordinace oddílů a vedoucích, účetnictví oblasti, víkendové akce.',
+          'Tábory jsou moje srdcovka: jeden jsem vedl jako programový vedoucí, dva jako hlavní vedoucí. Rozpočet, program, tým, bezpečnost a zázemí pro desítky účastníků.',
           'Práce s dětmi a dospívajícími, řešení nečekaných situací v terénu.',
         ],
       },
@@ -253,6 +259,15 @@ const cs = {
           'Informační a komunitní portál: full-stack řešení v Nette, Tailwind CSS a MySQL s autentizací uživatelů a registrací na akce.',
           'Správa multimediálního obsahu, nasazení a údržba.',
           'Komunikace se zadavatelem, sběr požadavků, iterace podle zpětné vazby.',
+        ],
+      },
+      {
+        period: 'od 2023',
+        title: 'Dobrovolník, security',
+        org: 'United · křesťanský multižánrový festival',
+        bullets: [
+          'Security na festivalu United v letech 2023 a 2025.',
+          'Od roku 2023 pravidelně dobrovolničím i na menších akcích United City.',
         ],
       },
       {
@@ -271,7 +286,7 @@ const cs = {
   leadership: {
     title: 'Měkké dovednosti',
     lead: 'Co jsem se naučil mimo klávesnici.',
-    memo: { subject: 'Věc', where: 'Kde', period: 'Období', subjectValue: 'Organizační a měkké dovednosti', whereValue: 'Klub Pathfinder, oblastní úroveň', periodValue: 'dlouhodobě' },
+    memo: { subject: 'Věc', where: 'Kde', period: 'Období', subjectValue: 'Organizační a měkké dovednosti', whereValue: 'Klub Pathfinder, oblast Jižní kříž', periodValue: 'od 2018' },
     items: [
       {
         title: 'Vedení týmů a mentorství',
@@ -279,7 +294,7 @@ const cs = {
       },
       {
         title: 'Projektový management a logistika',
-        desc: 'Kompletní plánování vícedenních tematických akcí a táborů pro desítky účastníků: rozpočet, program, bezpečnost, zázemí.',
+        desc: 'Tři tábory ve vedení (jednou programový, dvakrát hlavní vedoucí) a víkendové akce pro desítky účastníků: rozpočet a účetnictví, program, bezpečnost, zázemí.',
       },
       {
         title: 'Zodpovědnost a adaptabilita',
@@ -350,9 +365,9 @@ const cs = {
     title: 'ARCHIVNÍ TERMINÁL 07',
     prompt: 'archiv@olda:~$',
     help: 'Příkazy: help, whoami, variant, timeline, prune, guide, ls, cat <soubor>, neofetch, skills, projects, open <repo>, pexeso, scout, guitar, marvel, games, theme, lang, date, history, clear, exit. Tab doplňuje, šipky procházejí historii.',
-    variant: 'Evidované varianty subjektu ŠVEHLA:\n  01  junior full-stack vývojář stav: aktivní\n  02  vedoucí oddílu           stav: aktivní\n  03  kytarista                stav: aktivní, občas rozladěný\n  04  hráč videoher            stav: aktivní po půlnoci\n  05  student SWIS             stav: startuje\nVšechny varianty běží souběžně. Odchylka: žádná. Zvláštnost: vaří pro padesát lidí.',
+    variant: 'Evidované varianty subjektu ŠVEHLA:\n  01  junior full-stack vývojář stav: aktivní\n  02  oblastní vedoucí         stav: aktivní\n  03  kytarista                stav: aktivní, občas rozladěný\n  04  hráč videoher            stav: aktivní po půlnoci\n  05  student SWIS             stav: startuje\nVšechny varianty běží souběžně. Odchylka: žádná. Zvláštnost: vaří pro padesát lidí.',
     prune: 'Žádost o ořezání zamítnuta. Tahle linie se líbí.',
-    timelineCmd: '2011 ─┬─ kytara\n2012 ─┼─ Klub Pathfinder, hry\n2019 ─┼─ SPŠ Strakonice, počítačová grafika a CNC\n2021 ─┼─ praxe v Automa CZ (i 2022)\n2023 ─┼─ FAV ZČU, Bc. Počítačové vědy, první kód\n2024 ─┼─ web-foodapp\n2025 ─┼─ Síťové Pexeso (C + JavaFX)\n2026 ─┼─ CampMaster 3000, bakalářka, komunitní portál, tenhle web\n      └─ SWIS ▶ (větev se otevírá)',
+    timelineCmd: '2011 ─┬─ kytara\n2012 ─┼─ Klub Pathfinder, hry\n2018 ─┼─ rádce a vedoucí v Pathfinderu\n2019 ─┼─ SPŠ Strakonice, počítačová grafika a CNC\n2020 ─┼─ rádcovský kurz\n2021 ─┼─ praxe v Automa CZ (i 2022)\n2023 ─┼─ FAV ZČU, Bc. Počítačové vědy, první kód, festival United\n2024 ─┼─ web-foodapp, vůdcovský kurz\n2025 ─┼─ Síťové Pexeso (C + JavaFX)\n2026 ─┼─ CampMaster 3000, bakalářka, komunitní portál, tenhle web\n2027 ─┼─ MasterGuide\n      └─ SWIS ▶ (větev se otevírá)',
     unknown: (c: string) => `příkaz nenalezen: ${c}. Zkus "help".`,
     cd: 'Bydlím v /home/olda a nikam se nestěhuju.',
     catUsage: 'použití: cat <soubor>. Soubory vypíše "ls".',
@@ -366,8 +381,8 @@ const cs = {
     secret: 'Konami: ↑ ↑ ↓ ↓ ← → ← → B A. A zkus "hyperdrive".',
     neofetch: 'Uptime: od září 2023.',
     guideCmd: 'Volám Složku.',
-    whoami: 'Oldřich Jan Švehla, pro přátele Olda. Junior full-stack vývojář, absolvent FAV ZČU, vedoucí v Klubu Pathfinder. Momentálně: hledám stáž.',
-    scout: 'Klub Pathfinder: oddíl, tábory, expedice. Umím rozdělat oheň v dešti a rozdělit 50 dětí do týmů tak, aby se nikdo nehádal. Skoro.',
+    whoami: 'Oldřich Jan Švehla, pro přátele Olda. Junior full-stack vývojář, absolvent FAV ZČU, oblastní vedoucí v Klubu Pathfinder. Momentálně: hledám stáž.',
+    scout: 'Klub Pathfinder: oblast Jižní kříž, tábory, víkendovky. Umím rozdělat oheň v dešti a rozdělit 50 dětí do týmů tak, aby se nikdo nehádal. Skoro.',
     guitar: 'E A D G H E, naladěno.',
     marvel: 'Sledovací pořadí mám seřazené chronologicky. Ano, i ty seriály. Ne, nediskutuju o tom.',
     games: 'Achievement unlocked: našel jsi terminál.',
@@ -392,9 +407,9 @@ const cs = {
       'Existuje jedna sekvence šipek, kterou tu radši neuvádím.',
     ],
     sections: {
-      about: 'Souhrn spisu. Vede oddíl a k tomu dostuduje inženýra.',
+      about: 'Souhrn spisu. Vede oblast v Pathfinderu a k tomu dostuduje inženýra.',
       education: 'Vzdělání. Bakalář hotový, inženýr se otevírá.',
-      experience: 'Praxe. Oddíl, tábory a jeden web na zakázku.',
+      experience: 'Praxe. Oblast, tábory a jeden web na zakázku.',
       projects: 'Rejstřík se plní z GitHubu. Nové repo se v něm objeví samo.',
       skills: 'Inventář technologií. Dole je to, co se teprve chystá doučit.',
       leadership: 'Služební záznam o měkkých dovednostech.',
@@ -448,6 +463,11 @@ const cs = {
 
 const en: typeof cs = {
   ...shared,
+  certs: [
+    { year: '2020', name: 'Patrol leader course', org: 'Klub Pathfinder' },
+    { year: '2024', name: 'Unit leader course', org: 'Klub Pathfinder' },
+    { year: 'in progress, until early 2027', name: 'Master Guide, the highest level of training in Pathfinders', org: 'Klub Pathfinder' },
+  ],
   meta: { title: 'Oldřich Švehla, junior full-stack developer' },
   nav: {
     about: 'Profile',
@@ -477,7 +497,7 @@ const en: typeof cs = {
     loop: 'loop',
     name: 'Oldřich Švehla',
     tagline:
-      "Junior full-stack developer from Pilsen, Olda to friends. I finished my bachelor's at FAV ZČU this year, lead a troop in Klub Pathfinder, and I'm looking for an internship or part-time role.",
+      "Junior full-stack developer from Pilsen, Olda to friends. I finished my bachelor's at FAV ZČU this year, I'm a regional leader in Klub Pathfinder, and I'm looking for an internship or part-time role.",
     role: 'junior full-stack developer, Pilsen',
     ctaProjects: 'See projects',
     ctaContact: 'or write to me',
@@ -499,13 +519,13 @@ const en: typeof cs = {
       "Junior full-stack developer. Bachelor's graduate in Computer Science at FAV ZČU (University of West Bohemia), focused on web application development and software engineering.",
     body: [
       'I have hands-on experience designing backend and frontend architecture, integrating databases and working with open data. I mostly write PHP (Nette), JavaScript (React, Vue) and Java, with MySQL, Docker and Linux around it. I work with the AI assistant Claude (Claude Code); this website was built with it too.',
-      'Alongside school I lead a troop in Klub Pathfinder: I plan camps and multi-day events for dozens of people and look after the leaders in our region. In my free time I play guitar, cook, watch comic-book films and play games.',
+      "I've been in Klub Pathfinder since 2012, a patrol leader and leader since 2018, and today I lead the Jižní kříž region. Camps are my passion: I've run one as programme leader and two as head leader. I'm now finishing Master Guide, the highest level of training in Pathfinders. In my free time I play guitar, cook, watch comic-book films and play games.",
       "From autumn 2026 I continue with the Software Engineering (SWIS) master's. I'm looking for an internship or part-time role.",
     ],
     interestsTitle: 'Beyond code',
     interests: [
       { icon: 'guitar', label: 'Guitar', note: 'acoustic, playing since 2011, mostly by the fire', action: 'guitar' },
-      { icon: 'scout', label: 'Klub Pathfinder', note: 'member since 2012, troop leader, camps, expeditions' },
+      { icon: 'scout', label: 'Klub Pathfinder', note: 'since 2012, regional leader, camps are my passion' },
       { icon: 'marvel', label: 'Comic-book films', note: 'in release order' },
       { icon: 'games', label: 'Video games', note: 'playing since 2012' },
       { icon: 'cook', label: 'Cooking', note: 'at home and for camp' },
@@ -617,12 +637,12 @@ const en: typeof cs = {
     lead: "I'm still looking for my first paid IT role. This is what I have behind me.",
     items: [
       {
-        period: 'ongoing',
-        title: 'Leader and regional coordinator',
-        org: 'Klub Pathfinder, member since 2012',
+        period: 'since 2018',
+        title: 'Regional leader, Jižní kříž region',
+        org: 'Klub Pathfinder · member since 2012, patrol leader and leader since 2018',
         bullets: [
-          "Coordinating a youth organisation's regional activities and leading its leaders.",
-          'End-to-end planning of multi-day events and camps for dozens of participants: budget, programme, safety, facilities.',
+          'Leading the region: coordinating units and their leaders, keeping the regional accounts, running weekend events.',
+          "Camps are my passion: I've run one as programme leader and two as head leader. Budget, programme, team, safety and facilities for dozens of participants.",
           'Working with children and teenagers, handling unexpected situations in the field.',
         ],
       },
@@ -634,6 +654,15 @@ const en: typeof cs = {
           'Community information portal: full-stack solution in Nette, Tailwind CSS and MySQL with user authentication and event registration.',
           'Multimedia content management, deployment and maintenance.',
           'Working with the client: gathering requirements, iterating on feedback.',
+        ],
+      },
+      {
+        period: 'since 2023',
+        title: 'Volunteer, security',
+        org: 'United · Christian multi-genre festival',
+        bullets: [
+          'Security team at the United festival in 2023 and 2025.',
+          'Regular volunteer at the smaller United City events since 2023.',
         ],
       },
       {
@@ -652,7 +681,7 @@ const en: typeof cs = {
   leadership: {
     title: 'Soft skills',
     lead: 'What I learned away from the keyboard.',
-    memo: { subject: 'Subject', where: 'Where', period: 'Period', subjectValue: 'Organisational and soft skills', whereValue: 'Klub Pathfinder, regional level', periodValue: 'ongoing' },
+    memo: { subject: 'Subject', where: 'Where', period: 'Period', subjectValue: 'Organisational and soft skills', whereValue: 'Klub Pathfinder, Jižní kříž region', periodValue: 'since 2018' },
     items: [
       {
         title: 'Team leadership & mentoring',
@@ -660,7 +689,7 @@ const en: typeof cs = {
       },
       {
         title: 'Project management & logistics',
-        desc: 'End-to-end planning of multi-day themed events and camps for dozens of participants: budget, programme, safety, facilities.',
+        desc: 'Three camps in charge (once as programme leader, twice as head leader) and weekend events for dozens of participants: budget and accounts, programme, safety, facilities.',
       },
       {
         title: 'Responsibility & adaptability',
@@ -731,9 +760,9 @@ const en: typeof cs = {
     title: 'ARCHIVE TERMINAL 07',
     prompt: 'archive@olda:~$',
     help: 'Commands: help, whoami, variant, timeline, prune, guide, ls, cat <file>, neofetch, skills, projects, open <repo>, pexeso, scout, guitar, marvel, games, theme, lang, date, history, clear, exit. Tab completes, arrows walk history.',
-    variant: 'Variants on record for subject ŠVEHLA:\n  01  junior full-stack developer status: active\n  02  troop leader             status: active\n  03  guitarist                status: active, occasionally out of tune\n  04  gamer                    status: active after midnight\n  05  SWIS student             status: starting\nAll variants run concurrently. Deviation: none. Notable: cooks for fifty people.',
+    variant: 'Variants on record for subject ŠVEHLA:\n  01  junior full-stack developer status: active\n  02  regional leader          status: active\n  03  guitarist                status: active, occasionally out of tune\n  04  gamer                    status: active after midnight\n  05  SWIS student             status: starting\nAll variants run concurrently. Deviation: none. Notable: cooks for fifty people.',
     prune: 'Pruning request denied. We like this line.',
-    timelineCmd: '2011 ─┬─ guitar\n2012 ─┼─ Klub Pathfinder, games\n2019 ─┼─ SPŠ Strakonice, computer graphics and CNC\n2021 ─┼─ placement at Automa CZ (also 2022)\n2023 ─┼─ FAV ZČU, BSc Computer Science, first code\n2024 ─┼─ web-foodapp\n2025 ─┼─ Networked Memory game (C + JavaFX)\n2026 ─┼─ CampMaster 3000, thesis, community portal, this website\n      └─ SWIS ▶ (branch opening)',
+    timelineCmd: '2011 ─┬─ guitar\n2012 ─┼─ Klub Pathfinder, games\n2018 ─┼─ patrol leader and leader in Pathfinders\n2019 ─┼─ SPŠ Strakonice, computer graphics and CNC\n2020 ─┼─ patrol leader course\n2021 ─┼─ placement at Automa CZ (also 2022)\n2023 ─┼─ FAV ZČU, BSc Computer Science, first code, United festival\n2024 ─┼─ web-foodapp, unit leader course\n2025 ─┼─ Networked Memory game (C + JavaFX)\n2026 ─┼─ CampMaster 3000, thesis, community portal, this website\n2027 ─┼─ Master Guide\n      └─ SWIS ▶ (branch opening)',
     unknown: (c: string) => `command not found: ${c}. Try "help".`,
     cd: "I live in /home/olda and I'm not moving.",
     catUsage: 'usage: cat <file>. "ls" lists the files.',
@@ -747,8 +776,8 @@ const en: typeof cs = {
     secret: 'Konami: ↑ ↑ ↓ ↓ ← → ← → B A. Also try "hyperdrive".',
     neofetch: 'Uptime: since September 2023.',
     guideCmd: 'Calling Složka.',
-    whoami: 'Oldřich Jan Švehla, Olda to friends. Junior full-stack developer, FAV ZČU graduate, leader in Klub Pathfinder. Currently: looking for an internship.',
-    scout: 'Klub Pathfinder: troop, camps, expeditions. I can light a fire in the rain and split 50 kids into teams without a single argument. Almost.',
+    whoami: 'Oldřich Jan Švehla, Olda to friends. Junior full-stack developer, FAV ZČU graduate, regional leader in Klub Pathfinder. Currently: looking for an internship.',
+    scout: 'Klub Pathfinder: the Jižní kříž region, camps, weekend events. I can light a fire in the rain and split 50 kids into teams without a single argument. Almost.',
     guitar: 'E A D G B E, tuned.',
     marvel: 'My watch order is chronological. Yes, the series too. No, this is not up for debate.',
     games: 'Achievement unlocked: you found the terminal.',
@@ -773,9 +802,9 @@ const en: typeof cs = {
       'There is one sequence of arrow keys I would rather not list here.',
     ],
     sections: {
-      about: "File summary. He leads a troop and is finishing a master's on top of it.",
+      about: "File summary. He leads a Pathfinder region and is finishing a master's on top of it.",
       education: "Education. Bachelor's done, master's opening.",
-      experience: 'Experience. The troop, camps and one commissioned website.',
+      experience: 'Experience. The region, camps and one commissioned website.',
       projects: 'The register fills from GitHub. A new repo shows up on its own.',
       skills: 'Inventory of technologies. At the bottom is what he still plans to learn.',
       leadership: 'Service record on soft skills.',

@@ -36,8 +36,8 @@ DATA = {
     'web': '',            # doplň po nasazení, např. 'oldrich-svehla.vercel.app'
     'profile': ('Junior full-stack vývojář, absolvent bakalářského studia informatiky na FAV ZČU se zaměřením '
                 'na vývoj webových aplikací a softwarové inženýrství. Praktické zkušenosti s návrhem backendové '
-                'i frontendové architektury, integrací databází a prací s otevřenými daty. Dlouholetá praxe '
-                's vedením týmů, organizací projektů a krizovým řízením z neziskového sektoru. '
+                'i frontendové architektury, integrací databází a prací s otevřenými daty. Oblastní vedoucí '
+                'v Klubu Pathfinder: vedení týmů, organizace táborů a akcí, krizové řízení. '
                 'Hledám stáž nebo částečný úvazek.'),
     'education': [
         ('2019 – 2023', 'Počítačová grafika a CNC technika', 'Střední průmyslová škola Strakonice', ''),
@@ -47,14 +47,16 @@ DATA = {
          'Navazující studium.'),
     ],
     'experience': [
-        ('dlouhodobě', 'Vedoucí a oblastní koordinátor', 'Klub Pathfinder', [
-            'Koordinace regionálních aktivit mládežnické organizace a vedení vedoucích.',
-            'Kompletní plánování vícedenních akcí a táborů pro desítky účastníků: rozpočet, program, bezpečnost, zázemí.',
-            'Práce s dětmi a dospívajícími, řešení nečekaných situací v terénu.',
+        ('od 2018', 'Oblastní vedoucí, oblast Jižní kříž', 'Klub Pathfinder, v klubu od 2012', [
+            'Vedení oblasti: oddíly a vedoucí, účetnictví, víkendové akce. Tábory: 1× programový, 2× hlavní vedoucí.',
+            'Kurzy: rádcovský (2020), vůdcovský (2024), MasterGuide – nejvyšší stupeň (do začátku 2027).',
         ]),
         ('průběžně', 'Vývoj webů na zakázku', 'komunitní a spolkové weby', [
-            'Informační a komunitní portál: full-stack řešení v Nette, Tailwind CSS a MySQL s autentizací uživatelů a registrací na akce.',
+            'Komunitní portál: full-stack v Nette, Tailwind CSS a MySQL, autentizace uživatelů a registrace na akce.',
             'Správa multimediálního obsahu, nasazení a údržba; komunikace se zadavatelem a iterace podle zpětné vazby.',
+        ]),
+        ('od 2023', 'Dobrovolník, security', 'festival United', [
+            'Security na festivalu United (2023, 2025), pravidelně na akcích United City.',
         ]),
         ('2021, 2022', 'Odborná praxe na střední škole', 'Automa CZ s.r.o., Strakonice', [
             'Montáž testovacích zařízení pro displeje Audi a Renault podle výkresů a Inventoru, ruční dokončování dílů, skladová evidence.',
@@ -81,7 +83,7 @@ DATA = {
     ],
     'soft': [
         ('Vedení týmů a mentorství', 'Víceleté zkušenosti s koordinací regionálních aktivit mládežnické organizace, vedením vedoucích a prací s dětmi i dospívajícími.'),
-        ('Projektový management a logistika', 'Kompletní plánování vícedenních tematických akcí a táborů pro desítky účastníků: rozpočet, program, bezpečnost, zázemí.'),
+        ('Projektový management a logistika', 'Tři tábory ve vedení a víkendové akce pro desítky účastníků: rozpočet a účetnictví, program, bezpečnost, zázemí.'),
         ('Zodpovědnost a adaptabilita', 'Řešení nečekaných situací a krizový management při náročných outdoorových a expedičních aktivitách.'),
     ],
     'languages': [('Čeština', 'rodilý mluvčí'), ('Angličtina', 'doplň úroveň, např. B2')],
@@ -322,8 +324,8 @@ def build_playful(path):
     # měkké dovednosti: služební záznam
     s.append(Paragraph('Měkké dovednosti', S['h'])); s.append(rule())
     memo_rows = [[Paragraph('Věc', S['label']), Paragraph('Organizační a měkké dovednosti', S['monoInk'])],
-                 [Paragraph('Kde', S['label']), Paragraph('Klub Pathfinder, oblastní úroveň', S['monoInk'])],
-                 [Paragraph('Období', S['label']), Paragraph('dlouhodobě', S['monoInk'])]]
+                 [Paragraph('Kde', S['label']), Paragraph('Klub Pathfinder, oblast Jižní kříž', S['monoInk'])],
+                 [Paragraph('Období', S['label']), Paragraph('od 2018', S['monoInk'])]]
     for k, v in DATA['soft']:
         memo_rows.append([Paragraph('', S['label']), Paragraph('<b>%s.</b> <font color="#6f5636">%s</font>' % (k, v), S['body'])])
     mt = Table(memo_rows, colWidths=[18 * mm, W - 2 * M - 16 - 18 * mm])
