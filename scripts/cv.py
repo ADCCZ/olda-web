@@ -52,7 +52,7 @@ DATA = {
             'Kurzy: rádcovský (2020), vůdcovský (2024), MasterGuide – nejvyšší stupeň (do začátku 2027).',
         ]),
         ('LS 2025', 'Frontend samoobslužného kiosku', 'Eurosoftware, dnes GK Software Czech Republic s.r.o.', [
-            'Týmový projekt na zakázku firmy v předmětu KIV/ZSW-E: frontend kiosku ve Vue.js, mimo jiné práce s NFC.',
+            'Týmový projekt KIV/ZSW-E: Vue.js frontend kiosku pro firemní akce (NFC přihlášení, limity, REST API s JWT).',
         ]),
         ('od 2023', 'Dobrovolník, security', 'festival United', [
             'Security na festivalu United (2023, 2025), pravidelně na akcích United City.',
@@ -78,7 +78,7 @@ DATA = {
         ('Jazyky', 'PHP, C (pokročile); JavaScript, Java, C#, Python, SQL; C++ (základy)'),
         ('Web', 'Nette, Latte, HTML5 / CSS3 (pokročile); Tailwind CSS, React, Vue.js, Twig; Node.js (Express, Socket.IO)'),
         ('Nástroje', 'MySQL, Git a GitHub, Linux CLI, Vite, LaTeX; Docker, Make / CMake / Maven, pytest'),
-        ('Další', 'TCP/IP sokety, REST API, WebSockety, OAuth 2.0, OpenMP, NFC, OpenGL / OpenTK, pandas, Power BI'),
+        ('Další', 'TCP/IP sokety, REST API, WebSockety, OAuth 2.0, JWT, OpenMP, NFC, OpenGL / OpenTK, pandas, Power BI'),
         ('V plánu', 'TypeScript, Next.js, PostgreSQL, Spring Boot, GitHub Actions (CI/CD), testování (JUnit, Jest), Kubernetes, AWS / cloud'),
     ],
     'soft': [

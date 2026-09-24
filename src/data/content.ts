@@ -164,8 +164,8 @@ const cs = {
         repo: null,
         privateRepo: 'team',
         title: 'Samoobslužný kiosek',
-        desc: 'Frontend samoobslužného kiosku ve Vue.js pro firmu Eurosoftware (dnes GK Software Czech Republic). Týmový projekt na zakázku v předmětu KIV/ZSW-E v letním semestru 2025, včetně práce s NFC.',
-        tags: ['Vue.js', 'JavaScript', 'NFC', 'Týmová práce'],
+        desc: 'Samoobslužný kiosek pro firemní akce pro Eurosoftware (dnes GK Software Czech Republic): zaměstnanec se přihlásí NFC kartou, vybere si produkty z aktuální akce a systém hlídá limity; správce spravuje produkty, akce a zaměstnance a vidí statistiky. Dělal jsem frontend ve Vue.js. Týmový projekt KIV/ZSW-E, letní semestr 2025.',
+        tags: ['Vue.js', 'JavaScript', 'REST API', 'JWT', 'NFC'],
         featured: true,
       },
       {
@@ -265,11 +265,11 @@ const cs = {
       { name: 'Architektura a sítě', items: [
         { name: 'MVC / MVP architektura', level: 3 }, // Nette presentery, FoodApp
         { name: 'TCP/IP sokety, vlastní protokol', level: 3 }, // Síťové Pexeso (select())
-        { name: 'REST API', level: 2 }, // CampMaster, kiosek
+        { name: 'REST API', level: 3 }, // kiosek: Vue frontend nad API s ~60 endpointy, JWT a rolemi; server CampMasteru
         { name: 'WebSockety (Socket.IO)', level: 2 }, // CampMaster
-        { name: 'OAuth 2.0', level: 2 }, // portál: Google, Facebook, Discord, Instagram
+        { name: 'OAuth 2.0, JWT', level: 2 }, // portál: Google, Facebook, Discord, Instagram; kiosek: JWT
         { name: 'Paralelizace (OpenMP)', level: 2 }, // UPP
-        { name: 'NFC', level: 2 }, // kiosek
+        { name: 'NFC', level: 2 }, // kiosek: přihlášení NFC kartou
       ] },
       { name: 'Databáze a nástroje', items: [
         { name: 'MySQL', level: 3 }, // portál (MySQL 8, 8 migrací), FoodApp (PDO)
@@ -319,8 +319,8 @@ const cs = {
         title: 'Frontend samoobslužného kiosku',
         org: 'Eurosoftware, dnes GK Software Czech Republic s.r.o. · týmový projekt KIV/ZSW-E',
         bullets: [
-          'Týmový projekt na zakázku firmy v předmětu KIV/ZSW-E na FAV ZČU. Pracoval jsem na frontendu samoobslužného kiosku ve Vue.js.',
-          'Mimo jiné práce s technologií NFC.',
+          'Týmový projekt na zakázku firmy v předmětu KIV/ZSW-E na FAV ZČU: samoobslužný kiosek, ze kterého si zaměstnanci na firemních akcích berou produkty.',
+          'Pracoval jsem na frontendu ve Vue.js nad REST API s JWT a rolemi: přihlášení přiložením NFC karty nebo anonymně, výběr produktů s hlídáním limitů, správa produktů, akcí a zaměstnanců a statistiky spotřeby.',
         ],
       },
       {
@@ -620,8 +620,8 @@ const en: typeof cs = {
         repo: null,
         privateRepo: 'team',
         title: 'Self-service kiosk',
-        desc: 'Vue.js frontend of a self-service kiosk for Eurosoftware (now GK Software Czech Republic). A commissioned team project in the KIV/ZSW-E course in spring 2025, including work with NFC.',
-        tags: ['Vue.js', 'JavaScript', 'NFC', 'Teamwork'],
+        desc: 'Self-service kiosk for company events for Eurosoftware (now GK Software Czech Republic): employees sign in with an NFC card, pick products from the current event and the system enforces limits; admins manage products, events and employees and see statistics. I built the Vue.js frontend. KIV/ZSW-E team project, spring 2025.',
+        tags: ['Vue.js', 'JavaScript', 'REST API', 'JWT', 'NFC'],
         featured: true,
       },
       {
@@ -703,8 +703,8 @@ const en: typeof cs = {
         { name: 'React', level: 3 }, { name: 'Vue.js', level: 3 }, { name: 'Twig', level: 3 }, { name: 'Node.js (Express, Socket.IO)', level: 2 },
       ] },
       { name: 'Architecture & networking', items: [
-        { name: 'MVC / MVP architecture', level: 3 }, { name: 'TCP/IP sockets, custom protocol', level: 3 }, { name: 'REST API', level: 2 },
-        { name: 'WebSockets (Socket.IO)', level: 2 }, { name: 'OAuth 2.0', level: 2 }, { name: 'Parallelism (OpenMP)', level: 2 }, { name: 'NFC', level: 2 },
+        { name: 'MVC / MVP architecture', level: 3 }, { name: 'TCP/IP sockets, custom protocol', level: 3 }, { name: 'REST API', level: 3 },
+        { name: 'WebSockets (Socket.IO)', level: 2 }, { name: 'OAuth 2.0, JWT', level: 2 }, { name: 'Parallelism (OpenMP)', level: 2 }, { name: 'NFC', level: 2 },
       ] },
       { name: 'Databases & tools', items: [
         { name: 'MySQL', level: 3 }, { name: 'Git & GitHub', level: 3 }, { name: 'Linux CLI', level: 3 }, { name: 'Vite', level: 3 },
@@ -745,8 +745,8 @@ const en: typeof cs = {
         title: 'Frontend of a self-service kiosk',
         org: 'Eurosoftware, now GK Software Czech Republic s.r.o. · KIV/ZSW-E team project',
         bullets: [
-          'A team project commissioned by the company in the KIV/ZSW-E course at FAV ZČU. I worked on the Vue.js frontend of a self-service kiosk.',
-          'Among other things, working with NFC technology.',
+          'A team project commissioned by the company in the KIV/ZSW-E course at FAV ZČU: a self-service kiosk where employees pick up products at company events.',
+          'I worked on the Vue.js frontend on top of a REST API with JWT and roles: sign-in with an NFC card or anonymously, product selection with limits, management of products, events and employees, and consumption statistics.',
         ],
       },
       {
