@@ -1,7 +1,8 @@
 /**
  * Herní knihovna pro rozbalovací seznam u „Videohry“ v Profilu, stav k datu UPDATED.
- * Hodiny u Steamu jsou z knihovny (Celkem odehráno). Hře z Epicu stačí doplnit `hours`
- * a sama se zařadí mezi hry s časem; bez `hours` zůstane dole v seznamu jen z Epicu.
+ * Na webu je jen pořadí, hodiny slouží k řazení a nezobrazují se. U Steamu jsou
+ * z knihovny (Celkem odehráno). Hře z Epicu stačí doplnit `hours` a sama se zařadí
+ * do pořadí; bez `hours` zůstane dole mezi hrami mimo pořadí.
  * Názvy jsou originální, `cs` = český název, pokud ho hra má. Pořadí nehraje roli,
  * seznam se řadí podle hodin.
  */
