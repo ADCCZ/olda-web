@@ -101,7 +101,7 @@ const cs = {
     loop: 'smyčka',
     name: 'Oldřich Švehla',
     tagline:
-      'Junior full-stack vývojář pocházející ze Strakonic, pro přátele Olda. Letos jsem dokončil bakaláře na FAV ZČU v Plznia pokračuji v navazujícím studiu, jsem oblastní vedoucí v Klubu Pathfinder a hledám stáž nebo částečný úvazek.',
+      'Junior full-stack vývojář pocházející ze Strakonic, pro přátele Olda. Letos jsem dokončil bakaláře na FAV ZČU v\u00a0Plzni a pokračuji v navazujícím studiu, jsem oblastní vedoucí v Klubu Pathfinder a hledám stáž nebo částečný úvazek.',
     role: 'Junior full-stack vývojář, Plzeň',
     ctaProjects: 'Ukaž projekty',
     ctaContact: 'nebo mi napiš',
@@ -255,8 +255,8 @@ const cs = {
       // 4 = hlavní technologie ve 2+ větších projektech nebo ve velkém nasazeném, 3 = samostatně ve větším
       // projektu (~1,5k+ řádků) nebo v několika menších, 2 = jeden projekt / podpůrná role, 1 = vyzkoušeno.
       { name: 'Jazyky', items: [
-        { name: 'PHP', level: 4 }, // komunitní portál (Nette, 3,9k ř. PHP) + FoodApp (2k ř.)
         { name: 'Python', level: 4 }, // bakalářský projekt (3,1k ř.) + skripty k UPP
+        { name: 'PHP', level: 3 }, // komunitní portál (Nette, 3,9k ř. PHP) + FoodApp (2k ř.)
         { name: 'C', level: 3 }, // emulátor KMX (2,5k ř.), server Pexesa (2,7k ř.), souborový systém (1,9k ř.)
         { name: 'JavaScript', level: 3 }, // CampMaster (5,1k ř. JS/JSX), kiosek (Vue)
         { name: 'SQL', level: 3 }, // MySQL migrace portálu, schéma FoodApp
@@ -580,8 +580,8 @@ const en: typeof cs = {
     loop: 'loop',
     name: 'Oldřich Švehla',
     tagline:
-      "Junior full-stack developer from Pilsen, Olda to friends. I finished my bachelor's at FAV ZČU this year, I'm a regional leader in Klub Pathfinder, and I'm looking for an internship or part-time role.",
-    role: 'junior full-stack developer, Pilsen',
+      "Junior full-stack developer originally from Strakonice, Olda to friends. I finished my bachelor's at FAV ZČU in Pilsen this year and I'm continuing with a master's, I'm a regional leader in Klub Pathfinder, and I'm looking for an internship or part-time role.",
+    role: 'Junior full-stack developer, Pilsen',
     ctaProjects: 'See projects',
     ctaContact: 'or write to me',
     orbitHint: 'Every branch is something that keeps running. Click one.',
@@ -729,7 +729,7 @@ const en: typeof cs = {
     levelOf: (n: number) => `${n} of 5`,
     groups: [
       { name: 'Languages', items: [
-        { name: 'PHP', level: 4 }, { name: 'Python', level: 4 }, { name: 'C', level: 3 }, { name: 'JavaScript', level: 3 },
+        { name: 'Python', level: 4 }, { name: 'PHP', level: 3 }, { name: 'C', level: 3 }, { name: 'JavaScript', level: 3 },
         { name: 'SQL', level: 3 }, { name: 'Java', level: 2 }, { name: 'C#', level: 2 }, { name: 'C++', level: 2 }, { name: 'TypeScript', level: 1 },
       ] },
       { name: 'Web & frameworks', items: [
@@ -750,7 +750,7 @@ const en: typeof cs = {
         { name: 'OpenGL / OpenTK, GLSL', level: 2 }, { name: 'JavaFX', level: 2 },
       ] },
     ],
-    planned: ['TypeScript', 'Next.js', 'PostgreSQL', 'Spring Boot', 'GitHub Actions (CI/CD)', 'Testing (JUnit, Jest)', 'Kubernetes', 'AWS / cloud'],
+    planned: ['Next.js', 'PostgreSQL', 'Spring Boot', 'GitHub Actions (CI/CD)', 'Testing (JUnit, Jest)', 'Kubernetes', 'AWS / cloud'],
   },
   education: {
     title: 'Education',

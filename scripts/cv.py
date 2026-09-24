@@ -78,11 +78,11 @@ DATA = {
          '', 'Soukromé repozitáře, přístup na vyžádání'),
     ],
     'skills': [
-        ('Jazyky', 'PHP, Python (pokročile); C, JavaScript, SQL; Java, C#, C++ (základy); TypeScript (vyzkoušeno)'),
+        ('Jazyky', 'Python (pokročile); PHP, C, JavaScript, SQL; Java, C#, C++ (základy); TypeScript (vyzkoušeno)'),
         ('Web', 'HTML5 / CSS3 (pokročile); Nette, Latte, Tailwind CSS, React, Vue.js; Twig, UX/UI design, Node.js (základy)'),
         ('Nástroje', 'Git a GitHub, LaTeX (pokročile); MySQL, Linux WSL, Vite, Make / CMake / Maven; Docker (vyzkoušeno)'),
         ('Další', 'MVC / MVP (pokročile); TCP/IP sokety, pandas; REST API, WebSockety, OpenMP, OpenGL / OpenTK, Power BI (základy); OAuth 2.0, NFC (vyzkoušeno)'),
-        ('V plánu', 'TypeScript, Next.js, PostgreSQL, Spring Boot, GitHub Actions (CI/CD), testování (JUnit, Jest), Kubernetes, AWS / cloud'),
+        ('V plánu', 'Next.js, PostgreSQL, Spring Boot, GitHub Actions (CI/CD), testování (JUnit, Jest), Kubernetes, AWS / cloud'),
     ],
     'soft': [
         ('Vedení týmů a mentorství', 'Od 2018 vedu děti a mladé, od 2024 celou oblast Jižní kříž: koordinace vedoucích, pomoc s programem, předávání zkušeností.'),
