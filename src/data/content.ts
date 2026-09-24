@@ -122,10 +122,10 @@ const cs = {
     interestsTitle: 'Mimo kód',
     interests: [
       // action: 'guitar' = u položky je tlačítko Hrát, které otevře kytaru uprostřed obrazovky
-      { icon: 'guitar', label: 'Kytara', note: 'akustická, hlavně u ohně', action: 'guitar' },
-      { icon: 'scout', label: 'Klub Pathfinder', note: 'vedoucí oddílu, tábory, expedice' },
+      { icon: 'guitar', label: 'Kytara', note: 'akustická, hraju od roku 2011, hlavně u ohně', action: 'guitar' },
+      { icon: 'scout', label: 'Klub Pathfinder', note: 'v klubu od roku 2012, vedoucí oddílu, tábory, expedice' },
       { icon: 'marvel', label: 'Komiksové filmy', note: 'sleduju v pořadí, ve kterém vyšly' },
-      { icon: 'games', label: 'Videohry', note: '' },
+      { icon: 'games', label: 'Videohry', note: 'hraju od roku 2012' },
       { icon: 'cook', label: 'Vaření', note: 'doma i pro tábor' },
       { icon: 'mountain', label: 'Hory a outdoor', note: 'pěšky, se stanem' },
     ],
@@ -238,7 +238,7 @@ const cs = {
       {
         period: 'dlouhodobě',
         title: 'Vedoucí a oblastní koordinátor',
-        org: 'Klub Pathfinder',
+        org: 'Klub Pathfinder, v klubu od roku 2012',
         bullets: [
           'Koordinace regionálních aktivit mládežnické organizace a vedení vedoucích.',
           'Kompletní plánování vícedenních akcí a táborů pro desítky účastníků: rozpočet, program, bezpečnost, zázemí.',
@@ -331,7 +331,7 @@ const cs = {
     help: 'Příkazy: help, whoami, variant, timeline, prune, guide, ls, cat <soubor>, neofetch, skills, projects, open <repo>, pexeso, scout, guitar, marvel, games, theme, lang, date, history, clear, exit. Tab doplňuje, šipky procházejí historii.',
     variant: 'Evidované varianty subjektu ŠVEHLA:\n  01  junior full-stack vývojář stav: aktivní\n  02  vedoucí oddílu           stav: aktivní\n  03  kytarista                stav: aktivní, občas rozladěný\n  04  hráč videoher            stav: aktivní po půlnoci\n  05  student SWIS             stav: startuje\nVšechny varianty běží souběžně. Odchylka: žádná. Zvláštnost: vaří pro padesát lidí.',
     prune: 'Žádost o ořezání zamítnuta. Tahle linie se líbí.',
-    timelineCmd: '2019 ─┬─ SPŠ Strakonice, počítačová grafika a CNC\n      ├─ Klub Pathfinder (běží od dřívějška)\n2021 ─┼─ praxe v Automa CZ (i 2022)\n2023 ─┼─ FAV ZČU, Bc. Počítačové vědy\n2024 ─┼─ web-foodapp\n2025 ─┼─ Síťové Pexeso (C + JavaFX)\n2026 ─┼─ CampMaster 3000, bakalářka, komunitní portál, tenhle web\n      └─ SWIS ▶ (větev se otevírá)',
+    timelineCmd: '2011 ─┬─ kytara\n2012 ─┼─ Klub Pathfinder, hry\n2019 ─┼─ SPŠ Strakonice, počítačová grafika a CNC\n2021 ─┼─ praxe v Automa CZ (i 2022)\n2023 ─┼─ FAV ZČU, Bc. Počítačové vědy, první kód\n2024 ─┼─ web-foodapp\n2025 ─┼─ Síťové Pexeso (C + JavaFX)\n2026 ─┼─ CampMaster 3000, bakalářka, komunitní portál, tenhle web\n      └─ SWIS ▶ (větev se otevírá)',
     unknown: (c: string) => `příkaz nenalezen: ${c}. Zkus "help".`,
     cd: 'Bydlím v /home/olda a nikam se nestěhuju.',
     catUsage: 'použití: cat <soubor>. Soubory vypíše "ls".',
@@ -483,10 +483,10 @@ const en: typeof cs = {
     ],
     interestsTitle: 'Beyond code',
     interests: [
-      { icon: 'guitar', label: 'Guitar', note: 'acoustic, mostly by the fire', action: 'guitar' },
-      { icon: 'scout', label: 'Klub Pathfinder', note: 'troop leader, camps, expeditions' },
+      { icon: 'guitar', label: 'Guitar', note: 'acoustic, playing since 2011, mostly by the fire', action: 'guitar' },
+      { icon: 'scout', label: 'Klub Pathfinder', note: 'member since 2012, troop leader, camps, expeditions' },
       { icon: 'marvel', label: 'Comic-book films', note: 'in release order' },
-      { icon: 'games', label: 'Video games', note: '' },
+      { icon: 'games', label: 'Video games', note: 'playing since 2012' },
       { icon: 'cook', label: 'Cooking', note: 'at home and for camp' },
       { icon: 'mountain', label: 'Mountains and outdoors', note: 'on foot, with a tent' },
     ],
@@ -598,7 +598,7 @@ const en: typeof cs = {
       {
         period: 'ongoing',
         title: 'Leader and regional coordinator',
-        org: 'Klub Pathfinder',
+        org: 'Klub Pathfinder, member since 2012',
         bullets: [
           "Coordinating a youth organisation's regional activities and leading its leaders.",
           'End-to-end planning of multi-day events and camps for dozens of participants: budget, programme, safety, facilities.',
@@ -691,7 +691,7 @@ const en: typeof cs = {
     help: 'Commands: help, whoami, variant, timeline, prune, guide, ls, cat <file>, neofetch, skills, projects, open <repo>, pexeso, scout, guitar, marvel, games, theme, lang, date, history, clear, exit. Tab completes, arrows walk history.',
     variant: 'Variants on record for subject ŠVEHLA:\n  01  junior full-stack developer status: active\n  02  troop leader             status: active\n  03  guitarist                status: active, occasionally out of tune\n  04  gamer                    status: active after midnight\n  05  SWIS student             status: starting\nAll variants run concurrently. Deviation: none. Notable: cooks for fifty people.',
     prune: 'Pruning request denied. We like this line.',
-    timelineCmd: '2019 ─┬─ SPŠ Strakonice, computer graphics and CNC\n      ├─ Klub Pathfinder (running since before)\n2021 ─┼─ placement at Automa CZ (also 2022)\n2023 ─┼─ FAV ZČU, BSc Computer Science\n2024 ─┼─ web-foodapp\n2025 ─┼─ Networked Memory game (C + JavaFX)\n2026 ─┼─ CampMaster 3000, thesis, community portal, this website\n      └─ SWIS ▶ (branch opening)',
+    timelineCmd: '2011 ─┬─ guitar\n2012 ─┼─ Klub Pathfinder, games\n2019 ─┼─ SPŠ Strakonice, computer graphics and CNC\n2021 ─┼─ placement at Automa CZ (also 2022)\n2023 ─┼─ FAV ZČU, BSc Computer Science, first code\n2024 ─┼─ web-foodapp\n2025 ─┼─ Networked Memory game (C + JavaFX)\n2026 ─┼─ CampMaster 3000, thesis, community portal, this website\n      └─ SWIS ▶ (branch opening)',
     unknown: (c: string) => `command not found: ${c}. Try "help".`,
     cd: "I live in /home/olda and I'm not moving.",
     catUsage: 'usage: cat <file>. "ls" lists the files.',

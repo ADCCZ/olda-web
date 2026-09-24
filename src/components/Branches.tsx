@@ -16,20 +16,34 @@ const MAIN_Y = 230
 const VB_Y = 14
 const VB_H = 372
 /**
- * y pruhu, x odbočení, x konce (pořadí = t.hero.orbit).
+ * Časová osa: rok → x. Je schematická: roky do 2013 jsou roztažené (odbočují tam tři větve
+ * skoro najednou), 2013–2023 zhuštěné, poslední roky zase širší, konec osy schovává monitor.
+ */
+const AXIS: [number, number][] = [[2011, 22], [2013, 120], [2019, 220], [2023, 290], [2026.8, 470]]
+function at(year: number) {
+  for (let i = 1; i < AXIS.length; i++) {
+    const [y0, x0] = AXIS[i - 1]
+    const [y1, x1] = AXIS[i]
+    if (year <= y1) return x0 + ((year - y0) / (y1 - y0)) * (x1 - x0)
+  }
+  return AXIS[AXIS.length - 1][1]
+}
+
+/**
+ * y pruhu, x odbočení (podle skutečného začátku), x konce (pořadí = t.hero.orbit).
  * Větve se nekříží: na každé straně hlavní linie vede větev, která odbočila dřív,
  * dál od ní, takže pozdější větve se do ní vnoří.
- *   nahoru: oddíl (60) → 40, škola (90) → 105, kytara (200) → 170
- *   dolů:   kód (150) → 355, hry (260) → 290
+ *   nahoru: kytara (09/2011) → 40, oddíl (07/2012) → 105, FAV ZČU (10/2023) → 170
+ *   dolů:   hry (léto 2012) → 355, kód (s nástupem na vysokou, 2023) → 290
  */
 const LANES: { y: number; bx: number; ex: number; label: 'right' | 'above' | 'below' }[] = [
-  { y: 355, bx: 150, ex: 520, label: 'right' }, // code
-  { y: 40, bx: 60, ex: 560, label: 'right' },   // scout
-  { y: 170, bx: 200, ex: 400, label: 'above' }, // guitar
-  { y: 290, bx: 260, ex: 400, label: 'below' }, // games
-  { y: 105, bx: 90, ex: 520, label: 'right' },  // school
+  { y: 290, bx: at(2023.95), ex: 442, label: 'below' }, // code
+  { y: 105, bx: at(2012.5), ex: 520, label: 'right' },  // scout
+  { y: 40, bx: at(2011.7), ex: 560, label: 'right' },   // guitar
+  { y: 355, bx: at(2012.7), ex: 520, label: 'right' },  // games
+  { y: 170, bx: at(2023.75), ex: 430, label: 'above' }, // school
 ]
-const YEARS = [{ x: 90, l: '2023' }, { x: 230, l: '2024' }, { x: 370, l: '2025' }, { x: 440, l: '2026' }]
+const YEARS = [2011, 2019, 2023, 2026].map((y) => ({ x: at(y), l: String(y) }))
 
 export function Branches({ onAvatarMessage, onAction }: { onAvatarMessage: (m: string) => void; onAction: (a: 'pexeso') => void }) {
   const { t } = useI18n()
