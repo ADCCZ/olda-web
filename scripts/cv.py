@@ -42,7 +42,7 @@ DATA = {
     'education': [
         ('2019 – 2023', 'Počítačová grafika a CNC technika', 'Střední průmyslová škola Strakonice', ''),
         ('2023 – 2026', 'Bc. Počítačové vědy', 'Fakulta aplikovaných věd, Západočeská univerzita v Plzni',
-         'Bakalářská práce: vizualizace regionálních otevřených dat.'),
+         'Bakalářský projekt: Otevřená data a jejich analýzy v lázeňských místech pro demografii/školství a turismus.'),
         ('2026 –', 'Ing. Softwarové inženýrství (SWIS)', 'Fakulta aplikovaných věd, ZČU v Plzni',
          'Navazující studium.'),
     ],
@@ -66,7 +66,7 @@ DATA = {
          'React, Tailwind CSS, Recharts, Leaflet', 'campmaster-3000.vercel.app'),
         ('Informační a komunitní portál', 'Full-stack řešení na míru: autentizace, registrace na akce, správa multimediálního obsahu.',
          'PHP, Nette, Latte, Tailwind CSS, MySQL', 'github: adccz'),
-        ('Otevřená data lázeňských měst', 'Bakalářská práce: ETL pipeline nad daty ČSÚ, MŠMT a MPSV, 15 grafů a Power BI report.',
+        ('Otevřená data v lázeňských místech', 'Bakalářský projekt: ETL pipeline nad daty ČSÚ, MŠMT a MPSV, 15 grafů a Power BI report.',
          'Python, pandas, Power BI', 'github: adccz/bkp-tmwmf'),
         ('Síťové Pexeso', 'Server v čistém C (TCP, select() multiplexing), klient v JavaFX, vlastní textový protokol, 2–4 hráči. KIV/UPS.',
          'C, TCP/IP, JavaFX, Maven', 'github: adccz/tmwmf_sem_UPS'),

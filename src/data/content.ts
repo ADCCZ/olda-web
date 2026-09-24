@@ -178,8 +178,8 @@ const cs = {
       },
       {
         repo: 'bkp-tmwmf',
-        title: 'Otevřená data lázeňských měst',
-        desc: 'Bakalářská práce: vizualizace regionálních otevřených dat na devíti lázeňských a dvou turistických městech. Pipeline v Pythonu stahuje data z ČSÚ, MŠMT, MF, MPSV a registru lázní, čistí je, počítá metriky a kreslí 15 grafů s animací a report v Power BI. 24 testů v pytest.',
+        title: 'Otevřená data v lázeňských místech',
+        desc: 'Bakalářský projekt „Otevřená data a\u00a0jejich analýzy v\u00a0lázeňských místech pro demografii/školství a\u00a0turismus“: devět lázeňských a dvě turistická města. Pipeline v Pythonu stahuje data z ČSÚ, MŠMT, MF, MPSV a registru lázní, čistí je, počítá metriky a kreslí 15 grafů s animací a report v Power BI. 24 testů v pytest.',
         tags: ['Python', 'pandas', 'matplotlib', 'Power BI', 'pytest', 'Otevřená data'],
         featured: true,
       },
@@ -255,7 +255,7 @@ const cs = {
         { name: 'JavaScript', level: 3 }, // CampMaster (5,1k ř. JS/JSX), kiosek (Vue)
         { name: 'Java', level: 3 }, // klient Pexesa v JavaFX (2,2k ř.)
         { name: 'C#', level: 3 }, // 3D hra v OpenTK (2,1k ř.)
-        { name: 'Python', level: 3 }, // bakalářka (3,1k ř.) + skripty k UPP
+        { name: 'Python', level: 3 }, // bakalářský projekt (3,1k ř.) + skripty k UPP
         { name: 'SQL', level: 3 }, // MySQL migrace portálu, schéma FoodApp
         { name: 'C++', level: 2 }, // UPP (OpenMP)
       ] },
@@ -288,7 +288,7 @@ const cs = {
         { name: 'Make / CMake / Maven', level: 2 }, // C projekty, klient Pexesa
       ] },
       { name: 'Testování', items: [
-        { name: 'pytest (fixtures, parametrizace, mock)', level: 3 }, // bakalářka (24 testů), KIV/OKS úlohy 01–03, 08, 09
+        { name: 'pytest (fixtures, parametrizace, mock)', level: 3 }, // bakalářský projekt (24 testů), KIV/OKS úlohy 01–03, 08, 09
         { name: 'Pokrytí kódu (coverage)', level: 2 }, // KIV/OKS 03: 100% pokrytí příkazů a větví
         { name: 'Návrh testů, Squash TM', level: 2 }, // KIV/OKS 04–05: požadavky, testovací případy, manuální kampaně
         { name: 'Robot Framework + Browser Library', level: 2 }, // KIV/OKS 06, 07, 10: webové testy s POM, řízené daty, DB
@@ -297,9 +297,9 @@ const cs = {
         { name: 'Logování (Python logging)', level: 2 }, // KIV/OKS 08: dictConfig z JSON, testy úrovní
       ] },
       { name: 'Grafika a data', items: [
-        { name: 'pandas / matplotlib', level: 3 }, // bakalářka, UPP
-        { name: 'Otevřená data', level: 3 }, // bakalářka (ČSÚ, MŠMT, MF, MPSV)
-        { name: 'Power BI', level: 2 }, // bakalářka
+        { name: 'pandas / matplotlib', level: 3 }, // bakalářský projekt, UPP
+        { name: 'Otevřená data', level: 3 }, // bakalářský projekt (ČSÚ, MŠMT, MF, MPSV)
+        { name: 'Power BI', level: 2 }, // bakalářský projekt
         { name: 'OpenGL / OpenTK, GLSL', level: 2 }, // 3D hra
         { name: 'JavaFX', level: 2 }, // klient Pexesa
       ] },
@@ -311,7 +311,7 @@ const cs = {
     stamp: 'neořezávat',
     items: [
       { period: '2019 – 2023', title: 'Počítačová grafika a CNC technika', place: 'Střední průmyslová škola Strakonice (VOŠ, SPŠ a SOŠ řemesel a služeb)' },
-      { period: '2023 – 2026', title: 'Bc. Počítačové vědy', place: 'Fakulta aplikovaných věd, ZČU v Plzni', note: 'Bakalářská práce: vizualizace regionálních otevřených dat' },
+      { period: '2023 – 2026', title: 'Bc. Počítačové vědy', place: 'Fakulta aplikovaných věd, ZČU v Plzni', note: 'Bakalářský projekt: Otevřená data a\u00a0jejich analýzy v\u00a0lázeňských místech pro demografii/školství a\u00a0turismus' },
       { period: '2026 –', title: 'Ing. Softwarové inženýrství (SWIS)', place: 'Fakulta aplikovaných věd, ZČU v Plzni', note: 'Navazující studium', planned: true },
     ] as TimelineItem[],
   },
@@ -444,7 +444,7 @@ const cs = {
     help: 'Příkazy: help, whoami, variant, timeline, prune, guide, ls, cat <soubor>, neofetch, skills, projects, open <repo>, pexeso, scout, guitar, marvel, games, theme, lang, date, history, clear, exit. Tab doplňuje, šipky procházejí historii.',
     variant: 'Evidované varianty subjektu ŠVEHLA:\n  01  junior full-stack vývojář stav: aktivní\n  02  oblastní vedoucí         stav: aktivní\n  03  kytarista                stav: aktivní, občas rozladěný\n  04  hráč videoher            stav: aktivní po půlnoci\n  05  student SWIS             stav: startuje\nVšechny varianty běží souběžně. Odchylka: žádná. Zvláštnost: vaří pro padesát lidí.',
     prune: 'Žádost o ořezání zamítnuta. Tahle linie se líbí.',
-    timelineCmd: '2011 ─┬─ kytara\n2012 ─┼─ Klub Pathfinder, hry\n2018 ─┼─ rádce a vedoucí v Pathfinderu\n2019 ─┼─ SPŠ Strakonice, počítačová grafika a CNC\n2020 ─┼─ rádcovský kurz\n2021 ─┼─ praxe v Automa CZ (i 2022)\n2023 ─┼─ FAV ZČU, Bc. Počítačové vědy, první kód, festival United\n2024 ─┼─ web-foodapp, vůdcovský kurz, oblastní vedoucí Jižního kříže\n2025 ─┼─ kiosek pro Eurosoftware (Vue.js), Síťové Pexeso (C + JavaFX), úlohy z testování (KIV/OKS)\n2026 ─┼─ CampMaster 3000, bakalářka, komunitní portál, tenhle web\n2027 ─┼─ MasterGuide\n      └─ SWIS ▶ (větev se otevírá)',
+    timelineCmd: '2011 ─┬─ kytara\n2012 ─┼─ Klub Pathfinder, hry\n2018 ─┼─ rádce a vedoucí v Pathfinderu\n2019 ─┼─ SPŠ Strakonice, počítačová grafika a CNC\n2020 ─┼─ rádcovský kurz\n2021 ─┼─ praxe v Automa CZ (i 2022)\n2023 ─┼─ FAV ZČU, Bc. Počítačové vědy, první kód, festival United\n2024 ─┼─ web-foodapp, vůdcovský kurz, oblastní vedoucí Jižního kříže\n2025 ─┼─ kiosek pro Eurosoftware (Vue.js), Síťové Pexeso (C + JavaFX), úlohy z testování (KIV/OKS)\n2026 ─┼─ CampMaster 3000, bakalářský projekt, komunitní portál, tenhle web\n2027 ─┼─ MasterGuide\n      └─ SWIS ▶ (větev se otevírá)',
     unknown: (c: string) => `příkaz nenalezen: ${c}. Zkus "help".`,
     cd: 'Bydlím v /home/olda a nikam se nestěhuju.',
     catUsage: 'použití: cat <soubor>. Soubory vypíše "ls".',
@@ -648,8 +648,8 @@ const en: typeof cs = {
       },
       {
         repo: 'bkp-tmwmf',
-        title: 'Open data on Czech spa towns',
-        desc: "Bachelor's thesis: regional open-data visualisation for nine spa towns and two tourist towns. A Python pipeline downloads data from the Czech Statistical Office, ministries and the spa register, cleans it, computes metrics and draws 15 charts with an animation plus a Power BI report. 24 pytest tests.",
+        title: 'Open data in Czech spa towns',
+        desc: "Bachelor's project “Open data and their analyses in spa towns for demography/education and tourism”: nine spa towns and two tourist towns. A Python pipeline downloads data from the Czech Statistical Office, ministries and the spa register, cleans it, computes metrics and draws 15 charts with an animation plus a Power BI report. 24 pytest tests.",
         tags: ['Python', 'pandas', 'matplotlib', 'Power BI', 'pytest', 'Open data'],
         featured: true,
       },
@@ -748,7 +748,7 @@ const en: typeof cs = {
     stamp: 'do not prune',
     items: [
       { period: '2019 – 2023', title: 'Computer Graphics and CNC Technology', place: 'Secondary Technical School (SPŠ), Strakonice' },
-      { period: '2023 – 2026', title: 'BSc Computer Science', place: 'Faculty of Applied Sciences, University of West Bohemia, Pilsen', note: 'Thesis: regional open-data visualisation' },
+      { period: '2023 – 2026', title: 'BSc Computer Science', place: 'Faculty of Applied Sciences, University of West Bohemia, Pilsen', note: "Bachelor's project: Open data and their analyses in spa towns for demography/education and tourism" },
       { period: '2026 –', title: 'MSc Software Engineering (SWIS)', place: 'Faculty of Applied Sciences, University of West Bohemia, Pilsen', note: "Master's programme", planned: true },
     ],
   },
@@ -881,7 +881,7 @@ const en: typeof cs = {
     help: 'Commands: help, whoami, variant, timeline, prune, guide, ls, cat <file>, neofetch, skills, projects, open <repo>, pexeso, scout, guitar, marvel, games, theme, lang, date, history, clear, exit. Tab completes, arrows walk history.',
     variant: 'Variants on record for subject ŠVEHLA:\n  01  junior full-stack developer status: active\n  02  regional leader          status: active\n  03  guitarist                status: active, occasionally out of tune\n  04  gamer                    status: active after midnight\n  05  SWIS student             status: starting\nAll variants run concurrently. Deviation: none. Notable: cooks for fifty people.',
     prune: 'Pruning request denied. We like this line.',
-    timelineCmd: '2011 ─┬─ guitar\n2012 ─┼─ Klub Pathfinder, games\n2018 ─┼─ patrol leader and leader in Pathfinders\n2019 ─┼─ SPŠ Strakonice, computer graphics and CNC\n2020 ─┼─ patrol leader course\n2021 ─┼─ placement at Automa CZ (also 2022)\n2023 ─┼─ FAV ZČU, BSc Computer Science, first code, United festival\n2024 ─┼─ web-foodapp, unit leader course, regional leader of Jižní kříž\n2025 ─┼─ kiosk for Eurosoftware (Vue.js), Networked Memory game (C + JavaFX), testing assignments (KIV/OKS)\n2026 ─┼─ CampMaster 3000, thesis, community portal, this website\n2027 ─┼─ Master Guide\n      └─ SWIS ▶ (branch opening)',
+    timelineCmd: '2011 ─┬─ guitar\n2012 ─┼─ Klub Pathfinder, games\n2018 ─┼─ patrol leader and leader in Pathfinders\n2019 ─┼─ SPŠ Strakonice, computer graphics and CNC\n2020 ─┼─ patrol leader course\n2021 ─┼─ placement at Automa CZ (also 2022)\n2023 ─┼─ FAV ZČU, BSc Computer Science, first code, United festival\n2024 ─┼─ web-foodapp, unit leader course, regional leader of Jižní kříž\n2025 ─┼─ kiosk for Eurosoftware (Vue.js), Networked Memory game (C + JavaFX), testing assignments (KIV/OKS)\n2026 ─┼─ CampMaster 3000, bachelor’s project, community portal, this website\n2027 ─┼─ Master Guide\n      └─ SWIS ▶ (branch opening)',
     unknown: (c: string) => `command not found: ${c}. Try "help".`,
     cd: "I live in /home/olda and I'm not moving.",
     catUsage: 'usage: cat <file>. "ls" lists the files.',
