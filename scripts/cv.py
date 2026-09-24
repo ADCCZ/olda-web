@@ -328,10 +328,11 @@ def branches(c, x, y, w, h, end_x):
         c.setFillColor(PAPER); c.setLineWidth(1.2); c.circle(bx, my, 1.9, stroke=1, fill=1)
         c.setFillColor(PANEL); c.setLineWidth(0.9); c.circle(ex, ly, r, stroke=1, fill=1)
         if b['id'] in ICONS:
+            # svglib převádí px na pt (24 px = 18 pt), proto velikost bereme z výkresu, ne z viewBoxu
             d = svg2rlg(io.BytesIO(ICONS[b['id']].encode('utf-8')))
-            sc = 2 * r * 0.66 / 24
-            d.scale(sc, sc); d.width, d.height = 24 * sc, 24 * sc
-            renderPDF.draw(d, c, ex - 12 * sc, ly - 12 * sc)
+            sc = 2 * r * 0.66 / d.width
+            d.scale(sc, sc)
+            renderPDF.draw(d, c, ex - d.width * sc / 2, ly - d.height * sc / 2)
         c.setFillColor(INK2); c.setFont('Mono', fs)
         if L['label'] == 'right': c.drawString(ex + r + 3, ly - fs * 0.35, b['label'])
         elif L['label'] == 'above': c.drawCentredString(ex, ly + r + 2.2, b['label'])
