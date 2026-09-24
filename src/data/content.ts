@@ -15,8 +15,6 @@ export type Project = {
   tags: string[]
   /** živá ukázka */
   live?: string
-  /** zvýraznit jako hlavní projekt */
-  featured?: boolean
   /** kód je v soukromém repozitáři (vlastním: přístup na vyžádání, nebo týmu), na GitHub se neodkazuje */
   privateRepo?: 'own' | 'team'
 }
@@ -161,6 +159,7 @@ const cs = {
     offline: 'GitHub teď neodpovídá, seznam je z poslední zálohy.',
     sourceLive: 'živě z GitHubu',
     sourceSnapshot: 'záložní snapshot',
+    mainLang: 'hlavní jazyk repozitáře',
     play: 'Zahrát si',
     items: [
       {
@@ -169,7 +168,6 @@ const cs = {
         desc: 'Interaktivní dashboard pro řízení táborové hry: editace tras na mapě, správa týmů, pravidla a bodování v reálném čase. Semestrální projekt KIV/UUR.',
         tags: ['React', 'Tailwind CSS', 'Recharts', 'Leaflet'],
         live: 'https://campmaster-3000.vercel.app',
-        featured: true,
       },
       {
         repo: null,
@@ -177,28 +175,24 @@ const cs = {
         title: 'Samoobslužný kiosek',
         desc: 'Samoobslužný kiosek pro firemní akce pro Eurosoftware (dnes GK Software Czech Republic): zaměstnanec se přihlásí NFC kartou, vybere si produkty z aktuální akce a systém hlídá limity; správce spravuje produkty, akce a zaměstnance a vidí statistiky. Moje část: frontend ve Vue.js, NFC, design a UX/UI. Týmový projekt KIV/ZSW-E, letní semestr 2025.',
         tags: ['Vue.js', 'JavaScript', 'NFC', 'UX/UI'],
-        featured: true,
       },
       {
         repo: 'web_oblastni-stranky_jk',
         title: 'Informační a komunitní portál',
         desc: 'Web pro oblast Jižní kříž Klubu Pathfinder, který mám momentálně ve vývoji. Full-stack řešení na míru: autentizace uživatelů, registrace na akce, správa multimediálního obsahu.',
         tags: ['PHP', 'Nette', 'Latte', 'Tailwind CSS', 'MySQL'],
-        featured: true,
       },
       {
         repo: 'bkp-tmwmf',
         title: 'Otevřená data v lázeňských místech',
         desc: 'Bakalářský projekt „Otevřená data a\u00a0jejich analýzy v\u00a0lázeňských místech pro demografii/školství a\u00a0turismus“: devět lázeňských a dvě turistická města. Pipeline v Pythonu stahuje data z ČSÚ, MŠMT, MF, MPSV a registru lázní, čistí je, počítá metriky a kreslí 15 grafů s animací a report v Power BI. 24 testů v pytest.',
         tags: ['Python', 'pandas', 'matplotlib', 'Power BI', 'pytest', 'Otevřená data'],
-        featured: true,
       },
       {
         repo: 'olda-web',
         title: 'Tento web',
         desc: 'Osobní web a životopis ve stylu archivu časových linií: 3D portál v čistém CSS, animace, easter eggy, živá data z GitHubu přes Vercel funkci a generátor PDF životopisu v Pythonu. Vzniká ve spolupráci s Claude Code.',
         tags: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Vercel'],
-        featured: true,
       },
       {
         repo: 'tmwmf_sem_UPS',
@@ -650,6 +644,7 @@ const en: typeof cs = {
     offline: 'GitHub is not responding right now; this list is from the last backup.',
     sourceLive: 'live from GitHub',
     sourceSnapshot: 'fallback snapshot',
+    mainLang: 'main language of the repo',
     play: 'Play',
     items: [
       {
@@ -658,7 +653,6 @@ const en: typeof cs = {
         desc: 'Interactive dashboard for running a camp-wide game: route editing on a map, team management, rules and real-time scoring. Semester project for KIV/UUR.',
         tags: ['React', 'Tailwind CSS', 'Recharts', 'Leaflet'],
         live: 'https://campmaster-3000.vercel.app',
-        featured: true,
       },
       {
         repo: null,
@@ -666,28 +660,24 @@ const en: typeof cs = {
         title: 'Self-service kiosk',
         desc: 'Self-service kiosk for company events for Eurosoftware (now GK Software Czech Republic): employees sign in with an NFC card, pick products from the current event and the system enforces limits; admins manage products, events and employees and see statistics. My part: the Vue.js frontend, NFC, design and UX/UI. KIV/ZSW-E team project, spring 2025.',
         tags: ['Vue.js', 'JavaScript', 'NFC', 'UX/UI'],
-        featured: true,
       },
       {
         repo: 'web_oblastni-stranky_jk',
         title: 'Community information portal',
         desc: 'Website for the Jižní kříž region of Klub Pathfinder, currently in development. A custom full-stack solution: user authentication, event registration, multimedia content management.',
         tags: ['PHP', 'Nette', 'Latte', 'Tailwind CSS', 'MySQL'],
-        featured: true,
       },
       {
         repo: 'bkp-tmwmf',
         title: 'Open data in Czech spa towns',
         desc: "Bachelor's project “Open data and their analyses in spa towns for demography/education and tourism”: nine spa towns and two tourist towns. A Python pipeline downloads data from the Czech Statistical Office, ministries and the spa register, cleans it, computes metrics and draws 15 charts with an animation plus a Power BI report. 24 pytest tests.",
         tags: ['Python', 'pandas', 'matplotlib', 'Power BI', 'pytest', 'Open data'],
-        featured: true,
       },
       {
         repo: 'olda-web',
         title: 'This website',
         desc: 'Personal site and CV styled as a timeline archive: a 3D portal in pure CSS, animations, easter eggs, live GitHub data through a Vercel function and a Python CV PDF generator. Built together with Claude Code.',
         tags: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'Vercel'],
-        featured: true,
       },
       {
         repo: 'tmwmf_sem_UPS',

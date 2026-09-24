@@ -18,7 +18,10 @@ function fmtDate(iso: string, lang: string) {
   return new Date(iso).toLocaleDateString(lang === 'cs' ? 'cs-CZ' : 'en-GB', { month: 'long', year: 'numeric' })
 }
 
-/** tenký proužek s poměrem jazyků */
+/** barevná tečka jazyka (stejná barva jako na GitHubu) */
+const Dot = ({ l }: { l: string }) => <span className="inline-block h-2 w-2 shrink-0 rounded-full" style={{ background: color(l) }} aria-hidden />
+
+/** tenký proužek s poměrem jazyků; v legendě má každý jazyk svou barevnou tečku */
 function LangBar({ languages }: { languages: Record<string, number> }) {
   const total = Object.values(languages).reduce((a, b) => a + b, 0) || 1
   const parts = Object.entries(languages).sort((a, b) => b[1] - a[1]).slice(0, 5)
@@ -27,8 +30,8 @@ function LangBar({ languages }: { languages: Record<string, number> }) {
       <div className="flex h-1.5 w-full overflow-hidden rounded-sm bg-line" aria-hidden>
         {parts.map(([l, n]) => <span key={l} style={{ width: `${(n / total) * 100}%`, background: color(l) }} />)}
       </div>
-      <p className="readout mt-1 text-[0.7rem]">
-        {parts.map(([l, n]) => `${l} ${Math.round((n / total) * 100)} %`).join(', ')}
+      <p className="readout mt-1 flex flex-wrap gap-x-3 gap-y-0.5 text-[0.7rem]">
+        {parts.map(([l, n]) => <span key={l} className="inline-flex items-center gap-1.5"><Dot l={l} />{l} {Math.round((n / total) * 100)} %</span>)}
       </p>
     </div>
   )
@@ -52,9 +55,12 @@ export function Projects({ onPexeso }: { onPexeso: () => void }) {
     return (
       <li className="grid gap-3 py-5 md:grid-cols-[minmax(0,5fr)_minmax(0,3fr)_minmax(0,2fr)_minmax(0,3fr)] md:items-start md:gap-6 md:py-6" style={{ '--i': Math.min(i, 10) + 3 } as React.CSSProperties}>
         <div>
-          <h3 className={p.featured ? 'font-display text-sm md:text-base' : 'font-medium'}>{p.title}</h3>
+          <h3 className="font-semibold">{p.title}</h3>
           {p.desc && <p className="mt-1.5 max-w-prose text-sm leading-relaxed text-ink-2">{p.desc}</p>}
-          {r?.languages && <LangBar languages={r.languages} />}
+          {r?.languages ? <LangBar languages={r.languages} /> : r?.language && (
+            // bez rozpadu jazyků (záložní snapshot): aspoň hlavní jazyk s popiskem, co tečka znamená
+            <p className="readout mt-2 flex items-center gap-1.5 text-[0.7rem]"><Dot l={r.language} />{r.language} · {t.projects.mainLang}</p>
+          )}
         </div>
         <p className="text-sm text-ink-2 md:pt-0.5">
           <span className="readout md:hidden">{t.projects.cols.tech}: </span>
@@ -64,7 +70,7 @@ export function Projects({ onPexeso }: { onPexeso: () => void }) {
           {loading && p.repo ? (
             <span className="inline-block h-3 w-24 animate-pulse rounded-sm bg-line align-middle" aria-hidden />
           ) : r ? (
-            <>{r.language && !r.languages && <span className="mr-2 inline-block h-2 w-2 rounded-full align-middle" style={{ background: color(r.language) }} />}{fmtDate(r.pushed_at ?? r.updated_at, lang)}</>
+            fmtDate(r.pushed_at ?? r.updated_at, lang)
           ) : (
             p.privateRepo ? t.projects.privateRepo[p.privateRepo] : t.projects.noRepo
           )}
