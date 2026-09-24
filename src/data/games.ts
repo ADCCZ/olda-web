@@ -2,7 +2,7 @@
  * Herní knihovna pro rozbalovací seznam u „Videohry“ v Profilu, stav k datu UPDATED.
  * Na webu je jen pořadí, hodiny slouží k řazení a nezobrazují se. U Steamu jsou
  * z knihovny (Celkem odehráno). Hře z Epicu stačí doplnit `hours` a sama se zařadí
- * do pořadí; bez `hours` zůstane dole mezi hrami mimo pořadí.
+ * do pořadí; bez `hours` zůstane dole mezi hrami mimo pořadí (stejně hry odjinud).
  * Názvy jsou originální, `cs` = český název, pokud ho hra má. Pořadí nehraje roli,
  * seznam se řadí podle hodin.
  */
@@ -10,8 +10,8 @@ export type Game = {
   name: string
   cs?: string
   hours?: number
-  /** kde hru mám: chybí = Steam, 'epic' = jen Epic, 'both' = Steam i Epic (hodiny ze Steamu) */
-  store?: 'epic' | 'both'
+  /** kde hru mám: chybí = Steam, 'epic' = jen Epic, 'both' = Steam i Epic (hodiny ze Steamu), 'other' = jinde */
+  store?: 'epic' | 'both' | 'other'
 }
 
 /** kdy byl seznam sepsaný (RRRR-MM-DD); při úpravě hodin přepiš */
@@ -61,10 +61,16 @@ export const GAMES: Game[] = [
   { name: 'A Plague Tale: Innocence', store: 'epic' },
   { name: 'Hitman', store: 'epic' },
   { name: 'Just Cause 4', store: 'epic' },
+  // jinde než na Steamu a Epicu
+  { name: 'FIFA 13', store: 'other' },
+  { name: 'FIFA 14', store: 'other' },
+  { name: 'FIFA 18', store: 'other' },
+  { name: 'FIFA 19', store: 'other' },
+  { name: 'FIFA 20', store: 'other' },
 ]
 
 /** hry s odehraným časem (Steam i Epic), od nejhranější */
 export const byHours = (games: Game[]) =>
   games.filter((g): g is Game & { hours: number } => g.hours !== undefined).sort((a, b) => b.hours - a.hours)
-/** hry bez zaznamenaného času (zatím jen z Epicu) */
+/** hry bez zaznamenaného času (Epic a hry odjinud; Steam čas vždycky má) */
 export const withoutHours = (games: Game[]) => games.filter((g) => g.hours === undefined)

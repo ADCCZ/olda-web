@@ -30,7 +30,7 @@ export function GamesList({ id }: { id: string }) {
           <li key={g.name} className="flex items-baseline gap-2 py-1.5 text-sm">
             <span className={`readout w-7 shrink-0 tabular-nums ${k < 3 ? 'text-accent' : ''}`}>{String(k + 1).padStart(2, '0')}</span>
             <span className="min-w-0 truncate" title={name(g)}>{name(g)}</span>
-            {g.store && <span className="readout shrink-0 text-[11px]">{g.store === 'epic' ? s.onEpic : s.alsoEpic}</span>}
+            {(g.store === 'epic' || g.store === 'both') && <span className="readout shrink-0 text-[11px]">{g.store === 'epic' ? s.onEpic : s.alsoEpic}</span>}
           </li>
         ))}
       </ol>
@@ -44,7 +44,10 @@ export function GamesList({ id }: { id: string }) {
           <p className="readout mb-2 mt-5">{s.noHours}</p>
           <ul className="flex flex-wrap gap-1.5">
             {rest.map((g) => (
-              <li key={g.name} className="rounded border border-line px-2 py-1 text-xs text-ink-2">{name(g)}</li>
+              <li key={g.name} className="rounded border border-line px-2 py-1 text-xs text-ink-2">
+                {name(g)}
+                {g.store === 'epic' && <span className="readout ml-1.5 text-[10px]">{s.onEpic}</span>}
+              </li>
             ))}
           </ul>
         </>
