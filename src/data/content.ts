@@ -146,6 +146,7 @@ const cs = {
       onEpic: 'Epic',
       alsoEpic: 'i na Epicu',
       noHours: 'Další z Epic Games · bez zaznamenaného času',
+      updated: 'Sepsáno',
     },
   },
   projects: {
@@ -634,6 +635,7 @@ const en: typeof cs = {
       onEpic: 'Epic',
       alsoEpic: 'also on Epic',
       noHours: 'More from Epic Games · no recorded playtime',
+      updated: 'Compiled',
     },
   },
   projects: {

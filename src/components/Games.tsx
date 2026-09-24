@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
 import { useI18n } from '../lib/i18n'
-import { GAMES, byHours, withoutHours } from '../data/games'
+import { GAMES, UPDATED, byHours, withoutHours } from '../data/games'
 
 const TOP = 10
 
@@ -20,10 +20,15 @@ export function GamesList({ id }: { id: string }) {
   const total = played.reduce((a, g) => a + g.hours, 0)
   const shown = all ? played : played.slice(0, TOP)
   const name = (g: (typeof GAMES)[number]) => (lang === 'cs' && g.cs) || g.name
+  // datum bez času v UTC, ať se v žádném pásmu neposune o den
+  const updated = new Intl.DateTimeFormat(lang === 'cs' ? 'cs-CZ' : 'en-GB', { day: 'numeric', month: lang === 'cs' ? 'numeric' : 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(UPDATED))
 
   return (
     <div id={id} className="mb-3 mt-1 rounded-lg bg-bg/85 p-3 backdrop-blur-[2px]">
-      <p className="readout mb-3">{s.summary(played.length, fmt.format(Math.round(total)))}</p>
+      <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+        <p className="readout">{s.summary(played.length, fmt.format(Math.round(total)))}</p>
+        <p className="readout text-[11px]">{s.updated}: <time dateTime={UPDATED} className="text-ink">{updated}</time></p>
+      </div>
       <ol className="space-y-2">
         {shown.map((g, k) => (
           <li key={g.name} className="grid grid-cols-[1.75rem_1fr_auto] items-baseline gap-x-2 text-sm">

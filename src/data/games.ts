@@ -1,5 +1,5 @@
 /**
- * Herní knihovna pro rozbalovací seznam u „Videohry“ v Profilu (stav k září 2026).
+ * Herní knihovna pro rozbalovací seznam u „Videohry“ v Profilu, stav k datu UPDATED.
  * Hodiny u Steamu jsou z knihovny (Celkem odehráno). Hře z Epicu stačí doplnit `hours`
  * a sama se zařadí mezi hry s časem; bez `hours` zůstane dole v seznamu jen z Epicu.
  * Názvy jsou originální, `cs` = český název, pokud ho hra má. Pořadí nehraje roli,
@@ -12,6 +12,9 @@ export type Game = {
   /** kde hru mám: chybí = Steam, 'epic' = jen Epic, 'both' = Steam i Epic (hodiny ze Steamu) */
   store?: 'epic' | 'both'
 }
+
+/** kdy byl seznam sepsaný (RRRR-MM-DD); při úpravě hodin přepiš */
+export const UPDATED = '2026-09-24'
 
 export const GAMES: Game[] = [
   // Steam
