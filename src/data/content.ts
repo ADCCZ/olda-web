@@ -321,8 +321,8 @@ const cs = {
     items: [
       {
         period: 'od 2018',
-        title: 'Oblastní vedoucí, oblast Jižní kříž',
-        org: 'Klub Pathfinder · v klubu od 2012, rádce a vedoucí od 2018, oblastní vedoucí od 2024',
+        title: 'Rádce a vedoucí, od 2024 oblastní vedoucí',
+        org: 'Klub Pathfinder, oblast Jižní kříž · v klubu od 2012',
         bullets: [
           'Vedení oblasti: koordinace oddílů a vedoucích, účetnictví oblasti, víkendové akce.',
           'Tábory jsou moje srdcovka: jeden jsem vedl jako programový vedoucí, dva jako hlavní vedoucí. Rozpočet, program, tým, bezpečnost a zázemí pro desítky účastníků.',
@@ -450,9 +450,9 @@ const cs = {
     title: 'ARCHIVNÍ TERMINÁL 07',
     prompt: 'archiv@olda:~$',
     help: 'Příkazy: help, whoami, variant, timeline, prune, guide, ls, cat <soubor>, neofetch, skills, projects, open <repo>, pexeso, scout, guitar, marvel, games, theme, lang, date, history, clear, exit. Tab doplňuje, šipky procházejí historii.',
-    variant: 'Evidované varianty subjektu ŠVEHLA:\n  01  junior full-stack vývojář stav: aktivní\n  02  oblastní vedoucí         stav: aktivní\n  03  kytarista                stav: aktivní, občas rozladěný\n  04  hráč videoher            stav: aktivní po půlnoci\n  05  student SWIS             stav: startuje\nVšechny varianty běží souběžně. Odchylka: žádná. Zvláštnost: ve volnu visí na skále nebo na ferratě.',
+    variant: 'Evidované varianty subjektu ŠVEHLA:\n  01  kytarista                  stav: aktivní, občas rozladěný\n  02  oblastní vedoucí           stav: aktivní\n  03  hráč videoher              stav: aktivní po půlnoci\n  04  junior full-stack vývojář  stav: aktivní, tento spis\n  05  student SWIS               stav: startuje\nVšechny varianty běží souběžně. Odchylka: žádná. Zvláštnost: ve volnu visí na skále nebo na ferratě.',
     prune: 'Žádost o ořezání zamítnuta. Tahle linie se líbí.',
-    timelineCmd: '2011 ─┬─ kytara\n2012 ─┼─ Klub Pathfinder, hry\n2018 ─┼─ rádce a vedoucí v Pathfinderu\n2019 ─┼─ SPŠ Strakonice, počítačová grafika a CNC\n2020 ─┼─ rádcovský kurz\n2021 ─┼─ strojírenská praxe v Automa CZ (i 2022)\n2023 ─┼─ FAV ZČU, Bc. Počítačové vědy, první kód, festival United\n2024 ─┼─ web-foodapp, vůdcovský kurz, oblastní vedoucí Jižního kříže\n2025 ─┼─ kiosek pro Eurosoftware (Vue.js), Síťové Pexeso (C + JavaFX), úlohy z testování (KIV/OKS)\n2026 ─┼─ CampMaster 3000, bakalářský projekt, komunitní portál, tenhle web\n2027 ─┼─ MasterGuide\n      └─ SWIS ▶ (větev se otevírá)',
+    timelineCmd: '2011 ─┬─ kytara\n2012 ─┼─ Klub Pathfinder, hry\n2018 ─┼─ rádce a vedoucí v Pathfinderu\n2019 ─┼─ SPŠ Strakonice, počítačová grafika a CNC\n2020 ─┼─ rádcovský kurz\n2021 ─┼─ strojírenská praxe v Automa CZ (i 2022)\n2023 ─┼─ FAV ZČU, Bc. Počítačové vědy, první kód, festival United\n2024 ─┼─ vůdcovský kurz, oblastní vedoucí Jižního kříže\n2025 ─┼─ kiosek pro Eurosoftware (Vue.js), Síťové Pexeso (C + JavaFX), FoodApp (KIV/WEB), úlohy z testování (KIV/OKS)\n2026 ─┼─ CampMaster 3000, bakalářský projekt, komunitní portál, tenhle web\n2027 ─┼─ MasterGuide\n      └─ SWIS ▶ (větev se otevírá)',
     unknown: (c: string) => `příkaz nenalezen: ${c}. Zkus "help".`,
     cd: 'Bydlím v /home/olda a nikam se nestěhuju.',
     catUsage: 'použití: cat <soubor>. Soubory vypíše "ls".',
@@ -501,7 +501,7 @@ const cs = {
       contact: 'Pokud jste dočetli až sem, napište mu. Razítko už tam je.',
     },
     tour: [
-      { target: '#top', text: 'Hlavička: Oldřich Švehla, pro přátele Olda, varianta 01. Větve jsou věci, které běží souběžně.' },
+      { target: '#top', text: 'Hlavička: Oldřich Švehla, pro přátele Olda, varianta 04. Větve jsou věci, které běží souběžně.' },
       { target: '#about', text: 'Kdo to je: junior full-stack vývojář, absolvent FAV ZČU, vedoucí v Klubu Pathfinder. U kytary vpravo je tlačítko Hrát.' },
       { target: '#education', text: 'Vzdělání: bakalář 2023 až 2026, od podzimu navazující SWIS.' },
       { target: '#experience', text: 'Praxe: vedení v Klubu Pathfinder a frontend samoobslužného kiosku pro Eurosoftware.' },
@@ -769,8 +769,8 @@ const en: typeof cs = {
     items: [
       {
         period: 'since 2018',
-        title: 'Regional leader, Jižní kříž region',
-        org: 'Klub Pathfinder · member since 2012, patrol leader and leader since 2018, regional leader since 2024',
+        title: 'Patrol leader and leader, regional leader since 2024',
+        org: 'Klub Pathfinder, Jižní kříž region · member since 2012',
         bullets: [
           'Leading the region: coordinating units and their leaders, keeping the regional accounts, running weekend events.',
           "Camps are my passion: I've run one as programme leader and two as head leader. Budget, programme, team, safety and facilities for dozens of participants.",
@@ -898,9 +898,9 @@ const en: typeof cs = {
     title: 'ARCHIVE TERMINAL 07',
     prompt: 'archive@olda:~$',
     help: 'Commands: help, whoami, variant, timeline, prune, guide, ls, cat <file>, neofetch, skills, projects, open <repo>, pexeso, scout, guitar, marvel, games, theme, lang, date, history, clear, exit. Tab completes, arrows walk history.',
-    variant: 'Variants on record for subject ŠVEHLA:\n  01  junior full-stack developer status: active\n  02  regional leader          status: active\n  03  guitarist                status: active, occasionally out of tune\n  04  gamer                    status: active after midnight\n  05  SWIS student             status: starting\nAll variants run concurrently. Deviation: none. Notable: spends free time on rock faces and via ferratas.',
+    variant: 'Variants on record for subject ŠVEHLA:\n  01  guitarist                    status: active, occasionally out of tune\n  02  regional leader              status: active\n  03  gamer                        status: active after midnight\n  04  junior full-stack developer  status: active, this file\n  05  SWIS student                 status: starting\nAll variants run concurrently. Deviation: none. Notable: spends free time on rock faces and via ferratas.',
     prune: 'Pruning request denied. We like this line.',
-    timelineCmd: '2011 ─┬─ guitar\n2012 ─┼─ Klub Pathfinder, games\n2018 ─┼─ patrol leader and leader in Pathfinders\n2019 ─┼─ SPŠ Strakonice, computer graphics and CNC\n2020 ─┼─ patrol leader course\n2021 ─┼─ mechanical engineering placement at Automa CZ (also 2022)\n2023 ─┼─ FAV ZČU, BSc Computer Science, first code, United festival\n2024 ─┼─ web-foodapp, unit leader course, regional leader of Jižní kříž\n2025 ─┼─ kiosk for Eurosoftware (Vue.js), Networked Memory game (C + JavaFX), testing assignments (KIV/OKS)\n2026 ─┼─ CampMaster 3000, bachelor’s project, community portal, this website\n2027 ─┼─ Master Guide\n      └─ SWIS ▶ (branch opening)',
+    timelineCmd: '2011 ─┬─ guitar\n2012 ─┼─ Klub Pathfinder, games\n2018 ─┼─ patrol leader and leader in Pathfinders\n2019 ─┼─ SPŠ Strakonice, computer graphics and CNC\n2020 ─┼─ patrol leader course\n2021 ─┼─ mechanical engineering placement at Automa CZ (also 2022)\n2023 ─┼─ FAV ZČU, BSc Computer Science, first code, United festival\n2024 ─┼─ unit leader course, regional leader of Jižní kříž\n2025 ─┼─ kiosk for Eurosoftware (Vue.js), Networked Memory game (C + JavaFX), FoodApp (KIV/WEB), testing assignments (KIV/OKS)\n2026 ─┼─ CampMaster 3000, bachelor’s project, community portal, this website\n2027 ─┼─ Master Guide\n      └─ SWIS ▶ (branch opening)',
     unknown: (c: string) => `command not found: ${c}. Try "help".`,
     cd: "I live in /home/olda and I'm not moving.",
     catUsage: 'usage: cat <file>. "ls" lists the files.',
@@ -940,7 +940,7 @@ const en: typeof cs = {
       'There is one sequence of arrow keys I would rather not list here.',
     ],
     sections: {
-      about: "File summary. He leads a Pathfinder region and is finishing a master's on top of it.",
+      about: "File summary. He leads a Pathfinder region and is starting a master's on top of it.",
       education: "Education. Bachelor's done, master's opening.",
       experience: 'Experience. The region, camps and a kiosk for Eurosoftware.',
       projects: 'The register fills from GitHub. A new repo shows up on its own.',
@@ -949,7 +949,7 @@ const en: typeof cs = {
       contact: 'If you read this far, write to him. The stamp is already there.',
     },
     tour: [
-      { target: '#top', text: 'The header: Oldřich Švehla, Olda to friends, variant 01. The branches are things that run at the same time.' },
+      { target: '#top', text: 'The header: Oldřich Švehla, Olda to friends, variant 04. The branches are things that run at the same time.' },
       { target: '#about', text: 'Who he is: junior full-stack developer, FAV ZČU graduate, leader in Klub Pathfinder. Press Play next to the guitar on the right.' },
       { target: '#education', text: "Education: bachelor's 2023 to 2026, the SWIS master's from autumn." },
       { target: '#experience', text: 'Experience: leadership in Klub Pathfinder and the frontend of a self-service kiosk for Eurosoftware.' },

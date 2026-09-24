@@ -115,7 +115,7 @@ function neofetch({ t, theme, lang }: Ctx): string {
     `Host: FAV ZČU, Plzeň`,
     `Kernel: React 19 / Vite`,
     `Shell: bash + ${lang === 'cs' ? 'kytara' : 'guitar'}`,
-    `Langs: PHP, JS, Java, C#, Python, C`,
+    `Langs: ${t.skills.groups[0].items.filter((i) => i.level >= 3).map((i) => i.name).join(', ')}`,
   ]
   return art.map((a, i) => `${a}${info[i] ?? ''}`).join('\n') + '\n\n' + t.terminal.neofetch
 }

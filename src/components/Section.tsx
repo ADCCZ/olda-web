@@ -47,7 +47,7 @@ export function Section({ id, title, lead, children, className = '', pattern, si
     <section
       ref={ref}
       id={id}
-      className={`relative border-t border-line py-14 md:py-24 ${className}`}
+      className={`relative overflow-x-clip border-t border-line py-14 md:py-24 ${className}`}
       data-reveal
       data-inview={inview || undefined}
       data-arrived={arrived || undefined}

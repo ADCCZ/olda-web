@@ -75,7 +75,7 @@ PDF = {
                 'Hledám stáž nebo částečný úvazek.'),
     # body praxe podle nadpisu na webu; praxe, která tu chybí, se vezme s body z webu
     'experience': {
-        'Oblastní vedoucí, oblast Jižní kříž': [
+        'Rádce a vedoucí, od 2024 oblastní vedoucí': [
             'Vedení oblasti: oddíly a vedoucí, účetnictví, víkendové akce. Tábory: 1× programový, 2× hlavní vedoucí.',
         ],
         'Frontend samoobslužného kiosku': [
