@@ -246,6 +246,7 @@ const cs = {
     title: 'Technologie',
     lead: 'Co používám a jak dobře. Stupnice je od prvního vyzkoušení po expertní úroveň.',
     plannedLabel: 'V plánu',
+    scaleTitle: 'Stupnice zkušeností',
     /** popisky stupňů 1–5 */
     levels: ['zkoušel jsem', 'základy, školní projekty', 'samostatně na projektech', 'pokročile, dlouhodobě', 'expert'],
     levelOf: (n: number) => `${n} z 5`,
@@ -731,6 +732,7 @@ const en: typeof cs = {
     title: 'Technologies',
     lead: 'What I use and how well. The scale runs from a first try to expert level.',
     plannedLabel: 'Planned',
+    scaleTitle: 'Experience scale',
     levels: ['tried it', 'basics, school projects', 'independently on projects', 'advanced, long-term', 'expert'],
     levelOf: (n: number) => `${n} of 5`,
     groups: [
