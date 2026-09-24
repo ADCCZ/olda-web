@@ -13,12 +13,13 @@ export function Contact() {
       </div>
       <dl className="reveal mt-8 grid max-w-md grid-cols-[auto_1fr] gap-x-6 gap-y-1 font-mono text-sm" style={{ '--i': 3 } as React.CSSProperties}>
         <dt className="text-ink-2">{t.contact.location}</dt><dd>{t.location}</dd>
+        {t.email && <><dt className="text-ink-2">{t.contact.email}</dt><dd><a href={`mailto:${t.email}`} className="hover:text-accent">{t.email}</a></dd></>}
         {t.phone && <><dt className="text-ink-2">{t.contact.phone}</dt><dd><a href={`tel:${t.phone.replace(/\s/g, '')}`} className="hover:text-accent">{t.phone}</a></dd></>}
       </dl>
       <div className="pop-in mt-6 flex flex-wrap gap-3">
         <a href={t.github} target="_blank" rel="noreferrer" className="pill"><Github width={16} height={16} />{t.contact.github}</a>
         {t.email ? (
-          <a href={t.email} className="pill"><Mail width={16} height={16} />{t.contact.email}</a>
+          <a href={`mailto:${t.email}`} className="pill"><Mail width={16} height={16} />{t.contact.email}</a>
         ) : (
           <span className="pill cursor-default opacity-60"><Mail width={16} height={16} />{t.contact.email}{soon}</span>
         )}

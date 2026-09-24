@@ -30,7 +30,7 @@ DATA = {
     'first': 'Oldřich', 'last': 'Švehla',
     'role': 'junior full-stack vývojář',
     'location': 'Plzeň, Česko',
-    'email': '',          # doplň, např. 'jmeno@email.cz'
+    'email': 'oldasvehla@seznam.cz',
     'phone': '',          # doplň, např. '+420 777 123 456'
     'github': 'github.com/adccz',
     'web': '',            # doplň po nasazení, např. 'oldrich-svehla.vercel.app'

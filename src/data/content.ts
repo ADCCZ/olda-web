@@ -49,8 +49,9 @@ const shared = {
   brand: 'OlďJaŠ',
   github: GITHUB,
   githubUser: 'adccz',
-  /** doplň, až budeš mít: 'mailto:...', 'https://linkedin.com/in/...' */
-  email: '' as string,
+  /** kontaktní e-mail (adresa, mailto: doplní Contact.tsx) */
+  email: 'oldasvehla@seznam.cz' as string,
+  /** doplň, až budeš mít: 'https://linkedin.com/in/...' */
   linkedin: '' as string,
   /** soubory v /public; generuje je scripts/cv.py */
   cvFile: '/cv.pdf',
