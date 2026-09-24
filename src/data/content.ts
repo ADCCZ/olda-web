@@ -17,8 +17,8 @@ export type Project = {
   live?: string
   /** zvýraznit jako hlavní projekt */
   featured?: boolean
-  /** kód je v soukromém repozitáři (třeba týmu), na GitHub se neodkazuje */
-  privateRepo?: boolean
+  /** kód je v soukromém repozitáři (vlastním: přístup na vyžádání, nebo týmu), na GitHub se neodkazuje */
+  privateRepo?: 'own' | 'team'
 }
 
 /** úroveň zkušenosti 1–5, popisky stupňů jsou v skills.levels */
@@ -124,7 +124,7 @@ const cs = {
       'Junior full-stack vývojář. Absolvent bakalářského studia informatiky na FAV ZČU se zaměřením na vývoj webových aplikací a softwarové inženýrství.',
     body: [
       'Mám praktické zkušenosti s návrhem backendové i frontendové architektury, integrací databází a prací s otevřenými daty. Nejčastěji píšu v PHP (Nette), JavaScriptu (React, Vue) a Javě, k tomu MySQL, Docker a Linux. Při vývoji pracuju s\u00a0AI asistentem Claude (Claude Code), se kterým vznikl i\u00a0tenhle web.',
-      'V Klubu Pathfinder jsem od roku 2012, od 2018 jako rádce a vedoucí, dnes jako oblastní vedoucí oblasti Jižní kříž. Moje srdcovka jsou tábory: jeden jsem vedl jako programový vedoucí a dva jako hlavní vedoucí. Teď dokončuju MasterGuide, nejvyšší stupeň vzdělání v\u00a0Pathfinderu. Ve volném čase hraju na kytaru, vařím, koukám na komiksové filmy a hraju hry.',
+      'V Klubu Pathfinder jsem od roku 2012, od 2018 jako rádce a vedoucí a od 2024 jako oblastní vedoucí oblasti Jižní kříž. Moje srdcovka jsou tábory: jeden jsem vedl jako programový vedoucí a dva jako hlavní vedoucí. Teď dokončuju MasterGuide, nejvyšší stupeň vzdělání v\u00a0Pathfinderu. Ve volném čase hraju na kytaru, vařím, koukám na komiksové filmy a hraju hry.',
       'Od podzimu 2026 pokračuju v navazujícím studiu Softwarové inženýrství (SWIS). Hledám stáž nebo částečný úvazek.',
     ],
     interestsTitle: 'Mimo kód',
@@ -146,7 +146,7 @@ const cs = {
     repoLabel: 'Repozitář',
     updated: 'Aktualizováno',
     noRepo: 'Mimo GitHub',
-    privateRepo: 'soukromé repo týmu',
+    privateRepo: { own: 'soukromé repo, přístup na vyžádání', team: 'soukromé repo týmu' },
     offline: 'GitHub teď neodpovídá, seznam je z poslední zálohy.',
     sourceLive: 'živě z GitHubu',
     sourceSnapshot: 'záložní snapshot',
@@ -162,7 +162,7 @@ const cs = {
       },
       {
         repo: null,
-        privateRepo: true,
+        privateRepo: 'team',
         title: 'Samoobslužný kiosek',
         desc: 'Frontend samoobslužného kiosku pro firmu Eurosoftware (dnes GK Software Czech Republic). Týmový projekt na zakázku v předmětu KIV/ZSW-E, včetně práce s NFC.',
         tags: ['Frontend', 'NFC', 'Týmová práce'],
@@ -197,9 +197,31 @@ const cs = {
       },
       {
         repo: null,
-        title: '3D grafická aplikace',
-        desc: 'Interaktivní 3D prostředí v C# nad OpenTK (OpenGL): kamera, osvětlení, vlastní geometrie.',
-        tags: ['C#', 'OpenTK', 'OpenGL'],
+        privateRepo: 'own',
+        title: 'Emulátor počítače KMX',
+        desc: 'Semestrální práce KIV/PC: emulátor počítače s procesorem architektury MISC v čistém C, testovací programy v assembleru a dokumentace v LaTeXu.',
+        tags: ['C', 'Make', 'LaTeX'],
+      },
+      {
+        repo: null,
+        privateRepo: 'own',
+        title: 'Virtuální souborový systém',
+        desc: 'Semestrální práce KIV/ZOS: souborový systém uložený v jediném binárním souboru, s i-uzly, adresáři, symbolickými linky, importem a exportem souborů a dávkovými skripty.',
+        tags: ['C', 'CMake'],
+      },
+      {
+        repo: null,
+        privateRepo: 'own',
+        title: 'Paralelní zpracování meteodat',
+        desc: 'Semestrální práce KIV/UPP: historická měření meteostanic ČR zpracovaná sériově i paralelně, mapy průměrných teplot v SVG, detekce meziročních výkyvů a měření zrychlení (Amdahlův a Gustafsonův zákon).',
+        tags: ['C++', 'OpenMP', 'SVG'],
+      },
+      {
+        repo: null,
+        privateRepo: 'own',
+        title: '3D hra v OpenGL',
+        desc: 'Semestrální práce KIV/ZPG v C# (.NET 8) nad OpenTK: svět generovaný z textových map, kolize, kamera s pohybem hráče, teleporty, baterka jako dynamické světlo, minimapa a vlastní GLSL shadery.',
+        tags: ['C#', '.NET 8', 'OpenTK', 'GLSL'],
       },
       {
         repo: 'web-foodapp',
@@ -255,7 +277,7 @@ const cs = {
       {
         period: 'od 2018',
         title: 'Oblastní vedoucí, oblast Jižní kříž',
-        org: 'Klub Pathfinder · v klubu od 2012, rádce a vedoucí od 2018',
+        org: 'Klub Pathfinder · v klubu od 2012, rádce a vedoucí od 2018, oblastní vedoucí od 2024',
         bullets: [
           'Vedení oblasti: koordinace oddílů a vedoucích, účetnictví oblasti, víkendové akce.',
           'Tábory jsou moje srdcovka: jeden jsem vedl jako programový vedoucí, dva jako hlavní vedoucí. Rozpočet, program, tým, bezpečnost a zázemí pro desítky účastníků.',
@@ -377,7 +399,7 @@ const cs = {
     help: 'Příkazy: help, whoami, variant, timeline, prune, guide, ls, cat <soubor>, neofetch, skills, projects, open <repo>, pexeso, scout, guitar, marvel, games, theme, lang, date, history, clear, exit. Tab doplňuje, šipky procházejí historii.',
     variant: 'Evidované varianty subjektu ŠVEHLA:\n  01  junior full-stack vývojář stav: aktivní\n  02  oblastní vedoucí         stav: aktivní\n  03  kytarista                stav: aktivní, občas rozladěný\n  04  hráč videoher            stav: aktivní po půlnoci\n  05  student SWIS             stav: startuje\nVšechny varianty běží souběžně. Odchylka: žádná. Zvláštnost: vaří pro padesát lidí.',
     prune: 'Žádost o ořezání zamítnuta. Tahle linie se líbí.',
-    timelineCmd: '2011 ─┬─ kytara\n2012 ─┼─ Klub Pathfinder, hry\n2018 ─┼─ rádce a vedoucí v Pathfinderu\n2019 ─┼─ SPŠ Strakonice, počítačová grafika a CNC\n2020 ─┼─ rádcovský kurz\n2021 ─┼─ praxe v Automa CZ (i 2022)\n2023 ─┼─ FAV ZČU, Bc. Počítačové vědy, první kód, festival United\n2024 ─┼─ web-foodapp, vůdcovský kurz\n2025 ─┼─ Síťové Pexeso (C + JavaFX)\n2026 ─┼─ CampMaster 3000, bakalářka, komunitní portál, tenhle web\n2027 ─┼─ MasterGuide\n      └─ SWIS ▶ (větev se otevírá)',
+    timelineCmd: '2011 ─┬─ kytara\n2012 ─┼─ Klub Pathfinder, hry\n2018 ─┼─ rádce a vedoucí v Pathfinderu\n2019 ─┼─ SPŠ Strakonice, počítačová grafika a CNC\n2020 ─┼─ rádcovský kurz\n2021 ─┼─ praxe v Automa CZ (i 2022)\n2023 ─┼─ FAV ZČU, Bc. Počítačové vědy, první kód, festival United\n2024 ─┼─ web-foodapp, vůdcovský kurz, oblastní vedoucí Jižního kříže\n2025 ─┼─ Síťové Pexeso (C + JavaFX)\n2026 ─┼─ CampMaster 3000, bakalářka, komunitní portál, tenhle web\n2027 ─┼─ MasterGuide\n      └─ SWIS ▶ (větev se otevírá)',
     unknown: (c: string) => `příkaz nenalezen: ${c}. Zkus "help".`,
     cd: 'Bydlím v /home/olda a nikam se nestěhuju.',
     catUsage: 'použití: cat <soubor>. Soubory vypíše "ls".',
@@ -529,7 +551,7 @@ const en: typeof cs = {
       "Junior full-stack developer. Bachelor's graduate in Computer Science at FAV ZČU (University of West Bohemia), focused on web application development and software engineering.",
     body: [
       'I have hands-on experience designing backend and frontend architecture, integrating databases and working with open data. I mostly write PHP (Nette), JavaScript (React, Vue) and Java, with MySQL, Docker and Linux around it. I work with the AI assistant Claude (Claude Code); this website was built with it too.',
-      "I've been in Klub Pathfinder since 2012, a patrol leader and leader since 2018, and today I lead the Jižní kříž region. Camps are my passion: I've run one as programme leader and two as head leader. I'm now finishing Master Guide, the highest level of training in Pathfinders. In my free time I play guitar, cook, watch comic-book films and play games.",
+      "I've been in Klub Pathfinder since 2012, a patrol leader and leader since 2018, and since 2024 I've led the Jižní kříž region. Camps are my passion: I've run one as programme leader and two as head leader. I'm now finishing Master Guide, the highest level of training in Pathfinders. In my free time I play guitar, cook, watch comic-book films and play games.",
       "From autumn 2026 I continue with the Software Engineering (SWIS) master's. I'm looking for an internship or part-time role.",
     ],
     interestsTitle: 'Beyond code',
@@ -550,7 +572,7 @@ const en: typeof cs = {
     repoLabel: 'Repository',
     updated: 'Updated',
     noRepo: 'Off GitHub',
-    privateRepo: 'private team repo',
+    privateRepo: { own: 'private repo, access on request', team: 'private team repo' },
     offline: 'GitHub is not responding right now; this list is from the last backup.',
     sourceLive: 'live from GitHub',
     sourceSnapshot: 'fallback snapshot',
@@ -566,7 +588,7 @@ const en: typeof cs = {
       },
       {
         repo: null,
-        privateRepo: true,
+        privateRepo: 'team',
         title: 'Self-service kiosk',
         desc: 'Frontend of a self-service kiosk for Eurosoftware (now GK Software Czech Republic). A commissioned team project in the KIV/ZSW-E course, including work with NFC.',
         tags: ['Frontend', 'NFC', 'Teamwork'],
@@ -601,9 +623,31 @@ const en: typeof cs = {
       },
       {
         repo: null,
-        title: '3D graphics application',
-        desc: 'Interactive 3D environment in C# on top of OpenTK (OpenGL): camera, lighting, custom geometry.',
-        tags: ['C#', 'OpenTK', 'OpenGL'],
+        privateRepo: 'own',
+        title: 'KMX computer emulator',
+        desc: 'KIV/PC semester project: an emulator of a computer with a MISC-architecture CPU in pure C, test programs in assembly and documentation in LaTeX.',
+        tags: ['C', 'Make', 'LaTeX'],
+      },
+      {
+        repo: null,
+        privateRepo: 'own',
+        title: 'Virtual file system',
+        desc: 'KIV/ZOS semester project: a file system stored in a single binary file, with inodes, directories, symbolic links, file import and export, and batch scripts.',
+        tags: ['C', 'CMake'],
+      },
+      {
+        repo: null,
+        privateRepo: 'own',
+        title: 'Parallel weather data processing',
+        desc: 'KIV/UPP semester project: historical Czech weather station data processed serially and in parallel, SVG maps of average temperatures, detection of year-to-year swings and speed-up measurements (Amdahl and Gustafson laws).',
+        tags: ['C++', 'OpenMP', 'SVG'],
+      },
+      {
+        repo: null,
+        privateRepo: 'own',
+        title: 'OpenGL 3D game',
+        desc: 'KIV/ZPG semester project in C# (.NET 8) on OpenTK: a world generated from text maps, collisions, a player camera, teleports, a flashlight as dynamic light, a minimap and custom GLSL shaders.',
+        tags: ['C#', '.NET 8', 'OpenTK', 'GLSL'],
       },
       {
         repo: 'web-foodapp',
@@ -658,7 +702,7 @@ const en: typeof cs = {
       {
         period: 'since 2018',
         title: 'Regional leader, Jižní kříž region',
-        org: 'Klub Pathfinder · member since 2012, patrol leader and leader since 2018',
+        org: 'Klub Pathfinder · member since 2012, patrol leader and leader since 2018, regional leader since 2024',
         bullets: [
           'Leading the region: coordinating units and their leaders, keeping the regional accounts, running weekend events.',
           "Camps are my passion: I've run one as programme leader and two as head leader. Budget, programme, team, safety and facilities for dozens of participants.",
@@ -780,7 +824,7 @@ const en: typeof cs = {
     help: 'Commands: help, whoami, variant, timeline, prune, guide, ls, cat <file>, neofetch, skills, projects, open <repo>, pexeso, scout, guitar, marvel, games, theme, lang, date, history, clear, exit. Tab completes, arrows walk history.',
     variant: 'Variants on record for subject ŠVEHLA:\n  01  junior full-stack developer status: active\n  02  regional leader          status: active\n  03  guitarist                status: active, occasionally out of tune\n  04  gamer                    status: active after midnight\n  05  SWIS student             status: starting\nAll variants run concurrently. Deviation: none. Notable: cooks for fifty people.',
     prune: 'Pruning request denied. We like this line.',
-    timelineCmd: '2011 ─┬─ guitar\n2012 ─┼─ Klub Pathfinder, games\n2018 ─┼─ patrol leader and leader in Pathfinders\n2019 ─┼─ SPŠ Strakonice, computer graphics and CNC\n2020 ─┼─ patrol leader course\n2021 ─┼─ placement at Automa CZ (also 2022)\n2023 ─┼─ FAV ZČU, BSc Computer Science, first code, United festival\n2024 ─┼─ web-foodapp, unit leader course\n2025 ─┼─ Networked Memory game (C + JavaFX)\n2026 ─┼─ CampMaster 3000, thesis, community portal, this website\n2027 ─┼─ Master Guide\n      └─ SWIS ▶ (branch opening)',
+    timelineCmd: '2011 ─┬─ guitar\n2012 ─┼─ Klub Pathfinder, games\n2018 ─┼─ patrol leader and leader in Pathfinders\n2019 ─┼─ SPŠ Strakonice, computer graphics and CNC\n2020 ─┼─ patrol leader course\n2021 ─┼─ placement at Automa CZ (also 2022)\n2023 ─┼─ FAV ZČU, BSc Computer Science, first code, United festival\n2024 ─┼─ web-foodapp, unit leader course, regional leader of Jižní kříž\n2025 ─┼─ Networked Memory game (C + JavaFX)\n2026 ─┼─ CampMaster 3000, thesis, community portal, this website\n2027 ─┼─ Master Guide\n      └─ SWIS ▶ (branch opening)',
     unknown: (c: string) => `command not found: ${c}. Try "help".`,
     cd: "I live in /home/olda and I'm not moving.",
     catUsage: 'usage: cat <file>. "ls" lists the files.',

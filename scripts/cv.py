@@ -47,7 +47,7 @@ DATA = {
          'Navazující studium.'),
     ],
     'experience': [
-        ('od 2018', 'Oblastní vedoucí, oblast Jižní kříž', 'Klub Pathfinder, v klubu od 2012', [
+        ('od 2024', 'Oblastní vedoucí, oblast Jižní kříž', 'Klub Pathfinder, v klubu od 2012, vedoucí od 2018', [
             'Vedení oblasti: oddíly a vedoucí, účetnictví, víkendové akce. Tábory: 1× programový, 2× hlavní vedoucí.',
             'Kurzy: rádcovský (2020), vůdcovský (2024), MasterGuide – nejvyšší stupeň (do začátku 2027).',
         ]),
@@ -70,8 +70,9 @@ DATA = {
          'Python, pandas, Power BI', 'github: adccz/bkp-tmwmf'),
         ('Síťové Pexeso', 'Server v čistém C (TCP, select() multiplexing), klient v JavaFX, vlastní textový protokol, 2–4 hráči. KIV/UPS.',
          'C, TCP/IP, JavaFX, Maven', 'github: adccz/tmwmf_sem_UPS'),
-        ('3D grafická aplikace', 'Interaktivní 3D prostředí v C# nad OpenTK (OpenGL): kamera, osvětlení, vlastní geometrie.',
-         'C#, OpenTK, OpenGL', ''),
+        ('Další semestrální práce', 'emulátor počítače KMX v C (KIV/PC), virtuální souborový systém v C (KIV/ZOS), '
+         'paralelní zpracování meteodat v C++ a OpenMP (KIV/UPP), 3D hra v C# a OpenTK (KIV/ZPG).',
+         '', 'Soukromé repozitáře, přístup na vyžádání'),
     ],
     'skills': [
         ('Backend', 'PHP (Nette), C#, Java, Python, C, REST API, architektonický návrh (MVC)'),
@@ -85,7 +86,7 @@ DATA = {
         ('Projektový management a logistika', 'Tři tábory ve vedení a víkendové akce pro desítky účastníků: rozpočet a účetnictví, program, bezpečnost, zázemí.'),
         ('Zodpovědnost a adaptabilita', 'Řešení nečekaných situací a krizový management při náročných outdoorových a expedičních aktivitách.'),
     ],
-    'languages': [('Čeština', 'rodilý mluvčí'), ('Angličtina', 'doplň úroveň, např. B2')],
+    'languages': [('Čeština', 'rodilý mluvčí'), ('Angličtina', 'B2')],
     'certs': [],  # ('2025', 'Název kurzu', 'Organizace')
 }
 
@@ -368,7 +369,7 @@ def build_plain(path):
         for b in bullets: s.append(Paragraph(b, bl, bulletText='•'))
     s.append(Paragraph('Projekty', h))
     for t, d, tech, link in DATA['projects']:
-        s.append(Paragraph('<b>%s:</b> %s <font color="#6f5636">%s%s</font>' % (t, d, tech, (', ' + link) if link else ''), bl, bulletText='•'))
+        s.append(Paragraph('<b>%s:</b> %s <font color="#6f5636">%s</font>' % (t, d, ', '.join(x for x in (tech, link) if x)), bl, bulletText='•'))
     s.append(Paragraph('Technické dovednosti', h))
     for k, v in DATA['skills']: s.append(Paragraph('<b>%s:</b> %s' % (k, v), body))
     s.append(Paragraph('Měkké dovednosti', h))
