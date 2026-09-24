@@ -72,6 +72,7 @@ plochu pro prst a tlačítka jsou na dotykových zařízeních vyšší.
 | avatar | `src/components/Avatar.tsx` (SVG) |
 | větve časové linie | `content.ts` → `hero.orbit`, geometrie v `components/Branches.tsx` (`LANES`) |
 | razítka, dřevěná lišta, CRT | `src/index.css` → `.stamp`, `.wood`, `.crt` |
+| pozadí sekcí (kachličky / podlaha s mřížkou a sluncem / záložní zlatá helma) | `pattern` u `<Section>` (`tiles`, `grid`, `horns`), styly `src/index.css` → `.pat-*` |
 | co říká Složka | `content.ts` → `guide` (uvítání, tipy, komentáře k sekcím, kroky prohlídky) |
 | barvy obrazovek (terminál, boot, monitor) | `src/index.css` → `--crt-*` |
 | akordy, průběhy a rytmy kytary | `src/lib/guitar.ts` → `CHORDS`, `PROGRESSIONS`, `PATTERNS` |

@@ -6,7 +6,7 @@ export function Contact() {
   const { t } = useI18n()
   const soon = <span className="readout ml-1">({t.contact.soon})</span>
   return (
-    <Section id="contact" title={t.contact.title} pattern="horns" side="left">
+    <Section id="contact" title={t.contact.title} pattern="grid" side="left">
       <div className="flex flex-wrap items-start gap-6">
         <p className="reveal max-w-prose text-lg leading-snug md:text-xl" style={{ '--i': 1 } as React.CSSProperties}>{t.contact.lead}</p>
         <span className="stamp mt-2 text-sm">{t.contact.stamp}</span>

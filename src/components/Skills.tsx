@@ -23,7 +23,7 @@ export function Skills() {
   const s = t.skills
   const label = (level: Skill['level']) => `${s.levelOf(level)}: ${s.levels[level - 1]}`
   return (
-    <Section id="skills" title={s.title} lead={s.lead} pattern="horns" side="right">
+    <Section id="skills" title={s.title} lead={s.lead} pattern="grid" side="right">
       {/* legenda stupnice jako stupnice přístroje: pět polí podle délky popisku (vždy na jednom řádku),
           kontrolky přibývají zleva doprava; na užších obrazovkách pod sebou, ukazatele v jednom sloupci */}
       <section className="reveal panel mb-8 p-4 sm:p-5" style={{ '--i': 3 } as React.CSSProperties} aria-label={s.scaleTitle}>

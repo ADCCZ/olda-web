@@ -463,10 +463,10 @@ body::before {
   * { transition-duration: 0.01ms !important; }
 }
 
-/* ---------- pozadí sekcí: střídání obkladu a rohů ----------
+/* ---------- pozadí sekcí: střídání obkladu a podlahy ----------
    Počítá se i úvod: liché obrazovky (úvod, Vzdělání, Projekty, Dovednosti) mají retro-futuristický
-   obklad z kachliček, sudé (Profil, Praxe, Technologie, Kontakt) velkou zlatou helmu s rohy
-   v rohu sekce. Section.tsx → pattern.
+   obklad z kachliček, sudé (Profil, Praxe, Technologie, Kontakt) podlahu stanice s mřížkou
+   a slunce na obzoru. Section.tsx → pattern.
    Kachličky se kreslí barvou linek z tématu a uprostřed, kde je text, slábnou. */
 :root {
   /* obklad ze sedmdesátkové stanice budoucnosti: zaoblené kachličky se střídají jako šachovnice
@@ -488,9 +488,77 @@ body::before {
   mask-size: 96px 96px, 100% 100%, 100% 100%;
   mask-repeat: repeat, no-repeat, no-repeat;
 }
-/* sudé sekce: zlatá helma s rohy, střídá strany (Section.tsx → side). Svisle uprostřed sekce,
-   kousek od okraje, nakloněná ke středu; velká podle sekce (kontejner, cqw/cqh): asi polovina
-   výšky, nejvýš 45 % šířky, na úzkém displeji až 75 % šířky */
+/* sudé sekce: podlaha stanice. Světlejší panel, nahoře řádky obrazovky, dole pod obsahem pás
+   s perspektivní mřížkou podlahy, zářícím obzorem a pruhovaným sluncem, které střídá strany
+   (Section.tsx → side; sekce s mřížkou mají vyšší spodní odsazení, ať podlaha nezasahuje do textu).
+   Obzor: horní hrana sklopené roviny (perspective 300px, rotateX 60°) vyjde při výšce 600px
+   asi 110px nad spodkem sekce, na mobilu při 260px asi 74px. */
+.pat-grid {
+  container-type: size;
+  background: linear-gradient(to bottom, transparent, var(--bg-2) 18%, var(--bg-2) 82%, transparent);
+  --floor: 260px;
+  --horizon: 74px;
+}
+@media (min-width: 768px) { .pat-grid { --floor: 600px; --horizon: 110px; } }
+/* řádky obrazovky: jen u horní hrany, ke středu slábnou */
+.pat-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: min(40cqh, 320px);
+  background: repeating-linear-gradient(to bottom, var(--pat) 0 1px, transparent 1px 6px);
+  mask-image: linear-gradient(to bottom, #000, transparent);
+  opacity: 0.55;
+}
+/* podlaha: čtverce v barvě akcentu, sklopené do perspektivy, k obzoru se ztrácejí */
+.pat-grid .grid-floor {
+  position: absolute;
+  left: -80%;
+  right: -80%;
+  bottom: 0;
+  height: var(--floor);
+  background-image:
+    linear-gradient(to right, var(--accent) 1.5px, transparent 1.5px),
+    linear-gradient(to bottom, var(--accent) 1.5px, transparent 1.5px);
+  background-size: 64px 64px;
+  background-position: center bottom;
+  transform: perspective(300px) rotateX(60deg);
+  transform-origin: 50% 100%;
+  mask-image: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0.55) 40%, transparent 92%);
+  opacity: 0.32;
+}
+/* obzor: tenká zářící linka */
+.pat-grid::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--horizon);
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent) 20%, var(--accent) 80%, transparent);
+  box-shadow: 0 0 14px var(--glow);
+  opacity: 0.5;
+}
+/* slunce na obzoru: půlkruh s vodorovnými pruhy, které se směrem dolů rozšiřují */
+.pat-grid .grid-sun {
+  position: absolute;
+  bottom: var(--horizon);
+  width: clamp(120px, 18cqw, 240px);
+  aspect-ratio: 2 / 1;
+  border-radius: 999px 999px 0 0;
+  background: linear-gradient(to bottom, var(--accent-2), var(--accent));
+  mask-image: linear-gradient(to bottom,
+    #000 0 44%, transparent 44% 48%, #000 48% 60%, transparent 60% 66%,
+    #000 66% 75%, transparent 75% 83%, #000 83% 89%, transparent 89% 100%);
+  opacity: 0.22;
+}
+.pat-grid.side-right .grid-sun { right: clamp(16px, 10cqw, 180px); }
+.pat-grid.side-left .grid-sun { left: clamp(16px, 10cqw, 180px); }
+:root[data-theme="light"] .pat-grid .grid-floor { opacity: 0.38; }
+:root[data-theme="light"] .pat-grid .grid-sun { opacity: 0.28; }
+
+/* záloha: zlatá helma s rohy (pattern="horns"), dřív v sudých sekcích. Svisle uprostřed sekce,
+   kousek od okraje, nakloněná ke středu; asi polovina výšky, nejvýš 45 % šířky (na mobilu 75 %) */
 .pat-horns { container-type: size; }
 .pat-horns img {
   position: absolute;

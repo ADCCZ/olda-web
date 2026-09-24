@@ -2,15 +2,19 @@ import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { useI18n } from '../lib/i18n'
 import helmet from '../assets/horned-helmet.svg'
 
-/** pozadí sekce (index.css → .pat-*): obklad z kachliček, nebo zlatá helma s rohy */
-export type Pattern = 'tiles' | 'horns'
+/**
+ * pozadí sekce (index.css → .pat-*): obklad z kachliček, podlaha stanice s mřížkou,
+ * nebo zlatá helma s rohy (teď nepoužitá, stačí u sekce přepsat pattern="grid" na "horns")
+ */
+export type Pattern = 'tiles' | 'grid' | 'horns'
 
 /**
  * Sekce = spis. Když poprvé vjede do okna (data-inview), rozehrají se její animace
  * z index.css: nadpis se vypíše, řádky (.rows) se "vytisknou", razítka dopadnou,
  * bloky (.reveal) vyjedou. Pořadí v rámci sekce řídí --i u jednotlivých prvků.
- * Pozadí se střídá (úvod se počítá jako první): liché obklad (tiles), sudé zlatá helma (horns),
- * která u každé sudé sekce střídá stranu (side).
+ * Pozadí se střídá (úvod se počítá jako první): liché obklad (tiles), sudé podlaha stanice (grid):
+ * světlejší panel, řádky obrazovky nahoře, perspektivní mřížka dole a pruhované slunce na obzoru,
+ * které u každé sudé sekce střídá stranu (side).
  */
 export function Section({ id, title, lead, children, className = '', pattern, side = 'right' }: {
   id: string; title: string; lead?: string; children: ReactNode; className?: string; pattern?: Pattern; side?: 'left' | 'right'
@@ -47,16 +51,15 @@ export function Section({ id, title, lead, children, className = '', pattern, si
     <section
       ref={ref}
       id={id}
-      className={`relative overflow-x-clip border-t border-line py-14 md:py-24 ${className}`}
+      className={`relative overflow-x-clip border-t border-line pt-14 md:pt-24 ${pattern === 'grid' ? 'pb-36 md:pb-52' : 'pb-14 md:pb-24'} ${className}`}
       data-reveal
       data-inview={inview || undefined}
       data-arrived={arrived || undefined}
     >
       {pattern && (
-        <div aria-hidden className={`section-bg pat-${pattern} ${pattern === 'horns' ? `side-${side}` : ''}`}>
-          {pattern === 'horns' && (
-            <img src={helmet} alt="" loading="lazy" decoding="async" />
-          )}
+        <div aria-hidden className={`section-bg pat-${pattern} ${pattern !== 'tiles' ? `side-${side}` : ''}`}>
+          {pattern === 'grid' && <><i className="grid-sun" /><i className="grid-floor" /></>}
+          {pattern === 'horns' && <img src={helmet} alt="" loading="lazy" decoding="async" />}
         </div>
       )}
       <div className="relative mx-auto max-w-6xl px-5 md:px-8">
