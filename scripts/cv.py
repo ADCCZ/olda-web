@@ -34,10 +34,11 @@ DATA = {
     'phone': '',          # doplň, např. '+420 777 123 456'
     'github': 'github.com/adccz',
     'web': '',            # doplň po nasazení, např. 'oldrich-svehla.vercel.app'
-    'profile': ('Junior full-stack vývojář, absolvent bakalářského studia informatiky na FAV ZČU se zaměřením '
-                'na vývoj webových aplikací a softwarové inženýrství. Praktické zkušenosti s návrhem backendové '
-                'i frontendové architektury, integrací databází a prací s otevřenými daty. Oblastní vedoucí '
-                'v Klubu Pathfinder: vedení týmů, organizace táborů a akcí, krizové řízení. '
+    'profile': ('Junior full-stack vývojář, který věci dotahuje do posledního puntíku. Absolvent bakalářského '
+                'studia informatiky na FAV ZČU se zaměřením na vývoj webových aplikací a softwarové inženýrství. '
+                'Baví mě celá cesta od návrhu architektury přes backend a databáze po detail v rozhraní; za hotové '
+                'považuju až to, co je otestované a funguje. Nové věci se učím rád (díky školním projektům NFC, '
+                'OpenMP, OpenGL). Zodpovědnost beru vážně i jako oblastní vedoucí v Klubu Pathfinder. '
                 'Hledám stáž nebo částečný úvazek.'),
     'education': [
         ('2019 – 2023', 'Počítačová grafika a CNC technika', 'Střední průmyslová škola Strakonice', ''),
@@ -84,9 +85,9 @@ DATA = {
         ('V plánu', 'TypeScript, Next.js, PostgreSQL, Spring Boot, GitHub Actions (CI/CD), testování (JUnit, Jest), Kubernetes, AWS / cloud'),
     ],
     'soft': [
-        ('Vedení týmů a mentorství', 'Víceleté zkušenosti s koordinací regionálních aktivit mládežnické organizace, vedením vedoucích a prací s dětmi i dospívajícími.'),
-        ('Projektový management a logistika', 'Tři tábory ve vedení a víkendové akce pro desítky účastníků: rozpočet a účetnictví, program, bezpečnost, zázemí.'),
-        ('Zodpovědnost a adaptabilita', 'Řešení nečekaných situací a krizový management při náročných outdoorových a expedičních aktivitách.'),
+        ('Vedení týmů a mentorství', 'Od 2018 vedu děti a mladé, od 2024 celou oblast Jižní kříž: koordinace vedoucích, pomoc s programem, předávání zkušeností.'),
+        ('Projektový management a logistika', 'Tábor je projekt se vším všudy: rozpočet, harmonogram, tým i rizika. Tři tábory ve vedení a víkendové akce pro desítky účastníků.'),
+        ('Zodpovědnost a klid pod tlakem', 'V nečekané situaci zachovat klid, rychle se rozhodnout a věc dotáhnout – na táboře, na skalách i v security na festivalu United.'),
     ],
     'languages': [('Čeština', 'rodilý mluvčí'), ('Angličtina', 'B2')],
     'certs': [],  # ('2025', 'Název kurzu', 'Organizace')
@@ -326,7 +327,7 @@ def build_playful(path):
     # měkké dovednosti: služební záznam
     s.append(Paragraph('Měkké dovednosti', S['h'])); s.append(rule())
     memo_rows = [[Paragraph('Věc', S['label']), Paragraph('Organizační a měkké dovednosti', S['monoInk'])],
-                 [Paragraph('Kde', S['label']), Paragraph('Klub Pathfinder, oblast Jižní kříž', S['monoInk'])],
+                 [Paragraph('Kde', S['label']), Paragraph('Klub Pathfinder, festival United', S['monoInk'])],
                  [Paragraph('Období', S['label']), Paragraph('od 2018', S['monoInk'])]]
     for k, v in DATA['soft']:
         memo_rows.append([Paragraph('', S['label']), Paragraph('<b>%s.</b> <font color="#6f5636">%s</font>' % (k, v), S['body'])])

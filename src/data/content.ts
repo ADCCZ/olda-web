@@ -367,20 +367,20 @@ const cs = {
   certsTitle: 'Certifikáty a kurzy',
   leadership: {
     title: 'Měkké dovednosti',
-    lead: 'Co jsem se naučil mimo klávesnici.',
-    memo: { subject: 'Věc', where: 'Kde', period: 'Období', subjectValue: 'Organizační a měkké dovednosti', whereValue: 'Klub Pathfinder, oblast Jižní kříž', periodValue: 'od 2018' },
+    lead: 'Co mě naučily tábory a vedení lidí – a co si beru i do týmu.',
+    memo: { subject: 'Věc', where: 'Kde', period: 'Období', subjectValue: 'Organizační a měkké dovednosti', whereValue: 'Klub Pathfinder, festival United', periodValue: 'od 2018' },
     items: [
       {
         title: 'Vedení týmů a mentorství',
-        desc: 'Víceleté zkušenosti s koordinací regionálních aktivit mládežnické organizace, vedením vedoucích a prací s dětmi i dospívajícími.',
+        desc: 'Od roku 2018 vedu děti a mladé, od roku 2024 celou oblast Jižní kříž: koordinuju vedoucí, pomáhám jim s\u00a0programem a předávám zkušenosti. Mám rádcovský (2020) i vůdcovský kurz (2024) a dokončuju MasterGuide.',
       },
       {
         title: 'Projektový management a logistika',
-        desc: 'Tři tábory ve vedení (jednou programový, dvakrát hlavní vedoucí) a víkendové akce pro desítky účastníků: rozpočet a účetnictví, program, bezpečnost, zázemí.',
+        desc: 'Tábor je projekt se vším všudy: rozpočet, harmonogram, tým i rizika. Tři jsem vedl (jednou jako programový, dvakrát jako hlavní vedoucí), k\u00a0tomu víkendové akce pro desítky účastníků a účetnictví oblasti.',
       },
       {
-        title: 'Zodpovědnost a adaptabilita',
-        desc: 'Řešení nečekaných situací a krizový management při náročných outdoorových a expedičních aktivitách.',
+        title: 'Zodpovědnost a klid pod tlakem',
+        desc: 'Na táboře ani na skalách se nedá nic odložit na zítřek. Umím v\u00a0nečekané situaci zachovat klid, rychle se rozhodnout a věc dotáhnout. Spolehlivý jsem i\u00a0jako dobrovolník na festivalu United, kde jsem v\u00a0roce 2025 dělal security.',
       },
     ],
   },
@@ -819,20 +819,20 @@ const en: typeof cs = {
   certsTitle: 'Certificates and courses',
   leadership: {
     title: 'Soft skills',
-    lead: 'What I learned away from the keyboard.',
-    memo: { subject: 'Subject', where: 'Where', period: 'Period', subjectValue: 'Organisational and soft skills', whereValue: 'Klub Pathfinder, Jižní kříž region', periodValue: 'since 2018' },
+    lead: 'What camps and leading people taught me – and what I bring to a team.',
+    memo: { subject: 'Subject', where: 'Where', period: 'Period', subjectValue: 'Organisational and soft skills', whereValue: 'Klub Pathfinder, United festival', periodValue: 'since 2018' },
     items: [
       {
         title: 'Team leadership & mentoring',
-        desc: "Years of coordinating a youth organisation's regional activities, leading leaders, and working with children and teenagers.",
+        desc: 'Since 2018 I have led children and young people, and since 2024 the whole Jižní kříž region: I coordinate leaders, help them with their programmes and pass on experience. I hold the patrol leader (2020) and unit leader (2024) courses and am finishing Master Guide.',
       },
       {
         title: 'Project management & logistics',
-        desc: 'Three camps in charge (once as programme leader, twice as head leader) and weekend events for dozens of participants: budget and accounts, programme, safety, facilities.',
+        desc: "A camp is a project in every sense: budget, schedule, team and risks. I have run three (once as programme leader, twice as head leader), plus weekend events for dozens of participants and the region's accounts.",
       },
       {
-        title: 'Responsibility & adaptability',
-        desc: 'Handling unexpected situations and crisis management during demanding outdoor and expedition activities.',
+        title: 'Responsibility & staying calm under pressure',
+        desc: "At camp or on a rock face, nothing can wait until tomorrow. I keep calm when things go wrong, decide quickly and see it through. I'm just as reliable as a volunteer at the United festival, where I worked security in 2025.",
       },
     ],
   },
