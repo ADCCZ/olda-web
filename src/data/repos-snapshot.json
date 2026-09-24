@@ -1,11 +1,13 @@
 [
   {
-    "name": "campmaster-3000",
-    "html_url": "https://github.com/adccz/campmaster-3000",
-    "language": "JavaScript",
+    "name": "olda-web",
+    "html_url": "https://github.com/adccz/olda-web",
+    "description": "CV website - Oldřich Jan Švehla",
+    "language": "TypeScript",
     "stargazers_count": 0,
-    "updated_at": "2026-05-25T00:00:00Z",
-    "homepage": "https://campmaster-3000.vercel.app",
+    "updated_at": "2026-09-24T06:52:02Z",
+    "pushed_at": "2026-09-24T06:52:02Z",
+    "homepage": "https://cv-oldjas-tan.vercel.app/",
     "fork": false
   },
   {
@@ -13,7 +15,18 @@
     "html_url": "https://github.com/adccz/web_oblastni-stranky_jk",
     "language": "Latte",
     "stargazers_count": 0,
-    "updated_at": "2026-02-04T00:00:00Z",
+    "updated_at": "2026-09-23T21:16:52Z",
+    "pushed_at": "2026-09-23T21:16:52Z",
+    "homepage": null,
+    "fork": false
+  },
+  {
+    "name": "bkp-tmwmf",
+    "html_url": "https://github.com/adccz/bkp-tmwmf",
+    "language": "Python",
+    "stargazers_count": 0,
+    "updated_at": "2026-09-23T11:05:23Z",
+    "pushed_at": "2026-09-23T11:05:23Z",
     "homepage": null,
     "fork": false
   },
@@ -22,7 +35,8 @@
     "html_url": "https://github.com/adccz/tmwmf_sem_UPS",
     "language": "C",
     "stargazers_count": 0,
-    "updated_at": "2026-01-15T00:00:00Z",
+    "updated_at": "2026-09-23T10:56:25Z",
+    "pushed_at": "2026-09-23T10:56:25Z",
     "homepage": null,
     "fork": false
   },
@@ -31,23 +45,19 @@
     "html_url": "https://github.com/adccz/web-foodapp",
     "language": "Twig",
     "stargazers_count": 0,
-    "updated_at": "2025-12-10T00:00:00Z",
+    "updated_at": "2026-09-23T10:48:24Z",
+    "pushed_at": "2026-09-23T10:48:24Z",
     "homepage": null,
     "fork": false
   },
   {
-    "name": "web-jiznikriz",
-    "html_url": "https://github.com/adccz/web-jiznikriz",
-    "language": "PHP",
+    "name": "campmaster-3000",
+    "html_url": "https://github.com/adccz/campmaster-3000",
+    "language": "JavaScript",
     "stargazers_count": 0,
-    "updated_at": "2025-10-01T00:00:00Z",
-    "homepage": null,
-    "fork": false,
-    "languages": {
-      "PHP": 19125,
-      "CSS": 486,
-      "Hack": 292,
-      "JavaScript": 133
-    }
+    "updated_at": "2026-05-25T17:21:44Z",
+    "pushed_at": "2026-05-25T17:21:44Z",
+    "homepage": "https://campmaster-3000.vercel.app",
+    "fork": false
   }
 ]
