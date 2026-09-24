@@ -15,7 +15,7 @@ function Meter({ level, label }: { level: Skill['level']; label: string }) {
 
 /**
  * Inventář technologií: skupiny jako karty v kartotéce, u každé technologie pětistupňový
- * ukazatel zkušenosti (popisky stupňů v t.skills.levels), nahoře legenda, dole plány.
+ * ukazatel zkušenosti (popisky stupňů v t.skills.levels), nahoře legenda, poslední karta plány.
  * Úrovně a skupiny se upravují v src/data/content.ts → skills.
  */
 export function Skills() {
@@ -55,12 +55,17 @@ export function Skills() {
             </ul>
           </section>
         ))}
-      </div>
-
-      {/* co se chystám doučit: bez ukazatele */}
-      <div className="reveal mt-6 grid gap-2 border-t border-line pt-5 md:grid-cols-[200px_1fr] md:gap-8" style={{ '--i': s.groups.length + 5 } as React.CSSProperties}>
-        <p className="readout">{s.plannedLabel}</p>
-        <p className="font-mono text-sm leading-relaxed text-ink-2">{s.planned.join(', ')}</p>
+        {/* co se chystám doučit: poslední karta mřížky, čárkovaná a bez ukazatelů */}
+        <section className="panel border-dashed p-5" style={{ '--i': s.groups.length + 4 } as React.CSSProperties} aria-label={s.plannedLabel}>
+          <h3 className="readout mb-3 text-ink">{s.plannedLabel}</h3>
+          <ul className="divide-y divide-line">
+            {s.planned.map((it) => (
+              <li key={it} className="flex items-center gap-3 py-2 font-mono text-sm text-ink-2">
+                <span className="h-2 w-2 shrink-0 rounded-full border border-line" aria-hidden />{it}
+              </li>
+            ))}
+          </ul>
+        </section>
       </div>
     </Section>
   )

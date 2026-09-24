@@ -81,7 +81,6 @@ DATA = {
         ('Jazyky', 'PHP, C (pokročile); JavaScript, Java, C#, Python, SQL; C++ (základy)'),
         ('Web', 'Nette, Latte, HTML5 / CSS3 (pokročile); Tailwind CSS, React, Vue.js, Twig, UX/UI design; Node.js'),
         ('Nástroje', 'MySQL, Git a GitHub, Linux CLI, Vite, LaTeX; Docker, Make / CMake / Maven'),
-        ('Testování', 'pytest (mock, parametrizace); coverage, Squash TM, Robot Framework, BDD (Gherkin)'),
         ('Další', 'TCP/IP sokety, REST API, WebSockety, OAuth 2.0, OpenMP, NFC, OpenGL / OpenTK, pandas, Power BI'),
         ('V plánu', 'TypeScript, Next.js, PostgreSQL, Spring Boot, GitHub Actions (CI/CD), testování (JUnit, Jest), Kubernetes, AWS / cloud'),
     ],

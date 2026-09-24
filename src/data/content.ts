@@ -293,15 +293,6 @@ const cs = {
         { name: 'Docker', level: 2 }, // portál (Dockerfile, compose, nasazení na Railway)
         { name: 'Make / CMake / Maven', level: 2 }, // C projekty, klient Pexesa
       ] },
-      { name: 'Testování', items: [
-        { name: 'pytest (fixtures, parametrizace, mock)', level: 3 }, // bakalářský projekt (24 testů), KIV/OKS úlohy 01–03, 08, 09
-        { name: 'Pokrytí kódu (coverage)', level: 2 }, // KIV/OKS 03: 100% pokrytí příkazů a větví
-        { name: 'Návrh testů, Squash TM', level: 2 }, // KIV/OKS 04–05: požadavky, testovací případy, manuální kampaně
-        { name: 'Robot Framework + Browser Library', level: 2 }, // KIV/OKS 06, 07, 10: webové testy s POM, řízené daty, DB
-        { name: 'BDD (Gherkin)', level: 2 }, // KIV/OKS 09: Scenario Outline, tagy, pozitivní i negativní testy
-        { name: 'Testy databáze (SQLite)', level: 2 }, // KIV/OKS 10: tabulky, sloupce, triggery
-        { name: 'Logování (Python logging)', level: 2 }, // KIV/OKS 08: dictConfig z JSON, testy úrovní
-      ] },
       { name: 'Grafika a data', items: [
         { name: 'pandas / matplotlib', level: 3 }, // bakalářský projekt, UPP
         { name: 'Otevřená data', level: 3 }, // bakalářský projekt (ČSÚ, MŠMT, MF, MPSV)
@@ -752,11 +743,6 @@ const en: typeof cs = {
       { name: 'Databases & tools', items: [
         { name: 'MySQL', level: 3 }, { name: 'Git & GitHub', level: 3 }, { name: 'Linux CLI', level: 3 }, { name: 'Vite', level: 3 },
         { name: 'LaTeX', level: 3 }, { name: 'Docker', level: 2 }, { name: 'Make / CMake / Maven', level: 2 },
-      ] },
-      { name: 'Testing', items: [
-        { name: 'pytest (fixtures, parametrisation, mocks)', level: 3 }, { name: 'Code coverage', level: 2 }, { name: 'Test design, Squash TM', level: 2 },
-        { name: 'Robot Framework + Browser Library', level: 2 }, { name: 'BDD (Gherkin)', level: 2 },
-        { name: 'Database tests (SQLite)', level: 2 }, { name: 'Logging (Python logging)', level: 2 },
       ] },
       { name: 'Graphics & data', items: [
         { name: 'pandas / matplotlib', level: 3 }, { name: 'Open data', level: 3 }, { name: 'Power BI', level: 2 },
