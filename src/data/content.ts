@@ -394,6 +394,7 @@ const cs = {
   },
   footer: {
     made: 'Kód tohoto webu je na GitHubu.',
+    inspo: 'Design je inspirovaný mým oblíbeným seriálem Loki.',
     skip: 'Přeskočit na obsah',
     eggs: 'Psst: zkus vlnovku.',
     guide: 'Zavolat Složku',
@@ -842,6 +843,7 @@ const en: typeof cs = {
   },
   footer: {
     made: 'The code of this site is on GitHub.',
+    inspo: 'The design is inspired by my favourite series, Loki.',
     skip: 'Skip to content',
     eggs: 'Psst: try the tilde.',
     guide: 'Call Složka',
