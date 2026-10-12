@@ -134,7 +134,7 @@ const cs = {
       // action: 'guitar' = tlačítko Hrát otevře kytaru; 'games' = tlačítko rozbalí seznam her (src/data/games.ts); href = odkaz na web
       { icon: 'guitar', label: 'Kytara', note: 'akustická, hraju od roku 2011, hlavně u\u00a0ohně', action: 'guitar' },
       { icon: 'scout', label: 'Klub Pathfinder', note: 'od roku 2012, oblastní vedoucí, tábory jsou srdcovka', href: 'https://www.pathfinder.cz/' },
-      { icon: 'marvel', label: 'Filmy a seriály', note: 'viděl jsem snad každou marvelovku, teď sleduju Zrádce na Prima+', href: 'https://seriesgraph.com/user/d3854d39-022b-4c98-ab7e-9d17de583a78' },
+      { icon: 'marvel', label: 'Filmy a seriály', note: 'viděl jsem snad každou marvelovku, nejradši mám seriál Loki (podle něj je i\u00a0design tohohle webu), teď sleduju Zrádce na Prima+', href: 'https://seriesgraph.com/user/d3854d39-022b-4c98-ab7e-9d17de583a78' },
       { icon: 'games', label: 'Videohry', note: 'hraju od roku 2012', action: 'games' },
       { icon: 'mountain', label: 'Lezení a outdoor', note: 'po skalách a po ferratách, na nich zatím nejtěžší obtížnost\u00a0D' },
     ],
@@ -613,7 +613,7 @@ const en: typeof cs = {
     interests: [
       { icon: 'guitar', label: 'Guitar', note: 'acoustic, playing since 2011, mostly by the fire', action: 'guitar' },
       { icon: 'scout', label: 'Klub Pathfinder', note: 'since 2012, regional leader, camps are my passion', href: 'https://www.pathfinder.cz/' },
-      { icon: 'marvel', label: 'Films and series', note: "I've seen pretty much every Marvel film, now watching Zrádci (The Traitors) on Prima+", href: 'https://seriesgraph.com/user/d3854d39-022b-4c98-ab7e-9d17de583a78' },
+      { icon: 'marvel', label: 'Films and series', note: "I've seen pretty much every Marvel film, my favourite is the Loki series (it inspired this site's design), now watching Zrádci (The Traitors) on Prima+", href: 'https://seriesgraph.com/user/d3854d39-022b-4c98-ab7e-9d17de583a78' },
       { icon: 'games', label: 'Video games', note: 'playing since 2012', action: 'games' },
       { icon: 'mountain', label: 'Climbing and outdoors', note: 'rock climbing and via ferratas, hardest so far grade\u00a0D' },
     ],
