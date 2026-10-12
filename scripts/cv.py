@@ -67,8 +67,9 @@ def esc(text):
 
 # ============================================================ PDF (zhuštěné texty)
 PDF = {
-    'profile': ('Junior full-stack vývojář, který věci dotahuje do posledního puntíku. Absolvent bakalářského '
-                'studia informatiky na FAV ZČU se zaměřením na vývoj webových aplikací a softwarové inženýrství. '
+    'profile': ('Junior full-stack vývojář, který věci dotahuje do posledního puntíku. Bakalářské Počítačové '
+                'vědy na FAV ZČU jsem zaměřil na software (vývoj webových aplikací, softwarové inženýrství), teď jsem '
+                'v 1. ročníku navazujícího studia Softwarové a informační systémy (SWIS). '
                 'Baví mě celá cesta od návrhu architektury přes backend a databáze po detail v rozhraní; za hotové '
                 'považuju až to, co je otestované a funguje. Nové věci se učím rád (díky školním projektům NFC, '
                 'OpenMP, OpenGL). Zodpovědnost beru vážně i jako oblastní vedoucí v Klubu Pathfinder. '
