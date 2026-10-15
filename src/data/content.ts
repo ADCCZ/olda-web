@@ -51,8 +51,8 @@ const shared = {
   site: 'https://cv-oldjas-tan.vercel.app',
   /** kontaktní e-mail (adresa, mailto: doplní Contact.tsx) */
   email: 'oldasvehla@seznam.cz' as string,
-  /** doplň, až budeš mít: 'https://linkedin.com/in/...' */
-  linkedin: '' as string,
+  /** profil na LinkedInu (prázdný řetězec = tlačítko „brzy“) */
+  linkedin: 'https://www.linkedin.com/in/oldrich-jan-svehla' as string,
   /** soubory v /public; generuje je scripts/cv.py */
   cvFile: '/cv.pdf',
   cvPlainFile: '/cv-plain.pdf',
